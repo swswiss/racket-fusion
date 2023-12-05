@@ -1,0 +1,12 @@
+aside.side-navbar {
+  a {
+		text-decoration: none;
+		color: black;
+		div {
+		
+			&:hover {
+				background-color: rgb(232, 226, 226);
+			}
+		}
+	}
+}

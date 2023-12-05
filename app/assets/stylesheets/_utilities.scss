@@ -1,0 +1,11 @@
+a.twitter-link {
+	color: #499BE9 !important;
+	-moz-transition: all .1s ease-in;
+	-o-transition: all .1s ease-in;
+	-webkit-transition: all .1s ease-in;
+	transition: all .1s ease-in;
+
+	&:hover {
+		text-decoration: underline !important;
+	}
+}

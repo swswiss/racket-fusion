@@ -1,0 +1,35 @@
+{
+  "name": "racket-fusion",
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "@hotwired/turbo": {
+      "version": "8.0.0-beta.1",
+      "resolved": "https://registry.npmjs.org/@hotwired/turbo/-/turbo-8.0.0-beta.1.tgz",
+      "integrity": "sha512-g66YmO/Oa+EThB3KkNDhrM9mFnNyRn6tqgwGiBHh4Vf+d3XjCznuWSG2o2e2cO/RlddVRtCwvBSMuG6sYQWX+g==",
+      "requires": {
+        "idiomorph": "git+https://github.com/basecamp/idiomorph.git#rollout-build"
+      },
+      "dependencies": {
+        "idiomorph": {
+          "version": "git+https://github.com/basecamp/idiomorph.git#e906820368e4c9c52489a3336b8c3826b1bf6de5",
+          "from": "git+https://github.com/basecamp/idiomorph.git#rollout-build"
+        }
+      }
+    },
+    "@hotwired/turbo-rails": {
+      "version": "8.0.0-beta.1",
+      "resolved": "https://registry.npmjs.org/@hotwired/turbo-rails/-/turbo-rails-8.0.0-beta.1.tgz",
+      "integrity": "sha512-x9G95vehf5LR4yYGvhD4z6wBMbmAVi0V87FTfenrmXPru4SfOVDsCwdEINBWsLqOvCgRPQD9eY2nGyDfZlsukg==",
+      "requires": {
+        "@hotwired/turbo": "^8.0.0-beta.1",
+        "@rails/actioncable": "^7.0"
+      }
+    },
+    "@rails/actioncable": {
+      "version": "7.1.2",
+      "resolved": "https://registry.npmjs.org/@rails/actioncable/-/actioncable-7.1.2.tgz",
+      "integrity": "sha512-KGziTZfbmGm8/fHOpj515xupbYU+49hsp4etfdpoDJ/CEY2bRZR0cyFcJkpK6n0t/sxOHNWY6bo9vSgXZvT7Mg=="
+    }
+  }
+}

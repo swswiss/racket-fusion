@@ -1,0 +1,42 @@
+.tweet {
+	-moz-transition: all .1s ease-in;
+	-o-transition: all .1s ease-in;
+	-webkit-transition: all .1s ease-in;
+	transition: all .1s ease-in;
+	&:hover {
+		background-color: rgba(0, 0, 0, 0.028);
+		cursor: pointer;
+	}
+
+	.action-links {
+		
+		a {
+			span {
+				position: relative;
+				top: 2px;
+			}
+
+			&.views, &.replies, &.bookmark {
+				&:hover {
+					color: #499BE9 !important;
+				}
+			}
+			&.replies{
+				&:hover {
+					color: rgb(121, 195, 121) !important;
+				}
+			}
+			&.likes{
+				&:hover {
+					color: #d97f7f !important;
+				}
+			}
+			&.retweets{
+				&:hover {
+					color: #499BE9 !important;
+				}
+			}
+			
+		}
+	}
+}

@@ -1,0 +1,18 @@
+.btn-twitter {
+	background-color: #499BE9;
+	color: white;
+	-moz-transition: all .1s ease-in;
+	-o-transition: all .1s ease-in;
+	-webkit-transition: all .1s ease-in;
+	transition: all .1s ease-in;
+	font-weight: 500;
+
+	&:hover {
+			background-color: #4390D9 !important;
+			color: white !important;
+	}
+}
+
+.btn-twitter-outline {
+	background-color: white;
+}

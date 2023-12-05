@@ -1,0 +1,58 @@
+<%= turbo_frame_tag dom_id(tweet_presenter.tweet) do %>
+	<div class="tweet d-flex py-3 px-3">
+		<div class="flex-shrink-0">
+			<%= image_tag tweet_presenter.avatar, size: "41x41", class: "rounded-circle" if tweet_presenter.avatar.attached? %>
+		</div>
+		<div class="flex-grow-1 ms-3">
+
+			<p class="mb-0">
+				<span class="fw-bolder"><%= tweet_presenter.display_name %></span> 
+				<span class="text-muted">
+					@<%= tweet_presenter.username %> <%= tweet_presenter.created_at %></span>
+			</p>
+			<p><%= tweet_presenter.body %></p>
+			<div class = "d-flex justify-content-between align-items-center action-links">
+				<div>
+					<%= link_to "#", class: "text-decoration-none text-black views" do %>
+						<%= image_tag "views.png", size: "19x19", class: "me-1"%>
+						<span>Views</span>
+					<% end %>
+				</div>
+				<div>
+					<%= link_to "#", class: "text-decoration-none text-black replies" do %>
+						<%= image_tag "replies.png", size: "19x19", class: "me-1"%>
+						<span>Replies</span>
+					<% end %>
+				</div>
+				<div>
+					<%= link_to "#", class: "text-decoration-none text-black retweets" do %>
+						<%= image_tag "repost.png", size: "19x19", class: "me-1"%>
+						<span>Retweets</span>
+					<% end %>
+				</div>
+				<div>
+					<% if tweet_presenter.likes.include?(current_user.likes.find_by(tweet: tweet_presenter.tweet)) %>
+						<%= link_to tweet_like_path(tweet_presenter.tweet, tweet_presenter.tweet.likes.find_by(user: current_user)), data: {"turbo-method": "delete"}, class: "text-decoration-none text-black likes" do %>
+							<%= image_tag "tennis_filled.png", size: "15x15", class: "me-1"%>
+							<span><%= tweet_presenter.likes.size %></span>
+						<%end%>
+					<%else%>
+						<%= link_to tweet_likes_path(tweet_presenter.tweet), data: {"turbo-method": "post"}, class: "text-decoration-none text-black likes" do %>
+							<%= image_tag "tennis-ball.png", size: "19x19", class: "me-1"%>
+							<span><%= tweet_presenter.likes.size %></span>
+						<% end %>
+					<% end %>
+				</div>
+				<div>
+					<%= link_to "#", class: "text-decoration-none text-black bookmark" do %>
+						<%= image_tag "share.png", size: "19x19", class: "me-1"%>
+						<span>Bookmark</span>
+					<% end %>
+				</div>
+
+
+			</div>
+		</div>
+		
+	</div>
+<%end%>

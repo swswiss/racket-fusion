@@ -1,0 +1,16 @@
+
+<div class="col-7">
+	<div class = "mb-3">
+		<%= link_to "Home", dashboard_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
+	</div>
+	<div class = " mb-4" >
+		<%= render "shared/tweet_form" %>
+	</div>
+	<div id = "tweets" >
+		<%= render partial: "tweets/tweet", collection: @tweets, as: :tweet_presenter %>
+	</div>
+	
+</div>
+<div class="col">
+	asdsadsad
+</div>

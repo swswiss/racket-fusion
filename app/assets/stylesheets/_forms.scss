@@ -1,0 +1,9 @@
+.tweet-input {
+	border: 0;
+	font-size: 1.3rem;
+	&:focus {
+			outline: none;
+			box-shadow: none;
+			-webkit-box-shadow: none;
+	}
+}

@@ -1,0 +1,72 @@
+<aside class="col side-navbar">
+	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 px-3 mb-3" do %>
+		<div class = "px-2 py-2 rounded-circle">
+			<%= image_tag "tennis-player.png", width: "45" %>
+		</div>
+	<% end %>
+	
+	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+		<div class= "px-4 py-2 rounded-pill">
+			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "home.png", width: "27" %></span>
+			Home
+		</div>
+	<% end %>
+
+	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+		<div class= "px-4 py-2 rounded-pill">
+			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "binoculars.png", width: "27" %></span>
+			Explore
+		</div>
+	<% end %>
+
+	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+		<div class= "px-4 py-2 rounded-pill">
+			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "notification.png", width: "27" %></span>
+			Notifications
+		</div>
+	<% end %>
+
+	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+		<div class= "px-4 py-2 rounded-pill">
+			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "send.png", width: "27" %></span>
+			Messages
+		</div>
+	<% end %>
+
+	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+		<div class= "px-4 py-2 rounded-pill">
+			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "bookmark.png", width: "27" %></span>
+			Bookmarks
+		</div>
+	<% end %>
+
+	<%= link_to new_username_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+		<div class= "px-4 py-2 rounded-pill">
+			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "user.png", width: "27" %></span>
+			Profile
+		</div>
+	<% end %>
+
+	<div class = "d-flex align-items-center fs-4 px-4 mb-3" >
+		<%= button_tag "Tweet", class: "btn btn-lg btn-twitter w-100 rounded-pill", data: { "bs-toggle": "modal", "bs-target": "#exampleModal" } %>
+	</div>
+
+	<div class = "d-flex align-items-center fs-6  px-4 ">
+		<%= link_to "Log Out", destroy_user_session_path, data: {"turbo-method": :delete}, class: 'twitter-link' %>
+	</div>
+</aside>
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<%= render "shared/tweet_form" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
