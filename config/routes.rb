@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :likes, only: [:create, :destroy]
   end
   
+  
   get :dashboard, to: "dashboard#index"
 
   resources :usernames, only: [:new, :update]
