@@ -1,7 +1,7 @@
 <%= turbo_frame_tag dom_id(tweet_presenter.tweet) do %>
 	<div class="tweet d-flex py-3 px-3">
 		<div class="flex-shrink-0">
-			<%= image_tag tweet_presenter.avatar, size: "41x41", class: "rounded-circle" if tweet_presenter.avatar.attached? %>
+			<%= image_tag "#{tweet_presenter.image_profile}.png", size: "41x41", class: "rounded-circle" if tweet_presenter.image_profile.present? %>
 		</div>
 		<div class="flex-grow-1 ms-3">
 
@@ -31,16 +31,16 @@
 					<% end %>
 				</div>
 				<div>
-					<%= link_to tweet_presenter.like_tweet_url, data: {"turbo-method": tweet_presenter.turbo_data_method}, class: "text-decoration-none text-black likes" do %>
+					<%= link_to tweet_presenter.like_tweet_url, data: {"turbo-method": tweet_presenter.turbo_data_like_method}, class: "text-decoration-none text-black likes" do %>
 						<%= image_tag tweet_presenter.like_heart_image, size: tweet_presenter.size_like, class: "me-1"%>
 						<span><%= tweet_presenter.likes_count %></span>
 					<%end%>
 				</div>
 				<div>
-					<%= link_to "#", class: "text-decoration-none text-black bookmark" do %>
-						<%= image_tag "share.png", size: "19x19", class: "me-1"%>
-						<span>Bookmark</span>
-					<% end %>
+					<%= link_to tweet_presenter.bookmark_tweet_url, data: {"turbo-method": tweet_presenter.turbo_bookmark_data_method}, class: "text-decoration-none text-black likes" do %>
+						<%= image_tag tweet_presenter.bookmark_image, size: tweet_presenter.size_bookmark, class: "me-1"%>
+						<span><%= tweet_presenter.bookmark_text %></span>
+					<%end%>
 				</div>
 
 

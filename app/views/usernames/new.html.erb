@@ -7,16 +7,101 @@
 			<%= f.text_field :username, class: "form-control" %>
 		</div>
 
-		<div class = "mb-3">
+		<div class = "mb-4">
 			<%= f.label :display_name, class: "form-label" %>
 			<%= f.text_field :display_name, class: "form-control" %>
 		</div>
-
-		<div class = "input-group mb-3">
+		<!--  <div class = "input-group mb-3">
 			<%= f.label :avatar, class: "input-group-text" %>
 			<%= f.file_field :avatar, class: "form-control" %>
+		</div> -->
+
+		<div class="row">
+			<div class="col-md-2">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="avatar" value="astronaut" id="flexCheckDefault1">
+					<label class="form-check-label" for="flexCheckDefault1">
+						<%= image_tag "astronaut.png", size: "27x27", class: "me-1" %>
+					</label>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="avatar" value="man" id="flexCheckDefault2">
+					<label class="form-check-label" for="flexCheckDefault2">
+						<%= image_tag "man.png", size: "27x27", class: "me-1" %>
+					</label>
+				</div>
+			</div>
+		
+
+			<div class="col-md-2">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="avatar" value="child" id="flexCheckDefault3">
+					<label class="form-check-label" for="flexCheckDefault3">
+						<%= image_tag "child.png", size: "27x27", class: "me-1" %>
+					</label>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="avatar" value="bear" id="flexCheckDefault4">
+					<label class="form-check-label" for="flexCheckDefault4">
+						<%= image_tag "bear.png", size: "27x27", class: "me-1" %>
+					</label>
+				</div>
+			</div>
 		</div>
 
+		<div class="row">
+			<div class="col-md-2">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="avatar" value="gamer" id="flexCheckDefault5">
+					<label class="form-check-label" for="flexCheckDefault5">
+						<%= image_tag "gamer.png", size: "27x27", class: "me-1" %>
+					</label>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="avatar" value="geek" id="flexCheckDefault6">
+					<label class="form-check-label" for="flexCheckDefault6">
+						<%= image_tag "geek.png", size: "27x27", class: "me-1" %>
+					</label>
+				</div>
+			</div>
+
+			<div class="col-md-2">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="avatar" value="girl" id="flexCheckDefault7">
+					<label class="form-check-label" for="flexCheckDefault7">
+						<%= image_tag "girl.png", size: "27x27", class: "me-1" %>
+					</label>
+				</div>
+			</div>
+
+
+
+			<div class="col-md-2">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="avatar" value="rabbit" id="flexCheckDefault8">
+					<label class="form-check-label" for="flexCheckDefault8">
+						<%= image_tag "rabbit.png", size: "27x27", class: "me-1" %>
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-md-2 mb-2">
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="avatar" value="woman" id="flexCheckDefault9">
+					<label class="form-check-label" for="flexCheckDefault9">
+						<%= image_tag "woman.png", size: "27x27", class: "me-1" %>
+					</label>
+				</div>
+			</div>
+		</div>
 
 		<%= f.submit "Set Username", class: "btn btn-primary btn-twitter rounded-pill" %>
   <% end %>

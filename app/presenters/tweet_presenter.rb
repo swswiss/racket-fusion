@@ -4,13 +4,13 @@ class TweetPresenter
 
 	def initialize(tweet:, current_user:)
 		@tweet = tweet
-		@current_user = user
+		@current_user = current_user
 	end
 
 	attr_reader :tweet, :current_user
 
 	delegate :user, :body, :likes_count, to: :tweet
-	delegate :display_name, :username, :avatar, to: :user
+	delegate :display_name, :username, :avatar, :image_profile, to: :user
 
 	def created_at
 		if (Time.zone.now - tweet.created_at) > 1.day
@@ -36,7 +36,7 @@ class TweetPresenter
 		end
 	end
 
-	def turbo_data_method
+	def turbo_data_like_method
 		if tweet_liked_by_current_user?
 			"delete"
 		else
@@ -52,11 +52,58 @@ class TweetPresenter
 		end
 	end
 
+	#### bookmark
+	def bookmark_tweet_url
+		if tweet_bookmarked_by_current_user?
+			tweet_bookmark_path(tweet, current_user.bookmarks.find_by(tweet: tweet))
+		else
+			tweet_bookmarks_path(tweet)
+		end
+	end
+
+	def size_bookmark
+		if tweet_bookmarked_by_current_user?
+			"19x19"
+		else
+			"19x19"
+		end
+	end
+
+	def turbo_bookmark_data_method
+		if tweet_bookmarked_by_current_user?
+			"delete"
+		else
+			"post"
+		end
+	end
+
+	def bookmark_image
+		if tweet_bookmarked_by_current_user?
+			"bookmark-filled.png"
+		else
+			"bookmark.png"
+		end
+	end
+
+	def bookmark_text
+		if tweet_bookmarked_by_current_user?
+			"Bookmarked"
+		else
+			"Bookmark"
+		end
+	end
+
 	private
 
 	def tweet_liked_by_current_user
 		@tweet_liked_by_current_user ||= tweet.liked_users.include?(current_user)
 	end
+	
+
+	def tweet_bookmarked_by_current_user
+		@tweet_bookmarked_by_current_user ||= tweet.bookmarked_users.include?(current_user)
+	end
 
 	alias_method :tweet_liked_by_current_user?, :tweet_liked_by_current_user
+	alias_method :tweet_bookmarked_by_current_user?, :tweet_bookmarked_by_current_user
 end

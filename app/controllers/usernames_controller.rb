@@ -7,6 +7,9 @@ class UsernamesController < ApplicationController
   end
 
 	def update
+		if params[:avatar].present?
+			current_user.update(image_profile: params[:avatar])
+		end
 		if username_params[:username].present? && current_user.update(username_params)
 			flash[:notice] = "Username succesfully changed."
 			redirect_to dashboard_path
