@@ -1,0 +1,4 @@
+<%= turbo_stream.replace dom_id(@tournament) do %>
+	<%= render partial: "tournaments/tournament", locals: {tournament_presenter: TournamentPresenter.new(tournament: @tournament, current_user: current_user)} %>
+<%end%>
+

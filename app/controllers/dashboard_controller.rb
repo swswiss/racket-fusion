@@ -4,5 +4,8 @@ class DashboardController < ApplicationController
 		@tweets = Tweet.includes(:liked_users, :bookmarked_users, :user).order(created_at: :desc).map do |tweet| 
 			TweetPresenter.new(tweet: tweet, current_user: current_user)
 		end
-  	end
+		@all_tournaments = Tournament.includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
+			TournamentPresenter.new(tournament: tournament, current_user: current_user)
+		end
+  end
 end

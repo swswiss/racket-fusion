@@ -47,6 +47,26 @@
 		</div>
 	<% end %>
 
+	<%= link_to tournaments_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+		<div class= "px-4 py-2 rounded-pill">
+			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "user.png", width: "27" %></span>
+			Tournaments
+		</div>
+	<% end %>
+
+	
+	<center><div class= "px-4 py-0 rounded-pill">
+		<span class = "me-4 position-relative" style = "bottom: 3px;" >-------<%= image_tag "manager.png", width: "45" %>-------</span>
+	</div></center>
+
+
+	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#creat_tour" } do %>
+		<div class= "px-4 py-2 rounded-pill">
+			<span class = "me-4 position-relative" style = "bottom: 3px;"><%= image_tag "tournament.png", width: "27" %></span>
+			Creat Tour
+		</div>
+	<% end %>
+
 	<div class = "d-flex align-items-center fs-4 px-4 mb-3" >
 		<%= button_tag "Tweet", class: "btn btn-lg btn-twitter w-100 rounded-pill", data: { "bs-toggle": "modal", "bs-target": "#exampleModal" } %>
 	</div>
@@ -65,6 +85,20 @@
       </div>
       <div class="modal-body">
 				<%= render "shared/tweet_form" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="creat_tour" tabindex="-1" aria-labelledby="creat_tour" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<%= render "shared/tournament_form" %>
       </div>
       
     </div>
