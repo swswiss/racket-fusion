@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :tweets, only: :create do
+  resources :tweets, only: [:create, :destroy] do
     resources :likes, only: [:create, :destroy]
     resources :bookmarks, only: [:create, :destroy]
   end

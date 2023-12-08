@@ -68,44 +68,15 @@ class TournamentPresenter
 		end
 	end
 
-	def registration_heart_image(level_param: nil)
-		if level_param == "level_1"
-			if tournament_registrated_by_current_user?
-				"tennis_filled.png"
-			else
-				"tennis-ball.png"
-			end
-		end
-	end
+	def registration_heart_image
 
-	def registration_heart_image_2(level_param: nil)
-		if level_param == "level_2"
-			if tournament_registrated_by_current_user?
-				"tennis_filled.png"
-			else
+		#if level_param == "level_1"
+			#if tournament_registrated_by_current_user?
+				#"tennis_filled.png"
+			#else
 				"tennis-ball.png"
-			end
-		end
-	end
-
-	def registration_heart_image_3(level_param: nil)
-		if level_param == "level_3"
-			if tournament_registrated_by_current_user?
-				"tennis_filled.png"
-			else
-				"tennis-ball.png"
-			end
-		end
-	end
-
-	def registration_heart_image_4(level_param: nil)
-		if level_param == "level_4"
-			if tournament_registrated_by_current_user?
-				"tennis_filled.png"
-			else
-				"tennis-ball.png"
-			end
-		end
+			#end
+		#end
 	end
 
   def created_at

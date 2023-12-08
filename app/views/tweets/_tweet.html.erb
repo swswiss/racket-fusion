@@ -9,6 +9,11 @@
 				<span class="fw-bolder"><%= tweet_presenter.display_name %></span> 
 				<span class="text-muted">
 					@<%= tweet_presenter.username %> <%= tweet_presenter.created_at %></span>
+					<% if current_user.admin? %>
+						<%= link_to tweet_path(tweet_presenter.tweet), method: :delete, data: { turbo_method: :delete }, class: "btn btn-outline-danger btn-sm float-end", style: "font-size: 7px;" do %>
+							X
+						<% end %>
+					<% end %>
 			</p>
 			<p><%= tweet_presenter.body %></p>
 			<div class = "d-flex justify-content-between align-items-center action-links">

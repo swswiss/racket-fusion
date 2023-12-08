@@ -1,5 +1,6 @@
 class TournamentsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_admin, only: :create
 
 	
 
@@ -10,6 +11,7 @@ class TournamentsController < ApplicationController
   end
 
 	def create
+		debugger
 		@tournament = Tournament.new(tournament_params.merge(user: current_user))
 
 		if @tournament.save

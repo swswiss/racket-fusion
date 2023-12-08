@@ -3,6 +3,13 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  def authenticate_admin
+    if !current_user.admin?
+      flash[:alert] = "You don't have permission to perform this action."
+      redirect_to root_path
+    end
+  end
+
   def after_sign_in_path_for(resource)
     dashboard_path
   end

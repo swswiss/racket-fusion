@@ -12,28 +12,28 @@
 			</p>
 			<p><%=  %></p>
 			<div class = "d-flex justify-content-between align-items-center action-links">
-				<div>
-					<%= link_to tournament_presenter.registration_tournament_url(level_param: "level_1"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
-						<%= image_tag tournament_presenter.registration_heart_image(level_param: "level_1"), size: tournament_presenter.size_registration, class: "me-1"%>
-						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_1").count%></span>
+				<div> 
+					<%= link_to tournament_presenter.registration_tournament_url(level_param: "level_1"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: 'btn btn-info disabled', :disabled => true,remote: true do %>
+						<%= image_tag tournament_presenter.tournament.registrations.where(user_id: current_user.id).first&.level_registration == "level_1" ? "tennis_filled.png" : "tennis-ball.png", size: tournament_presenter.size_registration, class: "me-1"%>
+						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_1").count%>/<%= tournament_presenter.tournament.max_lvl1 %></span>
 					<%end%>
 				</div>
 				<div>
 					<%= link_to tournament_presenter.registration_tournament_url_lvl2(level_param: "level_2"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
-						<%= image_tag tournament_presenter.registration_heart_image_2(level_param: "level_2"), size: tournament_presenter.size_registration, class: "me-1"%>
-						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_2").count %></span>
+						<%= image_tag tournament_presenter.tournament.registrations.where(user_id: current_user.id).first&.level_registration == "level_2" ? "tennis_filled.png" : "tennis-ball.png", size: tournament_presenter.size_registration, class: "me-1"%>
+						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_2").count %>/<%= tournament_presenter.tournament.max_lvl2 %></span>
 					<%end%>
 				</div>
 				<div>
 					<%= link_to tournament_presenter.registration_tournament_url_lvl3(level_param: "level_3"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
-						<%= image_tag tournament_presenter.registration_heart_image_3(level_param: "level_3"), size: tournament_presenter.size_registration, class: "me-1"%>
-						<span><%=tournament_presenter.tournament.registrations.where(level_registration: "level_3").count %></span>
+						<%= image_tag tournament_presenter.tournament.registrations.where(user_id: current_user.id).first&.level_registration == "level_3" ? "tennis_filled.png" : "tennis-ball.png", size: tournament_presenter.size_registration, class: "me-1"%>
+						<span><%=tournament_presenter.tournament.registrations.where(level_registration: "level_3").count %>/<%= tournament_presenter.tournament.max_lvl3 %></span>
 					<%end%>
 				</div>
 				<div>
 					<%= link_to tournament_presenter.registration_tournament_url_lvl4(level_param: "level_4"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
-						<%= image_tag tournament_presenter.registration_heart_image_4(level_param: "level_4"), size: tournament_presenter.size_registration, class: "me-1"%>
-						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_4").count %></span>
+						<%= image_tag tournament_presenter.tournament.registrations.where(user_id: current_user.id).first&.level_registration == "level_4" ? "tennis_filled.png" : "tennis-ball.png", size: tournament_presenter.size_registration, class: "me-1"%>
+						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_4").count %>/<%= tournament_presenter.tournament.max_lvl4 %></span>
 					<%end%>
 				</div>
 			</div>

@@ -54,17 +54,17 @@
 		</div>
 	<% end %>
 
-	
-	<center><div class= "px-4 py-0 rounded-pill">
-		<span class = "me-4 position-relative" style = "bottom: 3px;" >-------<%= image_tag "manager.png", width: "45" %>-------</span>
-	</div></center>
+	<% if current_user.admin? %>
+		<center><div class= "px-4 py-0 rounded-pill">
+			<span class = "me-4 position-relative" style = "bottom: 3px;" >--------<%= image_tag "manager.png", width: "45" %>--------</span>
+		</div></center>
 
-
-	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#creat_tour" } do %>
-		<div class= "px-4 py-2 rounded-pill">
-			<span class = "me-4 position-relative" style = "bottom: 3px;"><%= image_tag "tournament.png", width: "27" %></span>
-			Creat Tour
-		</div>
+		<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#creat_tour" } do %>
+			<div class= "px-4 py-2 rounded-pill">
+				<span class = "me-4 position-relative" style = "bottom: 3px;"><%= image_tag "tournament.png", width: "27" %></span>
+				Creat Tour
+			</div>
+		<% end %>
 	<% end %>
 
 	<div class = "d-flex align-items-center fs-4 px-4 mb-3" >
