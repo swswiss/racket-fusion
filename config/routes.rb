@@ -7,7 +7,17 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :tournaments, only: :create do
-    resources :registrations, only: [:create, :destroy]
+    post 'create_level_two', on: :member, to: 'registrations#create_level_two'
+    post 'create_level_three', on: :member, to: 'registrations#create_level_three'
+    post 'create_level_four', on: :member, to: 'registrations#create_level_four'
+
+    resources :registrations, only: [:create, :destroy] do
+      member do
+        delete 'destroy_level_two'
+        delete 'destroy_level_three'
+        delete 'destroy_level_four'
+      end
+    end
   end
 
   resources :tweets, only: :create do

@@ -19,12 +19,36 @@ class TournamentPresenter
 			time_ago_in_words(tournament.created_at)
 		end
 	end
-
-	def registration_tournament_url
+	####registration_lvl1
+	def registration_tournament_url(level_param: nil)
 		if tournament_registrated_by_current_user?
-			tournament_registration_path(tournament, current_user.registrations.find_by(tournament: tournament))
+			tournament_registration_path(tournament, current_user.registrations.find_by(tournament: tournament), level_param: level_param)
 		else
-			tournament_registrations_path(tournament)
+			tournament_registrations_path(tournament, level_param: level_param)
+		end
+	end
+	####registration_lvl2
+	def registration_tournament_url_lvl2(level_param: nil)
+		if tournament_registrated_by_current_user?
+			destroy_level_two_tournament_registration_path(tournament, current_user.registrations.find_by(tournament: tournament), level_param: level_param)
+		else
+			create_level_two_tournament_path(tournament, level_param: level_param)
+		end
+	end
+	####registration_lvl3
+	def registration_tournament_url_lvl3(level_param: nil)
+		if tournament_registrated_by_current_user?
+			destroy_level_three_tournament_registration_path(tournament, current_user.registrations.find_by(tournament: tournament), level_param: level_param)
+		else
+			create_level_three_tournament_path(tournament, level_param: level_param)
+		end
+	end
+	####registration_lvl4
+	def registration_tournament_url_lvl4(level_param: nil)
+		if tournament_registrated_by_current_user?
+			destroy_level_four_tournament_registration_path(tournament, current_user.registrations.find_by(tournament: tournament), level_param: level_param)
+		else
+			create_level_four_tournament_path(tournament, level_param: level_param)
 		end
 	end
 
@@ -44,11 +68,43 @@ class TournamentPresenter
 		end
 	end
 
-	def registration_heart_image
-		if tournament_registrated_by_current_user?
-			"tennis_filled.png"
-		else
-			"tennis-ball.png"
+	def registration_heart_image(level_param: nil)
+		if level_param == "level_1"
+			if tournament_registrated_by_current_user?
+				"tennis_filled.png"
+			else
+				"tennis-ball.png"
+			end
+		end
+	end
+
+	def registration_heart_image_2(level_param: nil)
+		if level_param == "level_2"
+			if tournament_registrated_by_current_user?
+				"tennis_filled.png"
+			else
+				"tennis-ball.png"
+			end
+		end
+	end
+
+	def registration_heart_image_3(level_param: nil)
+		if level_param == "level_3"
+			if tournament_registrated_by_current_user?
+				"tennis_filled.png"
+			else
+				"tennis-ball.png"
+			end
+		end
+	end
+
+	def registration_heart_image_4(level_param: nil)
+		if level_param == "level_4"
+			if tournament_registrated_by_current_user?
+				"tennis_filled.png"
+			else
+				"tennis-ball.png"
+			end
 		end
 	end
 

@@ -13,27 +13,27 @@
 			<p><%=  %></p>
 			<div class = "d-flex justify-content-between align-items-center action-links">
 				<div>
-					<%= link_to tournament_presenter.registration_tournament_url, data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes" do %>
-						<%= image_tag tournament_presenter.registration_heart_image, size: tournament_presenter.size_registration, class: "me-1"%>
-						<span><%= tournament_presenter.registrations_count %></span>
+					<%= link_to tournament_presenter.registration_tournament_url(level_param: "level_1"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
+						<%= image_tag tournament_presenter.registration_heart_image(level_param: "level_1"), size: tournament_presenter.size_registration, class: "me-1"%>
+						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_1").count%></span>
 					<%end%>
 				</div>
 				<div>
-					<%= link_to tournament_presenter.registration_tournament_url, data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes" do %>
-						<%= image_tag tournament_presenter.registration_heart_image, size: tournament_presenter.size_registration, class: "me-1"%>
-						<span><%= tournament_presenter.registrations_count %></span>
+					<%= link_to tournament_presenter.registration_tournament_url_lvl2(level_param: "level_2"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
+						<%= image_tag tournament_presenter.registration_heart_image_2(level_param: "level_2"), size: tournament_presenter.size_registration, class: "me-1"%>
+						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_2").count %></span>
 					<%end%>
 				</div>
 				<div>
-					<%= link_to tournament_presenter.registration_tournament_url, data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes" do %>
-						<%= image_tag tournament_presenter.registration_heart_image, size: tournament_presenter.size_registration, class: "me-1"%>
-						<span><%= tournament_presenter.registrations_count %></span>
+					<%= link_to tournament_presenter.registration_tournament_url_lvl3(level_param: "level_3"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
+						<%= image_tag tournament_presenter.registration_heart_image_3(level_param: "level_3"), size: tournament_presenter.size_registration, class: "me-1"%>
+						<span><%=tournament_presenter.tournament.registrations.where(level_registration: "level_3").count %></span>
 					<%end%>
 				</div>
 				<div>
-					<%= link_to tournament_presenter.registration_tournament_url, data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes" do %>
-						<%= image_tag tournament_presenter.registration_heart_image, size: tournament_presenter.size_registration, class: "me-1"%>
-						<span><%= tournament_presenter.registrations_count %></span>
+					<%= link_to tournament_presenter.registration_tournament_url_lvl4(level_param: "level_4"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
+						<%= image_tag tournament_presenter.registration_heart_image_4(level_param: "level_4"), size: tournament_presenter.size_registration, class: "me-1"%>
+						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_4").count %></span>
 					<%end%>
 				</div>
 			</div>
