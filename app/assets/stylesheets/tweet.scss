@@ -1,3 +1,7 @@
+.tweet_closed {
+	background-color: rgb(145, 0, 0);
+}
+
 .tweet {
 	-moz-transition: all .1s ease-in;
 	-o-transition: all .1s ease-in;
@@ -9,7 +13,6 @@
 	}
 
 	.action-links {
-		
 		a {
 			span {
 				position: relative;

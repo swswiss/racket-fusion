@@ -1,8 +1,6 @@
 class TournamentsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_admin, only: :create
-
-	
+	before_action :authenticate_admin, only: [:create, :change_status_opened, :change_status_closed]
 
 	def index
 		@all_tournaments = Tournament.includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 

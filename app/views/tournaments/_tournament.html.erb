@@ -1,38 +1,56 @@
 <%= turbo_frame_tag dom_id(tournament_presenter.tournament) do %>
+	<% if tournament_presenter.tournament.status == false %>
+		<% classes_status_closed = 'btn btn-info disabled' %>
+		<% disabled_status_closed = true %>
+	<% else %>
+		<% classes_status_closed = 'text-decoration-none text-black likes' %>
+		<% disabled_status_closed = false %>
+	<% end %>
 
-	<div class="tweet d-flex py-3 px-3">
+	<div class= "tweet py-4 px-3">
 		<div class="flex-shrink-0">
 			<%= tournament_presenter.tournament.name %>
 		</div>
-		<div class="flex-grow-1 ms-3">
-		<% if tournament_presenter.tournament.max_lvl1 <= tournament_presenter.tournament.registrations.where(level_registration: "level_1").count %>
-			<% classes_lvl1 = 'btn btn-info disabled' %>
-			<% disabled_lvl1 = true %>
-		<% else %>
-			<% classes_lvl1 = 'text-decoration-none text-black likes' %>
-			<% disabled_lvl1 = false %>
-		<% end %>
-		<% if tournament_presenter.tournament.max_lvl2 <= tournament_presenter.tournament.registrations.where(level_registration: "level_2").count %>
-			<% classes_lvl2 = 'btn btn-info disabled' %>
-			<% disabled_lvl2 = true %>
-		<% else %>
-			<% classes_lvl2 = 'text-decoration-none text-black likes' %>
-			<% disabled_lvl2 = false %>
-		<% end %>
-		<% if tournament_presenter.tournament.max_lvl3 <= tournament_presenter.tournament.registrations.where(level_registration: "level_3").count %>
-			<% classes_lvl3 = 'btn btn-info disabled' %>
-			<% disabled_lvl3 = true %>
-		<% else %>
-			<% classes_lvl3 = 'text-decoration-none text-black likes' %>
-			<% disabled_lvl3 = false %>
-		<% end %>
-		<% if tournament_presenter.tournament.max_lvl4 <= tournament_presenter.tournament.registrations.where(level_registration: "level_4").count %>
-			<% classes_lvl4 = 'btn btn-info disabled' %>
-			<% disabled_lvl4 = true %>
-		<% else %>
-			<% classes_lvl4 = 'text-decoration-none text-black likes' %>
-			<% disabled_lvl4 = false %>
-		<% end %>
+		<div class="">
+			<% if tournament_presenter.tournament.status == false %>
+				<% classes_lvl1 = 'btn btn-danger disabled' %>
+				<% disabled_lvl1 = true %>
+				<% classes_lvl2 = 'btn btn-danger disabled' %>
+				<% disabled_lvl2 = true %>
+				<% classes_lvl3 = 'btn btn-danger disabled' %>
+				<% disabled_lvl3 = true %>
+				<% classes_lvl4 = 'btn btn-danger disabled' %>
+				<% disabled_lvl4 = true %>
+			<% else %>
+				<% if tournament_presenter.tournament.max_lvl1 <= tournament_presenter.tournament.registrations.where(level_registration: "level_1").count %>
+					<% classes_lvl1 = 'btn btn-info disabled' %>
+					<% disabled_lvl1 = true %>
+				<% else %>
+					<% classes_lvl1 = 'text-decoration-none text-black likes' %>
+					<% disabled_lvl1 = false %>
+				<% end %>
+				<% if tournament_presenter.tournament.max_lvl2 <= tournament_presenter.tournament.registrations.where(level_registration: "level_2").count %>
+					<% classes_lvl2 = 'btn btn-info disabled' %>
+					<% disabled_lvl2 = true %>
+				<% else %>
+					<% classes_lvl2 = 'text-decoration-none text-black likes' %>
+					<% disabled_lvl2 = false %>
+				<% end %>
+				<% if tournament_presenter.tournament.max_lvl3 <= tournament_presenter.tournament.registrations.where(level_registration: "level_3").count %>
+					<% classes_lvl3 = 'btn btn-info disabled' %>
+					<% disabled_lvl3 = true %>
+				<% else %>
+					<% classes_lvl3 = 'text-decoration-none text-black likes' %>
+					<% disabled_lvl3 = false %>
+				<% end %>
+				<% if tournament_presenter.tournament.max_lvl4 <= tournament_presenter.tournament.registrations.where(level_registration: "level_4").count %>
+					<% classes_lvl4 = 'btn btn-info disabled' %>
+					<% disabled_lvl4 = true %>
+				<% else %>
+					<% classes_lvl4 = 'text-decoration-none text-black likes' %>
+					<% disabled_lvl4 = false %>
+				<% end %>
+			<% end %>
 			<p class="mb-0">
 				<span class="fw-bolder"><%= %></span> 
 				<span class="text-muted">
@@ -40,14 +58,13 @@
 					<% if current_user.admin? %>
 						<%= link_to change_status_opened_tournament_path(tournament_presenter.tournament), data: {"turbo-method": "post"}, remote: true do %>
 							<input type="radio" class="btn-check" name="#{tournament_presenter.tournament.id}" id="#{tournament_presenter.tournament.id}" autocomplete="off">
-							<label class="btn btn-outline-primary btn-custom-small" for="#{tournament_presenter.tournament.id}">Opened</label>
+							<label class="btn btn-outline-primary btn-custom-small ms-1" for="#{tournament_presenter.tournament.id}">Opened</label>
 						<%end%>
 						<%= link_to change_status_closed_tournament_path(tournament_presenter.tournament), data: {"turbo-method": "post"}, remote: true do %>
 							<input type="radio" class="btn-check" name="#{tournament_presenter.tournament.id}" id="#{tournament_presenter.tournament.id}" autocomplete="off">
 							<label class="btn btn-outline-primary btn-custom-small ms-1" for="#{tournament_presenter.tournament.id}">Closed</label>
 						<%end%>
 					<%end%>
-					
 			</p>
 			<p><%=  %></p>
 
