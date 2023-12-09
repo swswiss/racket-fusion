@@ -19,8 +19,10 @@ class TournamentPresenter
 			time_ago_in_words(tournament.created_at)
 		end
 	end
+
 	####registration_lvl1
 	def registration_tournament_url(level_param: nil)
+		
 		if tournament_registrated_by_current_user?
 			tournament_registration_path(tournament, current_user.registrations.find_by(tournament: tournament), level_param: level_param)
 		else

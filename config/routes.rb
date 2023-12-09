@@ -7,6 +7,10 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :tournaments, only: :create do
+    member do
+      post 'change_status_opened'
+      post 'change_status_closed'
+    end
     post 'create_level_two', on: :member, to: 'registrations#create_level_two'
     post 'create_level_three', on: :member, to: 'registrations#create_level_three'
     post 'create_level_four', on: :member, to: 'registrations#create_level_four'

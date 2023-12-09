@@ -1,37 +1,77 @@
 <%= turbo_frame_tag dom_id(tournament_presenter.tournament) do %>
+
 	<div class="tweet d-flex py-3 px-3">
 		<div class="flex-shrink-0">
 			<%= tournament_presenter.tournament.name %>
 		</div>
 		<div class="flex-grow-1 ms-3">
-
+		<% if tournament_presenter.tournament.max_lvl1 <= tournament_presenter.tournament.registrations.where(level_registration: "level_1").count %>
+			<% classes_lvl1 = 'btn btn-info disabled' %>
+			<% disabled_lvl1 = true %>
+		<% else %>
+			<% classes_lvl1 = 'text-decoration-none text-black likes' %>
+			<% disabled_lvl1 = false %>
+		<% end %>
+		<% if tournament_presenter.tournament.max_lvl2 <= tournament_presenter.tournament.registrations.where(level_registration: "level_2").count %>
+			<% classes_lvl2 = 'btn btn-info disabled' %>
+			<% disabled_lvl2 = true %>
+		<% else %>
+			<% classes_lvl2 = 'text-decoration-none text-black likes' %>
+			<% disabled_lvl2 = false %>
+		<% end %>
+		<% if tournament_presenter.tournament.max_lvl3 <= tournament_presenter.tournament.registrations.where(level_registration: "level_3").count %>
+			<% classes_lvl3 = 'btn btn-info disabled' %>
+			<% disabled_lvl3 = true %>
+		<% else %>
+			<% classes_lvl3 = 'text-decoration-none text-black likes' %>
+			<% disabled_lvl3 = false %>
+		<% end %>
+		<% if tournament_presenter.tournament.max_lvl4 <= tournament_presenter.tournament.registrations.where(level_registration: "level_4").count %>
+			<% classes_lvl4 = 'btn btn-info disabled' %>
+			<% disabled_lvl4 = true %>
+		<% else %>
+			<% classes_lvl4 = 'text-decoration-none text-black likes' %>
+			<% disabled_lvl4 = false %>
+		<% end %>
 			<p class="mb-0">
 				<span class="fw-bolder"><%= %></span> 
 				<span class="text-muted">
 					@<%= tournament_presenter.tournament.status == true ? "Tournament is opened" : "Tournament is closed" %> <%= tournament_presenter.created_at %></span>
+					<% if current_user.admin? %>
+						<%= link_to change_status_opened_tournament_path(tournament_presenter.tournament), data: {"turbo-method": "post"}, remote: true do %>
+							<input type="radio" class="btn-check" name="#{tournament_presenter.tournament.id}" id="#{tournament_presenter.tournament.id}" autocomplete="off">
+							<label class="btn btn-outline-primary btn-custom-small" for="#{tournament_presenter.tournament.id}">Opened</label>
+						<%end%>
+						<%= link_to change_status_closed_tournament_path(tournament_presenter.tournament), data: {"turbo-method": "post"}, remote: true do %>
+							<input type="radio" class="btn-check" name="#{tournament_presenter.tournament.id}" id="#{tournament_presenter.tournament.id}" autocomplete="off">
+							<label class="btn btn-outline-primary btn-custom-small ms-1" for="#{tournament_presenter.tournament.id}">Closed</label>
+						<%end%>
+					<%end%>
+					
 			</p>
 			<p><%=  %></p>
+
 			<div class = "d-flex justify-content-between align-items-center action-links">
 				<div> 
-					<%= link_to tournament_presenter.registration_tournament_url(level_param: "level_1"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: 'btn btn-info disabled', :disabled => true,remote: true do %>
+					<%= link_to tournament_presenter.registration_tournament_url(level_param: "level_1"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: classes_lvl1, :disabled => disabled_lvl1, remote: true do %>
 						<%= image_tag tournament_presenter.tournament.registrations.where(user_id: current_user.id).first&.level_registration == "level_1" ? "tennis_filled.png" : "tennis-ball.png", size: tournament_presenter.size_registration, class: "me-1"%>
 						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_1").count%>/<%= tournament_presenter.tournament.max_lvl1 %></span>
 					<%end%>
 				</div>
 				<div>
-					<%= link_to tournament_presenter.registration_tournament_url_lvl2(level_param: "level_2"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
+					<%= link_to tournament_presenter.registration_tournament_url_lvl2(level_param: "level_2"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: classes_lvl2, :disabled => disabled_lvl2, remote: true do %>
 						<%= image_tag tournament_presenter.tournament.registrations.where(user_id: current_user.id).first&.level_registration == "level_2" ? "tennis_filled.png" : "tennis-ball.png", size: tournament_presenter.size_registration, class: "me-1"%>
 						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_2").count %>/<%= tournament_presenter.tournament.max_lvl2 %></span>
 					<%end%>
 				</div>
 				<div>
-					<%= link_to tournament_presenter.registration_tournament_url_lvl3(level_param: "level_3"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
+					<%= link_to tournament_presenter.registration_tournament_url_lvl3(level_param: "level_3"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: classes_lvl3, :disabled => disabled_lvl3, remote: true do %>
 						<%= image_tag tournament_presenter.tournament.registrations.where(user_id: current_user.id).first&.level_registration == "level_3" ? "tennis_filled.png" : "tennis-ball.png", size: tournament_presenter.size_registration, class: "me-1"%>
 						<span><%=tournament_presenter.tournament.registrations.where(level_registration: "level_3").count %>/<%= tournament_presenter.tournament.max_lvl3 %></span>
 					<%end%>
 				</div>
 				<div>
-					<%= link_to tournament_presenter.registration_tournament_url_lvl4(level_param: "level_4"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: "text-decoration-none text-black likes",remote: true do %>
+					<%= link_to tournament_presenter.registration_tournament_url_lvl4(level_param: "level_4"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: classes_lvl4, :disabled => disabled_lvl4, remote: true do %>
 						<%= image_tag tournament_presenter.tournament.registrations.where(user_id: current_user.id).first&.level_registration == "level_4" ? "tennis_filled.png" : "tennis-ball.png", size: tournament_presenter.size_registration, class: "me-1"%>
 						<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_4").count %>/<%= tournament_presenter.tournament.max_lvl4 %></span>
 					<%end%>
@@ -41,3 +81,10 @@
 		
 	</div>
 <%end%>
+
+<style>
+  .btn-custom-small {
+    padding: 0.2rem 0.5rem;
+    font-size: 0.50rem;
+  }
+</style>

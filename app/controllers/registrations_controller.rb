@@ -2,6 +2,7 @@ class RegistrationsController < ApplicationController
 	before_action :authenticate_user!
 
 	def create
+		
 		if tournament.max_lvl1 <= tournament.registrations.where(level_registration: "level_1").count
 			flash[:alert] = "You don't have permission to perform this action."
       redirect_to root_path and return

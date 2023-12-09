@@ -11,7 +11,6 @@ class TournamentsController < ApplicationController
   end
 
 	def create
-		debugger
 		@tournament = Tournament.new(tournament_params.merge(user: current_user))
 
 		if @tournament.save
@@ -25,6 +24,24 @@ class TournamentsController < ApplicationController
 			@error_messages = @tournament.errors.full_messages
 			flash[:alert] = "Validation failed: " + @error_messages.join(', ')
 			redirect_to tournaments_path
+		end
+	end
+
+	def change_status_opened
+		@tournament = Tournament.find(params[:id])
+		@tournament.update(status: true)
+		respond_to do |format|
+			format.html { redirect_to dashboard_path }
+			format.turbo_stream
+		end
+	end
+
+	def change_status_closed
+		@tournament = Tournament.find(params[:id])
+		@tournament.update(status: false)
+		respond_to do |format|
+			format.html { redirect_to dashboard_path }
+			format.turbo_stream
 		end
 	end
 
