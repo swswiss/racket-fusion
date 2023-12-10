@@ -8,6 +8,10 @@ class TournamentsController < ApplicationController
 		end
   end
 
+	def show
+		@tournament = Tournament.find(params[:id])
+	end
+
 	def create
 		@tournament = Tournament.new(tournament_params.merge(user: current_user))
 
