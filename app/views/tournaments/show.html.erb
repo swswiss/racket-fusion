@@ -1,118 +1,174 @@
 <div class="col-7">
-    <%= @tournament.description %>
+  <%= @tournament.description %>
+  <table class="table">
+    <tr>
+      <% ["Beginner", "Medium", "MediumPlus", "Expert"].each do |category| %>
+        <th><%= category %></th>
+      <% end %>
+    </tr>
+    <tr>
+      <% ["Beginner", "Medium", "MediumPlus", "Expert"].each do |category| %>
+        <td>
+          <% players_variable_name = "@players_lvl_#{category.downcase}" %>
+          <% eval(players_variable_name).each do |user_id| %>
+            <%= User.find(user_id).username %><br>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+    <!-- Add more rows if needed -->
+  </table>
+	<h5>Round Robin Beginner</h5>
 
-<table class="bracket">
-  <caption>Test Table</caption>
-  <thead>
-    <tr>
-      <th scope="col">Round 1</th>
-      <th scope="col">Round 2</th>
-      <th scope="col">Round 3</th>
-      <th scope="col">Round 4</th>
-      <th scope="col">Winner</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-        <span>Player 1</span>
-        <span>Player 2</span>
-        <span>Date: 01.01. 1pm</span>
-      </td>
-      <td rowspan="2">
-        <span>Player 1</span>
-        <span>Player 3</span>
-        <span>Date: 05.01. 1pm</span>
-      </td>
-      <td rowspan="4">
-        <span>Player 1</span>
-        <span>Player 5</span>
-        <span>Date: 07.01. 1pm</span>
-      </td>
-      <td rowspan="8">
-        <span>Player 1</span>
-        <span>Player 9</span>
-        <span>Date: 10.01. 1pm</span>
-      </td>
-      <td rowspan="8">
-        <span>Player 1</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span>Player 3</span>
-        <span>Player 4</span>
-        <span>Date: 01.01. 1.30pm</span>
-      </td>
-    </tr>
-     <tr>
-       <td>
-        <span>Player 5</span>
-        <span>Player 6</span>
-        <span>Date: 01.01. 2pm</span>
-      </td>
-       <td rowspan="2">
-        <span>Player 5</span>
-        <span>Player 7</span>
-        <span>Date: 05.01. 1.30pm</span>
-      </td>
-    </tr>
-    <tr> 
-      <td>
-        <span>Player 7</span>
-        <span>Player 8</span>
-        <span>Date: 01.01. 2.30pm</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span>Player 9</span>
-        <span>Player 10</span>
-        <span>Date: 01.01. 3pm</span>
-      </td>
-      <td rowspan="2">
-        <span>Player 9</span>
-        <span>Player 11</span>
-        <span>Date: 05.01. 2pm</span>
-      </td>
-      <td rowspan="4">
-        <span>Player 9</span>
-        <span>Player 13</span>
-        <span>Date: 07.01. 1.30pm</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span>Player 11</span>
-        <span>Player 12</span>
-        <span>Date: 01.01. 3.30pm</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span>Player 13</span>
-        <span>Player 14</span>
-        <span>Date: 01.01. 4pm</span>
-      </td>
-      <td rowspan="2">
-        <span>Player 13</span>
-        <span>Player 15</span>
-        <span>Date: 05.01. 2.30pm</span>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <span>Player 15</span>
-        <span>Player 16</span>
-        <span>Date: 01.01. 4.30pm</span>
-      </td>
-    </tr>
-  </tbody>
-</table>
+  <table class = "tournament-table">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>vs Player 1</th>
+        <th>vs Player 2</th>
+        <th>vs Player 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Player 1</td>
+        <td>-</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Player 2</td>
+        <td></td>
+        <td>-</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Player 3</td>
+        <td></td>
+        <td></td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table><br>
+	<h5>Round Robin Medium</h5>
 
+  <table class = "tournament-table">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>vs Player 1</th>
+        <th>vs Player 2</th>
+        <th>vs Player 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Player 1</td>
+        <td>-</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Player 2</td>
+        <td></td>
+        <td>-</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Player 3</td>
+        <td></td>
+        <td></td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table>
+	<br>
+	<h5>Round Robin MediumPlus</h5>
 
-	
+  <table class = "tournament-table">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>vs Player 1</th>
+        <th>vs Player 2</th>
+        <th>vs Player 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Player 1</td>
+        <td>-</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Player 2</td>
+        <td></td>
+        <td>-</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Player 3</td>
+        <td></td>
+        <td></td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table>
+	<br>
+	<h5>Round Robin Expert</h5>
+
+  <table class = "tournament-table">
+    <thead>
+      <tr>
+        <th>Player</th>
+        <th>vs Player 1</th>
+        <th>vs Player 2</th>
+        <th>vs Player 3</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Player 1</td>
+        <td>-</td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Player 2</td>
+        <td></td>
+        <td>-</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>Player 3</td>
+        <td></td>
+        <td></td>
+        <td>-</td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 <div class="col">
-	asdsadsad
+  asdsadsad
 </div>
+
+
+<style>
+	.tournament-table {
+		border-collapse: collapse;
+		width: 60%;
+	}
+
+	.tournament-table th, .tournament-table td {
+		border: 1px solid #ddd;
+		padding: 3px;
+		text-align: center;
+		font-size: 11px; 
+		height: 1px;
+	}
+
+	.tournament-table th {
+		background-color: #f2f2f2;
+	}
+</style>

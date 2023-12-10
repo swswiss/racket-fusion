@@ -10,6 +10,10 @@ class TournamentsController < ApplicationController
 
 	def show
 		@tournament = Tournament.find(params[:id])
+		@players_lvl_beginner = @tournament.registrations.where(level_registration: "level_1").pluck(:user_id)
+		@players_lvl_medium = @tournament.registrations.where(level_registration: "level_2").pluck(:user_id)
+		@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3").pluck(:user_id)
+		@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4").pluck(:user_id)
 	end
 
 	def create
