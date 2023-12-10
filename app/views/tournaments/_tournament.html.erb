@@ -69,9 +69,10 @@
 							<label class="btn btn-outline-primary btn-custom-small ms-1" for="#{tournament_presenter.tournament.id}">Closed</label>
 						<%end%>
 					<%end%>
+					<%= link_to tournament_path(tournament_presenter.tournament), method: :delete, data: { turbo_method: :delete }, class: "btn btn-outline-danger btn-sm float-end", style: "font-size: 7px;" do %>
+						X
+					<% end %>
 			</p>
-
-			
 
 			<p><%=  %></p>
 

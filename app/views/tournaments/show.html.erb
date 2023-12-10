@@ -3,7 +3,7 @@
   <table class="table">
     <tr>
       <% ["Beginner", "Medium", "MediumPlus", "Expert"].each do |category| %>
-        <th><%= category %></th>
+        <th><h6><%= category %></h6></th>
       <% end %>
     </tr>
     <tr>
@@ -11,14 +11,14 @@
         <td>
           <% players_variable_name = "@players_lvl_#{category.downcase}" %>
           <% eval(players_variable_name).each do |user_id| %>
-            <%= User.find(user_id).username %><br>
+            <font size="2px"><%= User.find(user_id).username %></font><br>
           <% end %>
         </td>
       <% end %>
     </tr>
     <!-- Add more rows if needed -->
   </table>
-	<h5>Round Robin Beginner</h5>
+	<h6>Round Robin Beginner</h6>
 
   <table class = "tournament-table">
     <thead>
@@ -50,7 +50,7 @@
       </tr>
     </tbody>
   </table><br>
-	<h5>Round Robin Medium</h5>
+	<h6>Round Robin Medium</h6>
 
   <table class = "tournament-table">
     <thead>
@@ -83,7 +83,7 @@
     </tbody>
   </table>
 	<br>
-	<h5>Round Robin MediumPlus</h5>
+	<h6>Round Robin MediumPlus</h6>
 
   <table class = "tournament-table">
     <thead>
@@ -116,7 +116,7 @@
     </tbody>
   </table>
 	<br>
-	<h5>Round Robin Expert</h5>
+	<h6>Round Robin Expert</h6>
 
   <table class = "tournament-table">
     <thead>
