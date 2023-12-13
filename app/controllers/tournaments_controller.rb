@@ -10,16 +10,22 @@ class TournamentsController < ApplicationController
 
 	def show
 		@tournament = Tournament.find(params[:id])
-		@players_lvl_beginner = @tournament.registrations.where(level_registration: "level_1").pluck(:user_id)
-		@players_lvl_medium = @tournament.registrations.where(level_registration: "level_2").pluck(:user_id)
-		@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3").pluck(:user_id)
-		@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4").pluck(:user_id)
+		@players_lvl_beginner = @tournament.registrations.where(level_registration: "level_1", waitlisted: false).pluck(:id, :user_id)
+		@players_lvl_medium = @tournament.registrations.where(level_registration: "level_2", waitlisted: false).pluck(:id, :user_id)
+		@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3", waitlisted: false).pluck(:id, :user_id)
+		@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4", waitlisted: false).pluck(:id, :user_id)
+		@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true).pluck(:id, :user_id)
+
+
 	end
 
 	def create
 		@tournament = Tournament.new(tournament_params.merge(user: current_user))
 
 		if @tournament.save
+			if params[:confirmation].present?
+				@tournament.update(confirmation: params[:confirmation] == "1" ? true : false)
+			end
 			if params[:tournament_status].present?
 				@tournament.update(status: params[:tournament_status] == "opened" ? true : false)
 			end
@@ -64,6 +70,6 @@ class TournamentsController < ApplicationController
 	private
 
 	def tournament_params
-		params.require(:tournament).permit(:name, :description, :status, :max_lvl1, :max_lvl2, :max_lvl3, :max_lvl4)
+		params.require(:tournament).permit(:name, :description, :status, :max_lvl1, :max_lvl2, :max_lvl3, :max_lvl4, :confirmation)
 	end
 end

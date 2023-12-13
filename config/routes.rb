@@ -20,6 +20,7 @@ Rails.application.routes.draw do
         delete 'destroy_level_two'
         delete 'destroy_level_three'
         delete 'destroy_level_four'
+        post 'modify_waitlisted_users'
       end
     end
   end

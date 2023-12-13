@@ -1,5 +1,9 @@
+<%= link_to tournament_path(tournament_presenter.tournament), method: :delete, data: { turbo_method: :delete }, class: "btn  btn-sm float-end", style: "font-size: 7px;" do %>
+	<%= image_tag "cross-button.png", width: "23" %>
+<% end %>
+
 <%= link_to tournament_path(tournament_presenter.tournament), class: "btn  btn-sm float-end", remote: true do %>
-	<%= image_tag "menu.png", width: "27" %>
+	<%= image_tag "menu.png", width: "23" %>
 <%end%>
 
 <%= turbo_frame_tag dom_id(tournament_presenter.tournament) do %>
@@ -69,9 +73,6 @@
 							<label class="btn btn-outline-primary btn-custom-small ms-1" for="#{tournament_presenter.tournament.id}">Closed</label>
 						<%end%>
 					<%end%>
-					<%= link_to tournament_path(tournament_presenter.tournament), method: :delete, data: { turbo_method: :delete }, class: "btn btn-outline-danger btn-sm float-end", style: "font-size: 7px;" do %>
-						X
-					<% end %>
 			</p>
 
 			<p><%=  %></p>

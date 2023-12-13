@@ -1,0 +1,6 @@
+<%= turbo_stream.append (@tournament) do %>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <strong>Congrats!</strong> You just moved <%=@user%> to <%= @action %> .
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  <% end %>

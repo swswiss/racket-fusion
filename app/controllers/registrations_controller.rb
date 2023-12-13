@@ -1,13 +1,10 @@
 class RegistrationsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_admin, only: [:modify_waitlisted_users]
 
 	def create
-		
-		if tournament.max_lvl1 <= tournament.registrations.where(level_registration: "level_1").count
-			flash[:alert] = "You don't have permission to perform this action."
-      redirect_to root_path and return
-		end
 		@registration = current_user.registrations.create(tournament: tournament)
+		@registration.update(waitlisted: tournament.confirmation)
 
 		if params[:level_param].present?
 			@registration.update(level_registration: params[:level_param])
@@ -20,12 +17,9 @@ class RegistrationsController < ApplicationController
 	end
 
 	def create_level_two
-		if tournament.max_lvl2 <= tournament.registrations.where(level_registration: "level_2").count
-			flash[:alert] = "You don't have permission to perform this action."
-      redirect_to root_path and return
-		end
 		@registration = current_user.registrations.create(tournament: tournament)
-		
+		@registration.update(waitlisted: tournament.confirmation)
+
 		if params[:level_param].present?
 			@registration.update(level_registration: params[:level_param])
 		end
@@ -37,11 +31,8 @@ class RegistrationsController < ApplicationController
 	end
 
 	def create_level_three
-		if tournament.max_lvl3 <= tournament.registrations.where(level_registration: "level_3").count
-			flash[:alert] = "You don't have permission to perform this action."
-      redirect_to root_path
-		end
 		@registration = current_user.registrations.create(tournament: tournament)
+		@registration.update(waitlisted: tournament.confirmation)
 		
 		if params[:level_param].present?
 			@registration.update(level_registration: params[:level_param])
@@ -54,11 +45,8 @@ class RegistrationsController < ApplicationController
 	end
 
 	def create_level_four
-		if tournament.max_lvl4 <= tournament.registrations.where(level_registration: "level_4").count
-			flash[:alert] = "You don't have permission to perform this action."
-      redirect_to root_path
-		end
 		@registration = current_user.registrations.create(tournament: tournament)
+		@registration.update(waitlisted: tournament.confirmation)
 		
 		if params[:level_param].present?
 			@registration.update(level_registration: params[:level_param])
@@ -71,9 +59,6 @@ class RegistrationsController < ApplicationController
 	end
 
 	def destroy
-		if !tournament.registrations.find(params[:id]).present?
-			debugger
-		end
 		@registration = tournament.registrations.find(params[:id])
 		@registration.destroy
 
@@ -84,9 +69,6 @@ class RegistrationsController < ApplicationController
 	end
 
 	def destroy_level_two
-		if !tournament.registrations.find(params[:id]).present?
-			debugger
-		end
 		@registration = tournament.registrations.find(params[:id])
 		@registration.destroy
 
@@ -97,9 +79,6 @@ class RegistrationsController < ApplicationController
 	end
 
 	def destroy_level_three
-		if !tournament.registrations.find(params[:id]).present?
-			debugger
-		end
 		@registration = tournament.registrations.find(params[:id])
 		@registration.destroy
 
@@ -110,14 +89,35 @@ class RegistrationsController < ApplicationController
 	end
 
 	def destroy_level_four
-		if !tournament.registrations.find(params[:id]).present?
-			debugger
-		end
 		@registration = tournament.registrations.find(params[:id])
 		@registration.destroy
 
 		respond_to do |format|
 			format.html { redirect_to dashboard_path }
+			format.turbo_stream
+		end
+	end
+
+	def modify_waitlisted_users
+		@registration = Registration.find(params[:id])
+		@tournament = Tournament.find(params[:tournament_id])
+		@user = User.find(@registration.user_id).username
+		@registration.toggle!(:waitlisted)
+		@action = "WaitListed"
+		if @registration.waitlisted == false
+			@action = @registration.level_registration
+		end
+		if @action == "level_1"
+			@action = "Beginner"
+		elsif @action == "level_2"
+			@action = "Medium"
+		elsif @action == "level_3"
+			@action = "Medium Plus"
+		elsif @action == "level_4"
+			@action = "Expert"
+		end
+
+		respond_to do |format|
 			format.turbo_stream
 		end
 	end

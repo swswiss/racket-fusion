@@ -1,25 +1,34 @@
 <%= form_with(model: Tournament.new, url: tournaments_path, method: :post, class: "w-100") do |f| %>
 
-	<%= f.text_area :name, placeholder: "Name for Tournament", class: "form-control tweet-input w-100 mb-4" %>
-	<%= f.text_area :description, placeholder: "Description for Tournament", class: "form-control tweet-input w-100 mb-4" %>
+	<%= f.text_area :name, placeholder: "Name for Tournament", class: "form-control tweet-input w-100 mb-4",style: "font-size: 15px;" %>
+	<%= f.text_area :description, placeholder: "Description for Tournament", class: "form-control tweet-input w-100 mb-4",style: "font-size: 15px;" %>
 
-	<%= f.text_area :max_lvl1, placeholder: "Number of Player Beginner", class: "form-control tweet-input w-100 mb-4" %>
+	<%= f.label :number_of_players_beginner, class: "form-label" %>
+	<%= f.select :max_lvl1, (1..10).to_a, {}, { class: "form-control tweet-input w-100 mb-4", style: "font-size: 15px;" } %>
 
-	<%= f.text_area :max_lvl2, placeholder: "Number of Player Medium", class: "form-control tweet-input w-100 mb-4" %>
+	<%= f.label :number_of_players_medium, class: "form-label" %>
+	<%= f.select :max_lvl2, (1..10).to_a, {}, { class: "form-control tweet-input w-100 mb-4", style: "font-size: 15px;" } %>
 
-	<%= f.text_area :max_lvl3, placeholder: "Number of Player Medium Plus", class: "form-control tweet-input w-100 mb-4" %>
+	<%= f.label :number_of_players_medium_plus, class: "form-label" %>
+	<%= f.select :max_lvl3, (1..10).to_a, {}, { class: "form-control tweet-input w-100 mb-4", style: "font-size: 15px;" } %>
 
-	<%= f.text_area :max_lvl4, placeholder: "Number of Player Expert", class: "form-control tweet-input w-100 mb-4" %>
+	<%= f.label :number_of_players_expert, class: "form-label" %>
+	<%= f.select :max_lvl4, (1..10).to_a, {}, { class: "form-control tweet-input w-100 mb-4", style: "font-size: 15px;" } %>
 
 	<div class="mb-4">
-    <input type="radio" class="btn-check" name="tournament_status" id="option1" value="opened" autocomplete="off">
-    <label class="btn btn-secondary" for="option1">Opened</label>
+    <input type="radio" class="btn-check" name="tournament_status" id="option1" value="opened" autocomplete="off",style: "font-size: 15px;">
+    <label class="btn btn-secondary btn-sm" for="option1">Opened</label>
 
     <input type="radio" class="btn-check" name="tournament_status" id="option2" value="closed" autocomplete="off">
-    <label class="btn btn-secondary" for="option2">Closed</label>
+    <label class="btn btn-secondary btn-sm" for="option2">Closed</label>
   </div>
 
+	<div class="btn-group" role="group" aria-label="Basic checkbox toggle button group">
+  <%= f.check_box :confirmation, class: "btn-check", id: "confirmation", autocomplete: "off" %>
+  <label class="btn btn-outline-primary btn-sm" for="confirmation">Needs Confirmation</label>
+</div>
+
 	<div class="d-flex justify-content-end">
-	  <%= f.submit "Create Tournament", class: "btn btn-lg btn-twitter rounded-pill" %>
+	  <%= f.submit "Create Tournament", class: "btn btn-lg btn-twitter rounded-pill",style: "font-size: 15px;" %>
 	</div>
 <% end %>
