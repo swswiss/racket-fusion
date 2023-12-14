@@ -43,3 +43,49 @@
 		}
 	}
 }
+.tours {
+  background-color: #ffffff; /* Blue background color */
+  color: #000000; /* Text color, assuming white on blue */
+  padding: 15px; /* Adjust padding based on your design */
+  border-radius: 8px; /* Rounded corners for a card-like appearance */
+  transition: background-color 0.1s ease-in;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  &:hover {
+    background-color: #dedede; /* Darker blue on hover */
+    cursor: pointer;
+  }
+
+  .action-links {
+    a {
+      span {
+        position: relative;
+        top: 2px;
+				color: #000000 !important;
+      }
+
+      &.views,
+      &.replies,
+      &.bookmark,
+      &.replies:hover,
+      &.likes,
+      &.likes:hover,
+      &.retweets,
+      &.retweets:hover {
+        color: #fff !important; /* White color for the links */
+      }
+
+      &.replies:hover {
+        color: #79c379 !important; /* Light green on hover for replies */
+      }
+
+      &.likes:hover {
+        color: #d97f7f !important; /* Light red on hover for likes */
+      }
+
+      &.retweets:hover {
+        color: #3498db !important; /* Blue on hover for retweets */
+      }
+    }
+  }
+}

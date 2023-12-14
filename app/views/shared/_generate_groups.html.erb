@@ -1,0 +1,18 @@
+<%= form_with(model: Tournament.new, url: tournaments_path, method: :post, class: "w-100") do |f| %>
+
+    <div class="mb-3">
+      <%= f.label :group_level, class: "form-label" %>
+      <%= f.select :group_level, options_for_select(["Beginner", "Medium", "MediumPlus", "Expert"]), { prompt: "Select Player Level" }, class: "form-select" %>
+    </div>
+		<div class="mb-3">
+			<%= f.label :numbers_per_group, class: "form-label" %>
+			<%= f.select :numbers_per_group, (1..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: 15px;" } %>
+    </div>
+	
+
+
+
+	<div class="d-flex justify-content-end">
+	  <%= f.submit "Create Tournament", class: "btn btn-lg btn-twitter rounded-pill",style: "font-size: 15px;" %>
+	</div>
+<% end %>

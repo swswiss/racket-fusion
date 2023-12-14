@@ -1,19 +1,19 @@
 <%= form_with(model: Tournament.new, url: tournaments_path, method: :post, class: "w-100") do |f| %>
 
-	<%= f.text_area :name, placeholder: "Name for Tournament", class: "form-control tweet-input w-100 mb-4",style: "font-size: 15px;" %>
-	<%= f.text_area :description, placeholder: "Description for Tournament", class: "form-control tweet-input w-100 mb-4",style: "font-size: 15px;" %>
+	<%= f.text_area :name, placeholder: "Name for Tournament", class: "form-control  w-100 mb-4",style: "font-size: 15px;" %>
+	<%= f.text_area :description, placeholder: "Description for Tournament", class: "form-control  w-100 mb-4",style: "font-size: 15px;" %>
 
 	<%= f.label :number_of_players_beginner, class: "form-label" %>
-	<%= f.select :max_lvl1, (1..10).to_a, {}, { class: "form-control tweet-input w-100 mb-4", style: "font-size: 15px;" } %>
+	<%= f.select :max_lvl1, (1..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: 15px;" } %>
 
 	<%= f.label :number_of_players_medium, class: "form-label" %>
-	<%= f.select :max_lvl2, (1..10).to_a, {}, { class: "form-control tweet-input w-100 mb-4", style: "font-size: 15px;" } %>
+	<%= f.select :max_lvl2, (1..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: 15px;" } %>
 
 	<%= f.label :number_of_players_medium_plus, class: "form-label" %>
-	<%= f.select :max_lvl3, (1..10).to_a, {}, { class: "form-control tweet-input w-100 mb-4", style: "font-size: 15px;" } %>
+	<%= f.select :max_lvl3, (1..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: 15px;" } %>
 
 	<%= f.label :number_of_players_expert, class: "form-label" %>
-	<%= f.select :max_lvl4, (1..10).to_a, {}, { class: "form-control tweet-input w-100 mb-4", style: "font-size: 15px;" } %>
+	<%= f.select :max_lvl4, (1..10).to_a, {}, { class: "form-control w-100 mb-4", style: "font-size: 15px;" } %>
 
 	<div class="mb-4">
     <input type="radio" class="btn-check" name="tournament_status" id="option1" value="opened" autocomplete="off",style: "font-size: 15px;">

@@ -8,51 +8,51 @@
 
 <%= turbo_frame_tag dom_id(tournament_presenter.tournament) do %>
 	<% if tournament_presenter.tournament.status == false %>
-		<% classes_status_closed = 'btn btn-info disabled' %>
+		<% classes_status_closed = 'btn btn-secondary disabled' %>
 		<% disabled_status_closed = true %>
 	<% else %>
 		<% classes_status_closed = 'text-decoration-none text-black likes' %>
 		<% disabled_status_closed = false %>
 	<% end %>
 
-	<div class= "tweet py-4 px-3">
+	<div class= "tours py-4 px-3">
 		<div class="flex-shrink-0">
 			<%= tournament_presenter.tournament.name %>
 		</div>
 		<div class="">
 			<% if tournament_presenter.tournament.status == false %>
-				<% classes_lvl1 = 'btn btn-danger disabled' %>
+				<% classes_lvl1 = 'btn btn-secondary disabled' %>
 				<% disabled_lvl1 = true %>
-				<% classes_lvl2 = 'btn btn-danger disabled' %>
+				<% classes_lvl2 = 'btn btn-secondary disabled' %>
 				<% disabled_lvl2 = true %>
-				<% classes_lvl3 = 'btn btn-danger disabled' %>
+				<% classes_lvl3 = 'btn btn-secondary disabled' %>
 				<% disabled_lvl3 = true %>
-				<% classes_lvl4 = 'btn btn-danger disabled' %>
+				<% classes_lvl4 = 'btn btn-secondary disabled' %>
 				<% disabled_lvl4 = true %>
 			<% else %>
 				<% if tournament_presenter.tournament.max_lvl1 <= tournament_presenter.tournament.registrations.where(level_registration: "level_1").count %>
-					<% classes_lvl1 = 'btn btn-info disabled' %>
+					<% classes_lvl1 = 'btn btn-secondary disabled' %>
 					<% disabled_lvl1 = true %>
 				<% else %>
 					<% classes_lvl1 = 'text-decoration-none text-black likes' %>
 					<% disabled_lvl1 = false %>
 				<% end %>
 				<% if tournament_presenter.tournament.max_lvl2 <= tournament_presenter.tournament.registrations.where(level_registration: "level_2").count %>
-					<% classes_lvl2 = 'btn btn-info disabled' %>
+					<% classes_lvl2 = 'btn btn-secondary disabled' %>
 					<% disabled_lvl2 = true %>
 				<% else %>
 					<% classes_lvl2 = 'text-decoration-none text-black likes' %>
 					<% disabled_lvl2 = false %>
 				<% end %>
 				<% if tournament_presenter.tournament.max_lvl3 <= tournament_presenter.tournament.registrations.where(level_registration: "level_3").count %>
-					<% classes_lvl3 = 'btn btn-info disabled' %>
+					<% classes_lvl3 = 'btn btn-secondary disabled' %>
 					<% disabled_lvl3 = true %>
 				<% else %>
 					<% classes_lvl3 = 'text-decoration-none text-black likes' %>
 					<% disabled_lvl3 = false %>
 				<% end %>
 				<% if tournament_presenter.tournament.max_lvl4 <= tournament_presenter.tournament.registrations.where(level_registration: "level_4").count %>
-					<% classes_lvl4 = 'btn btn-info disabled' %>
+					<% classes_lvl4 = 'btn btn-secondary disabled' %>
 					<% disabled_lvl4 = true %>
 				<% else %>
 					<% classes_lvl4 = 'text-decoration-none text-black likes' %>
@@ -106,6 +106,7 @@
 		</div>
 		
 	</div>
+	<br>
 <%end%>
 
 <style>

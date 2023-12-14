@@ -1,6 +1,6 @@
 <div class="col-7">
 	<div class = "mb-3">
-		<%= link_to "Tournaments", tournaments_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
+		<%= link_to "Events", tournaments_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
 	</div>
 	<div id = "tournaments" >
 		<%= render partial: "tournaments/tournament", collection: @all_tournaments, as: :tournament_presenter %>
