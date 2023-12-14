@@ -3,160 +3,220 @@
 		<div class="some_container_id"></div>
 	<%end%>
 
-  <table class="table">
-    <tr>
-      <% ["Beginner", "Medium", "MediumPlus", "Expert","WaitListed"].each do |category| %>
-        <th><h6><%= category %></h6></th>
-      <% end %>
-    </tr>
-    <tr>
-      <% ["Beginner", "Medium", "MediumPlus", "Expert", "WaitListed"].each do |category| %>
-					<td class="#{}">
-						<% players_variable_name = "@players_lvl_#{category.downcase}" %>
-						<% eval(players_variable_name).each do |id, user_id| %>
-							<font size="2px"><%= User.find(user_id).username %></font>
-							<%if current_user.admin?%>
-								<%= link_to modify_waitlisted_users_tournament_registration_path(@tournament, Registration.find(id)), method: :post, data: { turbo_method: :post },remote: true, class: "btn  btn-sm", style: "font-size: 7px;" do %>
-									<%= image_tag "upgrade.png", width: 21, height: 21 %>
-								<% end %>
-							<% end %>
-							<br>
-						<% end %>
-					</td>
+	<% if @tournament.status == false %>
+		<% classes_status_closed = 'btn btn-info disabled' %>
+		<% disabled_status_closed = true %>
+	<% else %>
+		<% classes_status_closed = 'text-decoration-none text-black likes' %>
+		<% disabled_status_closed = false %>
+	<% end %>
+
+	<div class= "tweet py-4 px-3">
+		<div class="flex-shrink-0">
+			<%= @tournament.name %>
+		</div>
+		<div class="">
+			<% if @tournament.status == false %>
+				<% classes_lvl1 = 'btn btn-danger disabled' %>
+				<% disabled_lvl1 = true %>
+				<% classes_lvl2 = 'btn btn-danger disabled' %>
+				<% disabled_lvl2 = true %>
+				<% classes_lvl3 = 'btn btn-danger disabled' %>
+				<% disabled_lvl3 = true %>
+				<% classes_lvl4 = 'btn btn-danger disabled' %>
+				<% disabled_lvl4 = true %>
+			<% else %>
+				<% if @tournament.max_lvl1 <= @tournament.registrations.where(level_registration: "level_1").count %>
+					<% classes_lvl1 = 'btn btn-info disabled' %>
+					<% disabled_lvl1 = true %>
+				<% else %>
+					<% classes_lvl1 = 'text-decoration-none text-black likes' %>
+					<% disabled_lvl1 = false %>
 				<% end %>
-    </tr>
-    <!-- Add more rows if needed -->
-  </table>
-	<h6>Round Robin Beginner</h6>
+				<% if @tournament.max_lvl2 <= @tournament.registrations.where(level_registration: "level_2").count %>
+					<% classes_lvl2 = 'btn btn-info disabled' %>
+					<% disabled_lvl2 = true %>
+				<% else %>
+					<% classes_lvl2 = 'text-decoration-none text-black likes' %>
+					<% disabled_lvl2 = false %>
+				<% end %>
+				<% if @tournament.max_lvl3 <= @tournament.registrations.where(level_registration: "level_3").count %>
+					<% classes_lvl3 = 'btn btn-info disabled' %>
+					<% disabled_lvl3 = true %>
+				<% else %>
+					<% classes_lvl3 = 'text-decoration-none text-black likes' %>
+					<% disabled_lvl3 = false %>
+				<% end %>
+				<% if @tournament.max_lvl4 <= @tournament.registrations.where(level_registration: "level_4").count %>
+					<% classes_lvl4 = 'btn btn-info disabled' %>
+					<% disabled_lvl4 = true %>
+				<% else %>
+					<% classes_lvl4 = 'text-decoration-none text-black likes' %>
+					<% disabled_lvl4 = false %>
+				<% end %>
+			<% end %>
+			<p class="mb-0">
+				<span class="fw-bolder"><%= %></span> 
+				<span class="text-muted">
+					@<%= @tournament.status == true ? "Tournament is opened" : "Tournament is closed" %> <%= @tournament.created_at %></span>
+			</p>
 
-  <table class = "tournament-table">
-    <thead>
-      <tr>
-        <th>Player</th>
-        <th>vs Player 1</th>
-        <th>vs Player 2</th>
-        <th>vs Player 3</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Player 1</td>
-        <td>-</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Player 2</td>
-        <td></td>
-        <td>-</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Player 3</td>
-        <td></td>
-        <td></td>
-        <td>-</td>
-      </tr>
-    </tbody>
-  </table><br>
-	<h6>Round Robin Medium</h6>
+			<p><%=  %></p>
 
-  <table class = "tournament-table">
-    <thead>
-      <tr>
-        <th>Player</th>
-        <th>vs Player 1</th>
-        <th>vs Player 2</th>
-        <th>vs Player 3</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Player 1</td>
-        <td>-</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Player 2</td>
-        <td></td>
-        <td>-</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Player 3</td>
-        <td></td>
-        <td></td>
-        <td>-</td>
-      </tr>
-    </tbody>
-  </table>
-	<br>
-	<h6>Round Robin MediumPlus</h6>
+			<div class = "d-flex justify-content-between align-items-center action-links">
+				<div> 
+					<span>Beginner <%= @tournament.registrations.where(level_registration: "level_1", waitlisted: false).count%></span>
+				</div>
+				<div>
+					<span>Medium <%= @tournament.registrations.where(level_registration: "level_2", waitlisted: false).count%></span>
+				</div>
+				<div>
+					<span>MediumPlus <%= @tournament.registrations.where(level_registration: "level_3", waitlisted: false).count%></span>
+				</div>
+				<div>
+					<span>Expert <%= @tournament.registrations.where(level_registration: "level_4", waitlisted: false).count%></span>
+				</div>
+				<div>
+					<span>WaitListed <%= @tournament.registrations.where(waitlisted: true).count%></span>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+		<%= render partial: 'player_info' %>
 
-  <table class = "tournament-table">
-    <thead>
-      <tr>
-        <th>Player</th>
-        <th>vs Player 1</th>
-        <th>vs Player 2</th>
-        <th>vs Player 3</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Player 1</td>
-        <td>-</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Player 2</td>
-        <td></td>
-        <td>-</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Player 3</td>
-        <td></td>
-        <td></td>
-        <td>-</td>
-      </tr>
-    </tbody>
-  </table>
-	<br>
-	<h6>Round Robin Expert</h6>
+		<!-- 
+		<h6>Round Robin Beginner</h6>
 
-  <table class = "tournament-table">
-    <thead>
-      <tr>
-        <th>Player</th>
-        <th>vs Player 1</th>
-        <th>vs Player 2</th>
-        <th>vs Player 3</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Player 1</td>
-        <td>-</td>
-        <td></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Player 2</td>
-        <td></td>
-        <td>-</td>
-        <td></td>
-      </tr>
-      <tr>
-        <td>Player 3</td>
-        <td></td>
-        <td></td>
-        <td>-</td>
-      </tr>
-    </tbody>
-  </table>
+		<table class = "tournament-table">
+			<thead>
+				<tr>
+					<th>Player</th>
+					<th>vs Player 1</th>
+					<th>vs Player 2</th>
+					<th>vs Player 3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Player 1</td>
+					<td>-</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Player 2</td>
+					<td></td>
+					<td>-</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Player 3</td>
+					<td></td>
+					<td></td>
+					<td>-</td>
+				</tr>
+			</tbody>
+		</table><br>
+		<h6>Round Robin Medium</h6>
+
+		<table class = "tournament-table">
+			<thead>
+				<tr>
+					<th>Player</th>
+					<th>vs Player 1</th>
+					<th>vs Player 2</th>
+					<th>vs Player 3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Player 1</td>
+					<td>-</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Player 2</td>
+					<td></td>
+					<td>-</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Player 3</td>
+					<td></td>
+					<td></td>
+					<td>-</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<h6>Round Robin MediumPlus</h6>
+
+		<table class = "tournament-table">
+			<thead>
+				<tr>
+					<th>Player</th>
+					<th>vs Player 1</th>
+					<th>vs Player 2</th>
+					<th>vs Player 3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Player 1</td>
+					<td>-</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Player 2</td>
+					<td></td>
+					<td>-</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Player 3</td>
+					<td></td>
+					<td></td>
+					<td>-</td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<h6>Round Robin Expert</h6>
+
+		<table class = "tournament-table">
+			<thead>
+				<tr>
+					<th>Player</th>
+					<th>vs Player 1</th>
+					<th>vs Player 2</th>
+					<th>vs Player 3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Player 1</td>
+					<td>-</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Player 2</td>
+					<td></td>
+					<td>-</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Player 3</td>
+					<td></td>
+					<td></td>
+					<td>-</td>
+				</tr>
+			</tbody>
+		</table> 
+	-->
 </div>
 <div class="col">
   asdsadsad
