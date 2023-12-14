@@ -1,11 +1,15 @@
 class TournamentsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :authenticate_admin, only: [:create, :change_status_opened, :change_status_closed]
+	require "pagy/extras/array"
+	
 
 	def index
-		@all_tournaments = Tournament.includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
+		@pagy, @all_tournaments = pagy_array(Tournament.includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
 			TournamentPresenter.new(tournament: tournament, current_user: current_user)
-		end
+		end,
+		items: 5
+		)
   end
 
 	def show

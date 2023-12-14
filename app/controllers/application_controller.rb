@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+include Pagy::Backend
   before_action :redirect_to_username_form, if: -> { user_signed_in? && current_user.username.blank? }
 
   protected

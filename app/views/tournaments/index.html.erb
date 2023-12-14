@@ -5,7 +5,9 @@
 	<div id = "tournaments" >
 		<%= render partial: "tournaments/tournament", collection: @all_tournaments, as: :tournament_presenter %>
 	</div>
-	
+	<div class="pag-bar mt-5 pt-5">
+  <%== pagy_bootstrap_nav(@pagy) %>
+</div>
 </div>
 <div class="col">
 	asdsadsad
