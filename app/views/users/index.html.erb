@@ -1,0 +1,35 @@
+<div class="col-7 mt-3">
+<%= form_with(url: users_path, method: :get, data: { turbo_frame: :user_results }) do |form| %>
+    <div class="mb-3">
+      <%= form.label :search_players, class: "form-label" %>
+      <%= form.text_field :username, class: "form-control", oninput: 'this.form.requestSubmit()'%>
+    </div>
+<% end %>
+  
+<%= turbo_frame_tag :user_results do %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th><h7>Rank</h7></th>
+				<th><h7>Username</h7></th>
+				<th><h7>Points</h7></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @users.each do |user| %>
+				<tr>
+					<td><font size="2px"><%= user.rank %></font></td>
+					<td><font size="2px"><%= user.username %></font></td>
+					<td><font size="2px"><%= user.points %></font></td>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<%end%>
+
+
+
+</div>
+<div class="col">
+	asdsadsad
+</div>

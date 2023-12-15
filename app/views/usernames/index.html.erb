@@ -1,0 +1,33 @@
+<div class="col-7">
+<%= search_form_for @q, url: usernames_path do |f| %>
+
+
+  <%= f.label :username %>
+  <%= f.search_field :username %>
+
+  <%= f.submit %>
+<% end %>
+<table class="table">
+<thead>
+	<tr>
+		<th>Rank</th>
+		<th>Username</th>
+		<th>Points</th>
+	</tr>
+</thead>
+<tbody>
+	<% @users.each do |user| %>
+		<tr>
+			<td><%= user.rank %></td>
+			<td><%= user.username %></td>
+			<td><%= user.points %></td>
+		</tr>
+		<!-- Add more rows for additional users -->
+	<% end %>
+</tbody>
+</table>
+
+</div>
+<div class="col">
+	asdsadsad
+</div>

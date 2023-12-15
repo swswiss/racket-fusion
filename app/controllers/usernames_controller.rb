@@ -2,6 +2,11 @@ class UsernamesController < ApplicationController
 	before_action :authenticate_user!
 	skip_before_action :redirect_to_username_form
 
+	def index
+		@q = User.ransack(params[:q])
+  	@users = @q.result(distinct: true)
+	end
+
 	def new
 
   end

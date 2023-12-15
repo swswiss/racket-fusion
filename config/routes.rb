@@ -34,5 +34,6 @@ Rails.application.routes.draw do
   get :dashboard, to: "dashboard#index"
   get :tournaments, to: "tournaments#index"
 
-  resources :usernames, only: [:new, :update]
+  resources :usernames, only: [:new, :update, :index]
+  resources :users, only: [:index]
 end

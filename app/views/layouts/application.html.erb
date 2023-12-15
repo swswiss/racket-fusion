@@ -23,7 +23,16 @@
     <% end %>
     <% if user_signed_in? %>
       <% if controller_name == "usernames" %>
-        <%= yield %>
+        <% if params[:action] == "index" %>
+          <div class="container py-2">
+            <div class= "row">
+              <%= render "shared/sidebar" %>
+              <%= yield %>
+            </div>
+          </div>
+        <% else %>
+          <%= yield %>
+        <%end%>
       <% else %>
         <div class="container py-2">
           <div class= "row">
