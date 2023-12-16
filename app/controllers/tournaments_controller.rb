@@ -50,14 +50,18 @@ class TournamentsController < ApplicationController
 		end
 	end
 
-	def update_selected_players
-		debugger
+	def create_groups
+		tournament = Tournament.find(params[:id])
     selected_player_ids = params[:selected_players] || []
+		selected_player_ids = selected_player_ids.map(&:to_i)
+		level_group = Registration.find(selected_player_ids.first).level_registration
+		group = Group.create(level: level_group, tournament: tournament)
   end
 
 	def change_status_closed
 		@tournament = Tournament.find(params[:id])
 		@tournament.update(status: false)
+		
 		respond_to do |format|
 			format.html { redirect_to dashboard_path }
 			format.turbo_stream

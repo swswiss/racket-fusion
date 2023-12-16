@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     member do
       post 'change_status_opened'
       post 'change_status_closed'
-      post 'update_selected_players'
+      post 'create_groups'
     end
     post 'create_level_two', on: :member, to: 'registrations#create_level_two'
     post 'create_level_three', on: :member, to: 'registrations#create_level_three'

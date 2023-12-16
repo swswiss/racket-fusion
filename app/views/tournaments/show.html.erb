@@ -46,33 +46,14 @@
 	</div>
 		<br>
 		
-		<%= form_tag update_selected_players_tournament_path(@tournament), method: :post, remote: true do %>
+		<%= form_tag create_groups_tournament_path(@tournament), method: :post, remote: true do %>
 			<%= render partial: 'player_info' %>
-			<%= submit_tag "Update Selected Players", class: "btn btn-primary" %>
-		<% end %>
-
-		<% if current_user.admin? %>
 			<center>Dashboard Admin</center>
 			<span class="placeholder col-12 placeholder-xs", style="font-size:5px"></span>
+			<%= submit_tag "Generate Groups", class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+		<% end %>
 
-			<%= link_to change_status_closed_tournament_path(@tournament), class: "d-flex align-items-center fs-5 mb-3",style: "text-decoration: none;", data: {"turbo-method": "post"}, remote: true do %>
-				<div class="btn btn-success disabled placeholder col-4" >Generate Starting Groups</div>
-			<% end %>
 
-			<div class="modal fade" id="generate_groups" tabindex="-1" aria-labelledby="generate_groups" aria-hidden="true">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
-						</div>
-						<div class="modal-body">
-							<%= render "shared/generate_groups" %>
-						</div>
-						
-					</div>
-				</div>
-			</div>
-		<%end%>
 
 		<!-- 
 		<h6>Round Robin Beginner</h6>
@@ -229,4 +210,13 @@ asdsadsadas
 	.tournament-table th {
 		background-color: #f2f2f2;
 	}
+
+	.tiny-button {
+		font-size: 13px;
+		color: white;
+		padding: 5px 10px;
+	}
+	.tiny-button:hover {
+  color: white;
+}
 </style>

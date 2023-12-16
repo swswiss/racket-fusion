@@ -6,6 +6,8 @@ class Tournament < ApplicationRecord
   has_many :registrations, dependent: :destroy
   has_many :registrated_users, through: :registrations, source: :user
 
+  has_many :groups, dependent: :destroy
+
   validates :max_lvl2, numericality: { only_integer: true }
   validates :max_lvl1, numericality: { only_integer: true }
   validates :max_lvl3, numericality: { only_integer: true }
