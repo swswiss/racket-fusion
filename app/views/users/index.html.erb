@@ -16,20 +16,35 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @users.each do |user| %>
+			<% @users.each_with_index do |user, index| %>
 				<tr>
-					<td><font size="2px"><%= user.rank %></font></td>
+					<td><font size="2px"><%= index + 1 %></font></td>
 					<td><font size="2px"><%= user.username %></font></td>
 					<td><font size="2px"><%= user.points %></font></td>
 				</tr>
 			<% end %>
 		</tbody>
 	</table>
-	<%end%>
-
+<%end%>
+<div class="d-flex justify-content-center ">
+  		<%== pagy_bootstrap_nav(@pagy) %>
+		</div>
 
 
 </div>
 <div class="col">
 	asdsadsad
 </div>
+
+<style>
+.page-item a.page-link {
+    color: #28a745;
+}
+.page-item.active a.page-link {
+    background-color: white;
+    border-color: #6c757d;
+}
+.page-item a.page-link {
+    font-size: 11px; 
+}
+</style>

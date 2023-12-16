@@ -2,7 +2,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include PgSearch::Model
-  multisearchable against: :username
+
   pg_search_scope :search_by_username, against: [:username], using: { tsearch: { prefix: true } }
 
   devise :database_authenticatable, :registerable,
@@ -18,7 +18,7 @@ class User < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
   has_many :bookmarked_tweets, through: :bookmarks, source: :tweet
 
-
+  before_create :set_default_points
 
   validates :username, uniqueness: { case_sensitive: false }, allow_blank: true
 
@@ -33,5 +33,11 @@ class User < ApplicationRecord
 
   def set_display_name
     self.display_name = username.humanize
+  end
+
+  private
+
+  def set_default_points
+    self.points ||= 0
   end
 end
