@@ -3,58 +3,98 @@ class RegistrationsController < ApplicationController
 	before_action :authenticate_admin, only: [:modify_waitlisted_users]
 
 	def create
-		@registration = current_user.registrations.create(tournament: tournament)
-		@registration.update(waitlisted: tournament.confirmation)
+		if current_user.level == "Beginner"
+			@eligible = true
+			@registration = current_user.registrations.create(tournament: tournament)
+			@registration.update(waitlisted: tournament.confirmation)
 
-		if params[:level_param].present?
-			@registration.update(level_registration: params[:level_param])
-		end
+			if params[:level_param].present?
+				@registration.update(level_registration: params[:level_param])
+			end
 
-		respond_to do |format|
-			format.html { redirect_to dashboard_path }
-			format.turbo_stream
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream
+			end
+		else
+			@eligible = false
+			tournament
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream
+			end
 		end
 	end
 
 	def create_level_two
-		@registration = current_user.registrations.create(tournament: tournament)
-		@registration.update(waitlisted: tournament.confirmation)
+		if current_user.level == "Beginner" || current_user.level == "Medium" || current_user.level == "Medium Plus"
+			@eligible = true
+			@registration = current_user.registrations.create(tournament: tournament)
+			@registration.update(waitlisted: tournament.confirmation)
 
-		if params[:level_param].present?
-			@registration.update(level_registration: params[:level_param])
-		end
+			if params[:level_param].present?
+				@registration.update(level_registration: params[:level_param])
+			end
 
-		respond_to do |format|
-			format.html { redirect_to dashboard_path }
-			format.turbo_stream
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream
+			end
+		else
+			@eligible = false
+			tournament
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream
+			end
 		end
 	end
 
 	def create_level_three
-		@registration = current_user.registrations.create(tournament: tournament)
-		@registration.update(waitlisted: tournament.confirmation)
-		
-		if params[:level_param].present?
-			@registration.update(level_registration: params[:level_param])
-		end
+		if current_user.level == "Expert" || current_user.level == "Medium" || current_user.level == "Medium Plus"
+			@eligible = true
+			@registration = current_user.registrations.create(tournament: tournament)
+			@registration.update(waitlisted: tournament.confirmation)
+			
+			if params[:level_param].present?
+				@registration.update(level_registration: params[:level_param])
+			end
 
-		respond_to do |format|
-			format.html { redirect_to dashboard_path }
-			format.turbo_stream
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream
+			end
+		else
+			@eligible = false
+			tournament
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream
+			end
 		end
 	end
 
 	def create_level_four
-		@registration = current_user.registrations.create(tournament: tournament)
-		@registration.update(waitlisted: tournament.confirmation)
-		
-		if params[:level_param].present?
-			@registration.update(level_registration: params[:level_param])
-		end
+		if current_user.level == "Expert" || current_user.level == "Medium Plus"
+			@eligible = true
+			@registration = current_user.registrations.create(tournament: tournament)
+			@registration.update(waitlisted: tournament.confirmation)
+			
+			if params[:level_param].present?
+				@registration.update(level_registration: params[:level_param])
+			end
 
-		respond_to do |format|
-			format.html { redirect_to dashboard_path }
-			format.turbo_stream
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream
+			end
+		else
+			@eligible = false
+			tournament
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream
+			end
 		end
 	end
 

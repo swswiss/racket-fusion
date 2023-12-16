@@ -11,7 +11,10 @@
       <% players_variable_name = "@players_lvl_#{category.downcase}" %>
       <% eval(players_variable_name).each do |id, user_id| %>
         <% id_reg = Registration.find(id) %>
+        <label>
+        <%= check_box_tag "selected_players[]", id, false, class: 'tiny-checkbox' %>
         <font size="2px"><%= User.find(user_id).username %></font>
+        </label>
         <% if current_user.admin? %>
           <%= link_to modify_waitlisted_users_tournament_registration_path(@tournament, id_reg), method: :post, data: { turbo_method: :post }, remote: true, class: "btn btn-sm", style: "font-size: 7px;" do %>
             <%= image_tag "upgrade.png", width: 21, height: 21 %>
@@ -26,3 +29,11 @@
   
 		</table>
 <% end %>
+
+<style>
+.tiny-checkbox {
+  width: 10px;
+  height: 10px;
+  margin-right: 5px; /* Adjust spacing as needed */
+}
+</style>

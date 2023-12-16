@@ -45,12 +45,17 @@
 		
 	</div>
 		<br>
-		<%= render partial: 'player_info' %>
+		
+		<%= form_tag update_selected_players_tournament_path(@tournament), method: :post, remote: true do %>
+			<%= render partial: 'player_info' %>
+			<%= submit_tag "Update Selected Players", class: "btn btn-primary" %>
+		<% end %>
+
 		<% if current_user.admin? %>
 			<center>Dashboard Admin</center>
 			<span class="placeholder col-12 placeholder-xs", style="font-size:5px"></span>
 
-			<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#generate_groups" },style: "text-decoration: none;" do %>
+			<%= link_to change_status_closed_tournament_path(@tournament), class: "d-flex align-items-center fs-5 mb-3",style: "text-decoration: none;", data: {"turbo-method": "post"}, remote: true do %>
 				<div class="btn btn-success disabled placeholder col-4" >Generate Starting Groups</div>
 			<% end %>
 

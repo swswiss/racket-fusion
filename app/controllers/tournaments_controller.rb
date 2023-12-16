@@ -50,6 +50,11 @@ class TournamentsController < ApplicationController
 		end
 	end
 
+	def update_selected_players
+		debugger
+    selected_player_ids = params[:selected_players] || []
+  end
+
 	def change_status_closed
 		@tournament = Tournament.find(params[:id])
 		@tournament.update(status: false)

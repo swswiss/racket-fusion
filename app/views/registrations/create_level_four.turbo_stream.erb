@@ -1,9 +1,17 @@
 <%= turbo_stream.replace dom_id(@tournament) do %>
-	<div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong>Congrats!</strong> You just registered for <%=@tournament.name%> tournament.
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-	<%= render partial: "tournaments/tournament", locals: {tournament_presenter: TournamentPresenter.new(tournament: @tournament, current_user: current_user)} %>
+	<% if @eligible == true %>
+		<div class="alert alert-success alert-dismissible fade show" role="alert">
+			<strong>Congrats!</strong> You just registered for <%=@tournament.name%> tournament.
+			<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+		</div>
+		<%= render partial: "tournaments/tournament", locals: {tournament_presenter: TournamentPresenter.new(tournament: @tournament, current_user: current_user)} %>
+	<% else %>
+		<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            <strong>Nope!</strong> You are not eligible to play at this level.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        <%= render partial: "tournaments/tournament", locals: {tournament_presenter: TournamentPresenter.new(tournament: @tournament, current_user: current_user)} %>
+	<% end %>
 <%end%>
 
 
