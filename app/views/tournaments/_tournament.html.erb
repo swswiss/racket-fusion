@@ -30,7 +30,7 @@
 				<% classes_lvl4 = 'btn btn-secondary disabled' %>
 				<% disabled_lvl4 = true %>
 			<% else %>
-				<% if tournament_presenter.tournament.max_lvl1 <= tournament_presenter.tournament.registrations.where(level_registration: "level_1").count %>
+				<% if tournament_presenter.tournament.max_lvl1 <= tournament_presenter.tournament.registrations.where(level_registration: "level_1").count%>
 					<% classes_lvl1 = 'btn btn-secondary disabled' %>
 					<% disabled_lvl1 = true %>
 				<% else %>

@@ -3,6 +3,9 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   include PgSearch::Model
 
+  validates :phone, presence: true, length: { minimum: 10, maximum: 15 }
+  validates :level, presence: true
+
   pg_search_scope :search_by_username, against: [:username], using: { tsearch: { prefix: true } }
 
   devise :database_authenticatable, :registerable,
