@@ -56,12 +56,27 @@ class TournamentsController < ApplicationController
 		selected_player_ids = selected_player_ids.map(&:to_i)
 		level_group = Registration.find(selected_player_ids.first).level_registration
 		group = Group.create(level: level_group, tournament: tournament)
+
+		generate_random_matches(selected_player_ids, group)
   end
+
+	def generate_random_matches(players, group)
+		return nil if players.length < 2
+	
+		shuffled_players = players.shuffle
+		matches = shuffled_players.combination(2).to_a
+	
+		matches.each do |match|
+			first_player = Registration.find(match[0])
+			second_player = Registration.find(match[1])
+			match = Match.creat(first_player: )
+		end
+	end
 
 	def change_status_closed
 		@tournament = Tournament.find(params[:id])
 		@tournament.update(status: false)
-		
+
 		respond_to do |format|
 			format.html { redirect_to dashboard_path }
 			format.turbo_stream
