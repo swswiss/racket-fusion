@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_admin, only: [:create, :change_status_opened, :change_status_closed]
+	before_action :authenticate_admin, only: [:create, :change_status_opened, :change_status_closed, :create_groups]
 	require "pagy/extras/array"
 	
 
@@ -69,8 +69,27 @@ class TournamentsController < ApplicationController
 		matches.each do |match|
 			first_player_id = match[0]
 			second_player_id = match[1]
-			match = Match.create(first_player: first_player_id, second_player: second_player_id, group_id: group.id, tournament: tournament, level: level_group)
+			match = Match.create(first_player: first_player_id, second_player: second_player_id, 
+													 group_id: group.id, tournament: tournament, level: level_group)
 		end
+	end
+
+	def beginner_schedule
+		@tournament = Tournament.find(params[:id])
+		@groups_beginner = @tournament.groups.where(level: "level_1")
+	end
+
+	def medium_schedule
+		@tournament = Tournament.find(params[:id])
+		@groups_medium = @tournament.groups.where(level: "level_2")
+	end
+
+	def medium_plus_schedule
+		@tournament = Tournament.find(params[:id])
+	end
+
+	def expert_schedule
+		@tournament = Tournament.find(params[:id])
 	end
 
 	def change_status_closed

@@ -48,11 +48,18 @@
 		
 		<%= form_tag create_groups_tournament_path(@tournament), method: :post, remote: true do %>
 			<%= render partial: 'player_info' %>
-			<center>Dashboard Admin</center>
-			<span class="placeholder col-12 placeholder-xs", style="font-size:5px"></span>
-			<%= submit_tag "Generate Groups", class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+			<% if current_user.admin? %>
+				<center>Dashboard Admin</center>
+				<span class="placeholder col-12 placeholder-xs", style="font-size:5px"></span>
+			
+				<%= submit_tag "Generate Groups", class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+			<% end %>
 		<% end %>
-
+		<br>
+		<%= link_to "Beginner Schedule", beginner_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+		<%= link_to "Medium Schedule", medium_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+		<%= link_to "Medium Plus Schedule", medium_plus_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+		<%= link_to "Expert Schedule", expert_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
 
 
 		<!-- 

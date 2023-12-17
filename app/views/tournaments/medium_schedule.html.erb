@@ -1,0 +1,119 @@
+<div class="col-7">
+	<%= turbo_frame_tag dom_id(@tournament) do %>
+		<div class="some_container_id"></div>
+	<%end%>
+
+	<% if @tournament.status == false %>
+		<% classes_status_closed = 'btn btn-info disabled' %>
+		<% disabled_status_closed = true %>
+	<% else %>
+		<% classes_status_closed = 'text-decoration-none text-black likes' %>
+		<% disabled_status_closed = false %>
+	<% end %>
+
+	<div class= "tours py-4 px-3">
+		<div class="flex-shrink-0">
+			<%= @tournament.name %>
+		</div>
+		<div class="">
+			<p class="mb-0">
+				<span class="fw-bolder"><%= %></span> 
+				<span class="text-muted">
+					@<%= @tournament.status == true ? "Tournament is opened" : "Tournament is closed" %> Created on <%= @tournament.created_at_time %></span>
+			</p>
+
+			<p><%=  %></p>
+
+			<div class = "d-flex justify-content-between align-items-center action-links">
+				<div> 
+				<span style="font-size: 13px;">Beginner <%= @tournament.registrations.where(level_registration: "level_1", waitlisted: false).count%></span>
+				</div>
+				<div>
+				<span style="font-size: 13px;">Medium <%= @tournament.registrations.where(level_registration: "level_2", waitlisted: false).count%></span>
+				</div>
+				<div>
+				<span style="font-size: 13px;">MediumPlus <%= @tournament.registrations.where(level_registration: "level_3", waitlisted: false).count%></span>
+				</div>
+				<div>
+				<span style="font-size: 13px;">Expert <%= @tournament.registrations.where(level_registration: "level_4", waitlisted: false).count%></span>
+				</div>
+				<div>
+				<span style="font-size: 13px;">WaitListed <%= @tournament.registrations.where(waitlisted: true).count%></span>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+		<br>
+		
+		<h6>Round Robin Beginner</h6>
+
+		 <% @groups_medium.each do |group| %>
+				<h3>Group <%= group.id %></h3>
+				<%= link_to group_path(group), method: :delete, data: { turbo_method: :delete }, class: "btn  btn-sm float-end", style: "font-size: 7px;" do %>
+					<%= image_tag "cross-button.png", width: "23" %>
+				<% end %>
+				<% all_player_ids = group.matches.pluck(:first_player, :second_player).flatten.uniq %>
+				<table class="tournament-table">
+					<thead>
+						<tr>
+							<th>Player</th>
+							<% all_player_ids.each do |opponent_id| %>
+								<th colspan="1">vs Player <%= opponent_id %></th>
+							<% end %>
+						</tr>
+					</thead>
+					<tbody>
+						<% all_player_ids.each do |player_id| %>
+							<tr>
+								<td>Player <%= player_id %></td>
+								<% all_player_ids.each do |opponent_id| %>
+									<% next if player_id == opponent_id %>
+									<% match = group.matches.find { |m| (m.first_player == player_id && m.second_player == opponent_id) || (m.first_player == opponent_id && m.second_player == player_id) } %>
+									<td><%= "-" if match %></td>
+									<td><%= "-" if match %></td>
+								<% end %>
+							</tr>
+						<% end %>
+					</tbody>
+				</table>
+				<br>
+			<% end %>
+          
+          
+          
+		
+	
+</div>
+<div class="col">
+asdsadsadas
+</div>
+
+
+<style>
+.tournament-table {
+	border-collapse: collapse;
+	width: 60%;
+}
+
+.tournament-table th, .tournament-table td {
+	border: 1px solid #ddd;
+	padding: 3px;
+	text-align: center;
+	font-size: 11px; 
+	height: 1px;
+}
+
+.tournament-table th {
+	background-color: #f2f2f2;
+}
+
+.tiny-button {
+	font-size: 13px;
+	color: white;
+	padding: 5px 10px;
+}
+.tiny-button:hover {
+color: white;
+}
+</style>

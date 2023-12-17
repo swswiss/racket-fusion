@@ -1,0 +1,111 @@
+<div class="col-7">
+	<%= turbo_frame_tag dom_id(@tournament) do %>
+		<div class="some_container_id"></div>
+	<%end%>
+
+	<% if @tournament.status == false %>
+		<% classes_status_closed = 'btn btn-info disabled' %>
+		<% disabled_status_closed = true %>
+	<% else %>
+		<% classes_status_closed = 'text-decoration-none text-black likes' %>
+		<% disabled_status_closed = false %>
+	<% end %>
+
+	<div class= "tours py-4 px-3">
+		<div class="flex-shrink-0">
+			<%= @tournament.name %>
+		</div>
+		<div class="">
+			<p class="mb-0">
+				<span class="fw-bolder"><%= %></span> 
+				<span class="text-muted">
+					@<%= @tournament.status == true ? "Tournament is opened" : "Tournament is closed" %> Created on <%= @tournament.created_at_time %></span>
+			</p>
+
+			<p><%=  %></p>
+
+			<div class = "d-flex justify-content-between align-items-center action-links">
+				<div> 
+				<span style="font-size: 13px;">Beginner <%= @tournament.registrations.where(level_registration: "level_1", waitlisted: false).count%></span>
+				</div>
+				<div>
+				<span style="font-size: 13px;">Medium <%= @tournament.registrations.where(level_registration: "level_2", waitlisted: false).count%></span>
+				</div>
+				<div>
+				<span style="font-size: 13px;">MediumPlus <%= @tournament.registrations.where(level_registration: "level_3", waitlisted: false).count%></span>
+				</div>
+				<div>
+				<span style="font-size: 13px;">Expert <%= @tournament.registrations.where(level_registration: "level_4", waitlisted: false).count%></span>
+				</div>
+				<div>
+				<span style="font-size: 13px;">WaitListed <%= @tournament.registrations.where(waitlisted: true).count%></span>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+		<br>
+		
+		<h6>Round Robin Beginner</h6>
+
+		<% @groups_beginner.each do |group| %>
+			<h3>Group <%= group.id %></h3>
+			<table class="tournament-table">
+				<thead>
+					<tr>
+						<th>Player</th>
+						<% group.matches.each do |match| %>
+							<th>vs Player <%= match.player_1_id %></th>
+							<th>vs Player <%= match.player_2_id %></th>
+						<% end %>
+					</tr>
+				</thead>
+				<tbody>
+					<% group.players.each do |player| %>
+						<tr>
+							<td>Player <%= player.id %></td>
+							<% group.matches.each do |match| %>
+								<td><%= "-" if match.player_1_id == player.id %></td>
+								<td><%= "-" if match.player_2_id == player.id %></td>
+							<% end %>
+						</tr>
+					<% end %>
+				</tbody>
+			</table>
+			<br>
+		<% end %>
+		
+	
+</div>
+<div class="col">
+asdsadsadas
+</div>
+
+
+<style>
+.tournament-table {
+	border-collapse: collapse;
+	width: 60%;
+}
+
+.tournament-table th, .tournament-table td {
+	border: 1px solid #ddd;
+	padding: 3px;
+	text-align: center;
+	font-size: 11px; 
+	height: 1px;
+}
+
+.tournament-table th {
+	background-color: #f2f2f2;
+}
+
+.tiny-button {
+	font-size: 13px;
+	color: white;
+	padding: 5px 10px;
+}
+.tiny-button:hover {
+color: white;
+}
+</style>

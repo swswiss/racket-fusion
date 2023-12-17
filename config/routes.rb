@@ -11,6 +11,10 @@ Rails.application.routes.draw do
       post 'change_status_opened'
       post 'change_status_closed'
       post 'create_groups'
+      get 'beginner_schedule'
+      get 'medium_schedule'
+      get 'medium_plus_schedule'
+      get 'expert_schedule'
     end
     post 'create_level_two', on: :member, to: 'registrations#create_level_two'
     post 'create_level_three', on: :member, to: 'registrations#create_level_three'
@@ -37,4 +41,5 @@ Rails.application.routes.draw do
 
   resources :usernames, only: [:new, :update, :index]
   resources :users, only: [:index]
+  resources :groups, only: [:destroy]
 end

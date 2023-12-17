@@ -1,71 +1,56 @@
 <aside class="col side-navbar">
-	<div class: "d-flex align-items-center fs-5 px-3 mb-3" %>
-		<%= image_tag "racket_fusion.webp", width: "125" %><span> </span>
-	</div>
+  <div class="d-flex align-items-center fs-5 px-3 mb-0">
+    <%= image_tag "racket_fusion.webp", width: "125" %><span> </span>
+  </div>
 
-	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3" do %>
-		<div class= "px-4 py-2 rounded-pill">
-			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "home.png", width: "27" %></span>
-			Home
-		</div>
-	<% end %>
+  <% navbar_links = [
+    { path: dashboard_path, image: "home.png", text: "Home" },
+    { path: dashboard_path, image: "notification.png", text: "Notifications" },
+    { path: dashboard_path, image: "bookmark.png", text: "Bookmarks" },
+    { path: new_username_path, image: "user.png", text: "Profile" },
+    { path: users_path, image: "rank.png", text: "Rankings" },
+    { path: tournaments_path, image: "tennis-c.png", text: "Events" }
+  ] %>
 
-	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3" do %>
-		<div class= "px-4 py-2 rounded-pill">
-			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "notification.png", width: "27" %></span>
-			Notifications
-		</div>
-	<% end %>
+  <% navbar_links.each do |link| %>
+    <%= link_to link[:path], class: "d-flex align-items-center fs-5 mb-3" do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag link[:image], width: "27" %>
+        </span>
+        <%= link[:text] %>
+      </div>
+    <% end %>
+  <% end %>
 
-	<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3" do %>
-		<div class= "px-4 py-2 rounded-pill">
-			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "bookmark.png", width: "27" %></span>
-			Bookmarks
-		</div>
-	<% end %>
+  <% if current_user.admin? %>
+    <center>
+      <div class="px-4 py-0 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          --------<%= image_tag "manager.png", width: "45" %>--------
+        </span>
+      </div>
+    </center>
 
-	<%= link_to new_username_path, class: "d-flex align-items-center fs-5 mb-3" do %>
-		<div class= "px-4 py-2 rounded-pill">
-			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "user.png", width: "27" %></span>
-			Profile
-		</div>
-	<% end %>
+    <%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#creat_tour" } do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag "tournament.png", width: "27" %>
+        </span>
+        Creat Event
+      </div>
+    <% end %>
+  <% end %>
 
-	<%= link_to users_path, class: "d-flex align-items-center fs-5 mb-3" do %>
-		<div class= "px-4 py-2 rounded-pill">
-			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "rank.png", width: "27" %></span>
-			Rankings
-		</div>
-	<% end %>
+  <div class="d-flex align-items-center fs-4 px-4 mb-3">
+    <%= button_tag "Post", class: "btn btn-lg btn-twitter w-100 rounded-pill", data: { "bs-toggle": "modal", "bs-target": "#exampleModal" } %>
+  </div>
 
-	<%= link_to tournaments_path, class: "d-flex align-items-center fs-5 mb-3" do %>
-		<div class= "px-4 py-2 rounded-pill">
-			<span class = "me-4 position-relative" style = "bottom: 3px;" ><%= image_tag "tennis-c.png", width: "27" %></span>
-			Events
-		</div>
-	<% end %>
-
-	<% if current_user.admin? %>
-		<center><div class= "px-4 py-0 rounded-pill">
-			<span class = "me-4 position-relative" style = "bottom: 3px;" >--------<%= image_tag "manager.png", width: "45" %>--------</span>
-		</div></center>
-
-		<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#creat_tour" } do %>
-			<div class= "px-4 py-2 rounded-pill">
-				<span class = "me-4 position-relative" style = "bottom: 3px;"><%= image_tag "tournament.png", width: "27" %></span>
-				Creat Event
-			</div>
-		<% end %>
-	<% end %>
-
-	<div class = "d-flex align-items-center fs-4 px-4 mb-3" >
-		<%= button_tag "Post", class: "btn btn-lg btn-twitter w-100 rounded-pill", data: { "bs-toggle": "modal", "bs-target": "#exampleModal" } %>
-	</div>
-
-	<div class = "d-flex align-items-center fs-6  px-4 ">
-		<%= link_to "Log Out", destroy_user_session_path, data: {"turbo-method": :delete}, class: 'twitter-link' %>
-	</div>
+  <div class="d-flex align-items-center fs-6 px-4">
+    <%= link_to "Log Out", destroy_user_session_path, data: { "turbo-method": :delete }, class: 'twitter-link' %>
+  </div>
 </aside>
+
 
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
