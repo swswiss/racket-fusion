@@ -57,19 +57,19 @@ class TournamentsController < ApplicationController
 		level_group = Registration.find(selected_player_ids.first).level_registration
 		group = Group.create(level: level_group, tournament: tournament)
 
-		generate_random_matches(selected_player_ids, group)
+		generate_random_matches(selected_player_ids, group, tournament, level_group)
   end
 
-	def generate_random_matches(players, group)
+	def generate_random_matches(players, group, tournament, level_group)
 		return nil if players.length < 2
 	
 		shuffled_players = players.shuffle
 		matches = shuffled_players.combination(2).to_a
 	
 		matches.each do |match|
-			first_player = Registration.find(match[0])
-			second_player = Registration.find(match[1])
-			match = Match.creat(first_player: )
+			first_player_id = match[0]
+			second_player_id = match[1]
+			match = Match.create(first_player: first_player_id, second_player: second_player_id, group_id: group.id, tournament: tournament, level: level_group)
 		end
 	end
 

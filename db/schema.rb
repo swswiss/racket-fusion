@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_16_220025) do
+ActiveRecord::Schema.define(version: 2023_12_17_112256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,20 @@ ActiveRecord::Schema.define(version: 2023_12_16_220025) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "matches", force: :cascade do |t|
+    t.string "level"
+    t.integer "first_player"
+    t.integer "second_player"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "group_id", null: false
+    t.bigint "tournament_id", null: false
+    t.string "score"
+    t.integer "winner"
+    t.index ["group_id"], name: "index_matches_on_group_id"
+    t.index ["tournament_id"], name: "index_matches_on_tournament_id"
+  end
+
   create_table "registrations", force: :cascade do |t|
     t.bigint "tournament_id", null: false
     t.bigint "user_id", null: false
@@ -141,6 +155,8 @@ ActiveRecord::Schema.define(version: 2023_12_16_220025) do
   add_foreign_key "bookmarks", "users"
   add_foreign_key "likes", "tweets"
   add_foreign_key "likes", "users"
+  add_foreign_key "matches", "groups"
+  add_foreign_key "matches", "tournaments"
   add_foreign_key "registrations", "tournaments"
   add_foreign_key "registrations", "users"
   add_foreign_key "tournaments", "users"
