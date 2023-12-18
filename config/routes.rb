@@ -41,5 +41,11 @@ Rails.application.routes.draw do
 
   resources :usernames, only: [:new, :update, :index]
   resources :users, only: [:index]
-  resources :groups, only: [:destroy]
+
+  resources :groups, except: [:show] do
+    member do
+      post 'update_scores_group'
+    end
+  end
+  resources :matches, only: [:update]
 end

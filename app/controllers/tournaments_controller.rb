@@ -82,6 +82,12 @@ class TournamentsController < ApplicationController
 	def medium_schedule
 		@tournament = Tournament.find(params[:id])
 		@groups_medium = @tournament.groups.where(level: "level_2")
+		@groups_with_matches = {}
+
+		@groups_medium.each do |group|
+			matches = group.matches # Assuming you have a `has_many :matches` association in your Group model
+			@groups_with_matches[group] = matches
+		end
 	end
 
 	def medium_plus_schedule

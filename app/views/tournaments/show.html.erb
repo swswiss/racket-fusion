@@ -48,7 +48,13 @@
 		
 		<%= form_tag create_groups_tournament_path(@tournament), method: :post, remote: true do %>
 			<%= render partial: 'player_info' %>
+			<%= link_to "Beginner Schedule", beginner_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+		<%= link_to "Medium Schedule", medium_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+		<%= link_to "Medium Plus Schedule", medium_plus_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+		<%= link_to "Expert Schedule", expert_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+		<br><br>
 			<% if current_user.admin? %>
+				
 				<center>Dashboard Admin</center>
 				<span class="placeholder col-12 placeholder-xs", style="font-size:5px"></span>
 			
@@ -56,144 +62,7 @@
 			<% end %>
 		<% end %>
 		<br>
-		<%= link_to "Beginner Schedule", beginner_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
-		<%= link_to "Medium Schedule", medium_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
-		<%= link_to "Medium Plus Schedule", medium_plus_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
-		<%= link_to "Expert Schedule", expert_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
 
-
-		<!-- 
-		<h6>Round Robin Beginner</h6>
-
-		<table class = "tournament-table">
-			<thead>
-				<tr>
-					<th>Player</th>
-					<th>vs Player 1</th>
-					<th>vs Player 2</th>
-					<th>vs Player 3</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Player 1</td>
-					<td>-</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Player 2</td>
-					<td></td>
-					<td>-</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Player 3</td>
-					<td></td>
-					<td></td>
-					<td>-</td>
-				</tr>
-			</tbody>
-		</table><br>
-		<h6>Round Robin Medium</h6>
-
-		<table class = "tournament-table">
-			<thead>
-				<tr>
-					<th>Player</th>
-					<th>vs Player 1</th>
-					<th>vs Player 2</th>
-					<th>vs Player 3</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Player 1</td>
-					<td>-</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Player 2</td>
-					<td></td>
-					<td>-</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Player 3</td>
-					<td></td>
-					<td></td>
-					<td>-</td>
-				</tr>
-			</tbody>
-		</table>
-		<br>
-		<h6>Round Robin MediumPlus</h6>
-
-		<table class = "tournament-table">
-			<thead>
-				<tr>
-					<th>Player</th>
-					<th>vs Player 1</th>
-					<th>vs Player 2</th>
-					<th>vs Player 3</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Player 1</td>
-					<td>-</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Player 2</td>
-					<td></td>
-					<td>-</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Player 3</td>
-					<td></td>
-					<td></td>
-					<td>-</td>
-				</tr>
-			</tbody>
-		</table>
-		<br>
-		<h6>Round Robin Expert</h6>
-
-		<table class = "tournament-table">
-			<thead>
-				<tr>
-					<th>Player</th>
-					<th>vs Player 1</th>
-					<th>vs Player 2</th>
-					<th>vs Player 3</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Player 1</td>
-					<td>-</td>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Player 2</td>
-					<td></td>
-					<td>-</td>
-					<td></td>
-				</tr>
-				<tr>
-					<td>Player 3</td>
-					<td></td>
-					<td></td>
-					<td>-</td>
-				</tr>
-			</tbody>
-		</table> 
-	-->
 </div>
 <div class="col">
 asdsadsadas

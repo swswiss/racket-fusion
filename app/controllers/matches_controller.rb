@@ -1,18 +1,10 @@
-class GroupsController < ApplicationController
+class MatchesController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_admin, only: [:destroy, :update_scores_group]
+	before_action :authenticate_admin, only: [:update]
 
 
-	def update_scores_group
-	
-		params[:match_scores].each do |match_id, score|
-			match = Match.find(match_id)
-			match.update(score: score)
-		end
-		
-	end
-
-	def destroy
+	def update
+		debugger
 		@group = Group.find(params[:id])
 		@group.destroy
 		respond_to do |format|
