@@ -10,10 +10,12 @@ class GroupsController < ApplicationController
 			second_player = match.second_player
 			match.update(score: score)
 
-			if determine_winner(score, first_player, second_player) == true
-				match.update(winner: first_player)
-			else
-				match.update(winner: second_player)
+			if score.present?
+				if determine_winner(score, first_player, second_player) == true
+					match.update(winner: first_player)
+				else
+					match.update(winner: second_player)
+				end
 			end
 		end
 		

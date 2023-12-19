@@ -45,6 +45,8 @@
 		
 	</div>
 		<br>
+		<%= turbo_frame_tag "altceva" do %>
+		<%end%>
 		
 		<%= form_tag create_groups_tournament_path(@tournament), method: :post, remote: true do %>
 			<%= render partial: 'player_info' %>

@@ -56,8 +56,29 @@ class TournamentsController < ApplicationController
 		selected_player_ids = selected_player_ids.map(&:to_i)
 		level_group = Registration.find(selected_player_ids.first).level_registration
 		group = Group.create(level: level_group, tournament: tournament)
-
+		if level_group == "level_1"
+			level = "Beginner"
+		elsif level_group == "level_2"
+			level = "Medium"
+		elsif level_group == "level_3"
+			level = "Medium Plus"
+		else
+			level = "Expert"
+		end
+		
 		generate_random_matches(selected_player_ids, group, tournament, level_group)
+
+		respond_to do |format|
+			format.html { redirect_to dashboard_path }
+			format.turbo_stream do
+				render turbo_stream: turbo_stream.replace('altceva') { 
+					"<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
+						<strong>Great!</strong> You have just created a group for #{level}.
+						<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+					</div>".html_safe
+				}
+			end
+		end
   end
 
 	def generate_random_matches(players, group, tournament, level_group)
