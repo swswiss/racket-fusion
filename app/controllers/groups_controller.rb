@@ -18,6 +18,11 @@ class GroupsController < ApplicationController
 				end
 			end
 		end
+
+		params[:match_dates].each do |match_id, date_time|
+			match = Match.find(match_id)
+			match.update(date: date_time)
+		end
 		
 	end
 

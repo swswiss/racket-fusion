@@ -59,8 +59,12 @@
 				
 				<center>Dashboard Admin</center>
 				<span class="placeholder col-12 placeholder-xs", style="font-size:5px"></span>
-			
-				<%= submit_tag "Generate Groups", class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+				<% if @tournament.status == true %>
+					<div style= "font-size: 13px;" >Tournament still opened, so you cannot generate groups</div>
+					<%= submit_tag "Generate Groups", class: "btn btn-lg tiny-button disabled", style: "background-color: #53B092;" %>
+				<% else %>
+					<%= submit_tag "Generate Groups", class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+				<% end %>
 			<% end %>
 		<% end %>
 		<br>

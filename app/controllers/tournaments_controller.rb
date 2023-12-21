@@ -98,16 +98,46 @@ class TournamentsController < ApplicationController
 	def beginner_schedule
 		@tournament = Tournament.find(params[:id])
 		@groups_beginner = @tournament.groups.where(level: "level_1")
+
 	end
 
 	def medium_schedule
 		@tournament = Tournament.find(params[:id])
 		@groups_medium = @tournament.groups.where(level: "level_2")
-		@groups_with_matches = {}
 
+		@groups_with_matches = {}
 		@groups_medium.each do |group|
 			matches = group.matches # Assuming you have a `has_many :matches` association in your Group model
 			@groups_with_matches[group] = matches
+		end
+
+		@ids_with_most_winners = {}
+		@groups_medium.each do |group|
+			winners = group.matches.pluck(:winner).compact
+			#if winners.uniq.length == winners.length
+				# all_matches = group.matches
+				# all_matches.each do |m|
+				# 	score = m.score
+				# 	sets = score.split(' ')
+				# 	sets.each do |s|
+				# 		games = s.split('-') 
+				# 		first_player_games = games[0].to_i
+				# 		second_player_games = games[1].to_i
+						
+				# 		if first_player_games > second_player_games
+				# 			first_player_sets += 1
+				# 		else
+				# 			second_player_sets += 1
+				# 		end
+				# 	end
+				# 	if first_player_sets > second_player_sets
+				# 		return true
+				# 	elsif second_player_sets > first_player_sets
+				# 		return false
+				# 	end
+				# end
+  		most_frequent_winner = winners.max_by { |winner| winners.count(winner) }
+  		@ids_with_most_winners[group.id] = most_frequent_winner
 		end
 	end
 

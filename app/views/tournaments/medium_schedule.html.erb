@@ -45,6 +45,7 @@
 		
 	</div>
 		<br>
+		<center>
 		<% @groups_with_matches.each_with_index do |(group, matches), index| %>
 			<%= turbo_frame_tag "group_#{group.id}" do %>
 				<h7>Group <%= (index + 'A'.ord).chr + " "+ group.id.to_s %></h7>
@@ -60,31 +61,60 @@
 							<tr>
 								<th>nr.</th>
 								<th>id</th>
-								<th>Match</th>
+								<th style="min-width: 150px;">Match</th>
 								<th>Score</th>
+								<th>Date</th>
 								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
-							<% matches.each_with_index do |match, match_index| %>
-								<tr>
-									<td><%= match_index + 1 %></td>
-									<td><%= match.id %></td>
-									<td><%= "#{Registration.find(match.first_player).user.username} vs #{Registration.find(match.second_player).user.username}" %></td>
-									<td><%= text_field_tag "match_scores[#{match.id}]", match.score %></td>
-									<% if current_user.admin? %>
-										<td><%= submit_tag "Submit", class: "btn btn-sm tiny-button", style: "background-color: #53B092;" %></td>
-									<% else %>
-										<td>-</td>
-									<% end %>
-								</tr>
-							<% end %>
+						<% matches.each_with_index do |match, match_index| %>
+							<tr>
+								<td><%= match_index + 1 %></td>
+								<td><%= match.id %></td>
+								<td><%= "#{Registration.find(match.first_player).user.username} vs #{Registration.find(match.second_player).user.username}" %></td>
+								<% if current_user.admin? %>
+									<td><%= text_field_tag "match_scores[#{match.id}]", match.score, disabled: false %></td>
+								<% else  %>
+									<td><%= text_field_tag "match_scores[#{match.id}]", match.score, disabled: true %></td>
+								<% end %>
+								<td>
+									<%= datetime_field_tag "match_dates[#{match.id}]", match.date&.strftime('%Y-%m-%dT%H:%M'), class: "form-control datetime-picker", style: "font-size: small;" %>
+          			</td>
+								<% if current_user.admin? %>
+									<td><%= submit_tag "Submit", class: "btn btn-sm tiny-button", style: "background-color: #53B092;" %></td>
+								<% else %>
+									<td>-</td>
+								<% end %>
+							</tr>
+						<% end %>
 						</tbody>
 					</table>
 				<% end %>
-		
 			<% end %>
 		<% end %>
+		</center>
+		<br>
+		<center>Qualificated Players
+		<table class="tournament-table">
+  <thead>
+    <tr>
+      <th>Group ID</th>
+      <th>Registration ID</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ids_with_most_winners.each do |group_id, registration_id| %>
+      <tr>
+        <td><%= group_id %></td>
+				<% if registration_id.present? %>
+        	<td><%= Registration.find(registration_id).user.username %></td>
+				<%end%>
+      </tr>
+    <% end %>
+  </tbody>
+</table></center>
+
 		
 		<section id="bracket">
 		<div class="container">
@@ -92,37 +122,18 @@
 			<div class="round round-one current">
 				<div class="round-details">Round 1<br/><span class="date">March 16</span></div>
 				<ul class="matchup">
-					<li class="team team-top">Duke<span class="score">76</span></li>
-					<li class="team team-bottom">Virginia<span class="score">82</span></li>
+					<li class="team team-top">Duke<span class="score">1</span></li>
+					<li class="team team-bottom">Virginia<span class="score">2</span></li>
 				</ul>
 				<ul class="matchup">
-					<li class="team team-top">Wake Forest<span class="score">64</span></li>
-					<li class="team team-bottom">Clemson<span class="score">56</span></li>
+					<li class="team team-top">Wake Forest<span class="score">3</span></li>
+					<li class="team team-bottom">Clemson<span class="score">4</span></li>
 				</ul>
 				<ul class="matchup">
-					<li class="team team-top">North Carolina<span class="score">68</span></li>
-					<li class="team team-bottom">Florida State<span class="score">54</span></li>
+					<li class="team team-top">North Carolina<span class="score">5</span></li>
+					<li class="team team-bottom">Florida State<span class="score">6</span></li>
 				</ul>
-				<ul class="matchup">
-					<li class="team team-top">NC State<span class="score">74</span></li>
-					<li class="team team-bottom">Maryland<span class="score">92</span></li>
-				</ul>     
-				<ul class="matchup">
-					<li class="team team-top">Georgia Tech<span class="score">78</span></li>
-					<li class="team team-bottom">Georgia<span class="score">80</span></li>
-				</ul> 
-				<ul class="matchup">
-					<li class="team team-top">Auburn<span class="score">64</span></li>
-					<li class="team team-bottom">Florida<span class="score">63</span></li>
-				</ul> 
-				<ul class="matchup">
-					<li class="team team-top">Kentucky<span class="score">70</span></li>
-					<li class="team team-bottom">Alabama<span class="score">59</span></li>
-				</ul>
-				<ul class="matchup">
-					<li class="team team-top">Vanderbilt<span class="score">64</span></li>
-					<li class="team team-bottom">Gonzaga<span class="score">68</span></li>
-				</ul>                   
+				
 			</div>  <!-- END ROUND ONE -->
 	
 			<div class="round round-two current">
@@ -135,22 +146,11 @@
 					<li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
 					<li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
 				</ul> 
-				<ul class="matchup">
-					<li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-					<li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-				</ul>
-				<ul class="matchup">
-					<li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-					<li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-				</ul>                   
+	                
 			</div>  <!-- END ROUND TWO -->
 			
 			<div class="round round-three current">
 				<div class="round-details">Round 3<br/><span class="date">March 22</span></div>     
-				<ul class="matchup">
-					<li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-					<li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-				</ul> 
 				<ul class="matchup">
 					<li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
 					<li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
@@ -195,7 +195,7 @@ color: white;
 }
 
 
-#bracket {overflow:hidden;background-color: #e1e1e1;background-color:rgba(225,225,225,0.9);padding-top: 20px;font-size: 12px;padding: 40px 0;}
+#bracket {overflow:hidden;background-color: #e1e1e1;background-color:white;padding-top: 20px;font-size: 12px;padding: 40px 0;}
 
 .split {display:block;float:left;display: -webkit-box;display: -moz-box;display: -ms-flexbox;display: -webkit-flex;display:flex;width: 88%;-webkit-flex-direction:row;-moz-flex-direction:row;flex-direction:row;}
 
@@ -207,7 +207,7 @@ color: white;
 .score {font-size: 11px;text-transform: uppercase;float: right;color: #2C7399;font-weight: bold;font-family: 'Roboto Condensed', sans-serif;position: absolute;right: 5px;}
 .team {padding: 0 5px;margin: 3px 0;height: 25px; line-height: 25px;white-space: nowrap; overflow: hidden;position: relative;}
 .round-two .matchup {margin:0; height: 60px;padding: 40px 0;}
-.round-three .matchup {margin:0; height: 60px; padding: 40px 0;}
+.round-three .matchup {margin:0; height: 60px; padding: 80px 0;}
 .round-details {font-family: 'Roboto Condensed', sans-serif; font-size: 13px; color: #2C7399;text-transform: uppercase;text-align: center;height: 40px;}
 .champion li, .round li {background-color: #fff;box-shadow: none; opacity: 0.45;}
 .current li {opacity: 1;}
@@ -217,6 +217,23 @@ color: white;
 .share-icon {font-size: 24px; color: #fff;padding: 25px;}
 .share-wrap {max-width: 1100px; text-align: center; margin: 60px auto;}
 .final {margin: 4.5em 0;}
+
+table {
+    width: auto;
+    border-collapse: collapse;
+    margin: 5px 0;
+  }
+
+  th, td {
+    border: 1px solid #ddd;
+    padding: 3px;
+    text-align: left;
+    font-size: small;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
 
 @-webkit-keyframes pulse {
   0% {
