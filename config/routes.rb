@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "home#index"
 
-  resources :tournaments, only: [:create, :show, :destroy] do
+  resources :tournaments, only: [:create, :show, :destroy, :update] do
     member do
       post 'change_status_opened'
       post 'change_status_closed'

@@ -6,6 +6,27 @@
 	<%= image_tag "menu.png", width: "23" %>
 <%end%>
 
+<div class="dropdown float-end">
+  <button class="btn btn-sm dropdown-toggle" type="button" id="optionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+    <%= image_tag "dropdown.png", width: "29" %>
+  </button>
+  <ul class="dropdown-menu" aria-labelledby="optionsDropdown">
+    <li><%= link_to change_status_opened_tournament_path(tournament_presenter.tournament), data: { "turbo-method": "post" }, remote: true do %>
+          <label class="dropdown-item" for="#{tournament_presenter.tournament.id}">Opened</label>
+        <% end %>
+    </li>
+    <li><%= link_to change_status_closed_tournament_path(tournament_presenter.tournament), data: { "turbo-method": "post" }, remote: true do %>
+          <label class="dropdown-item" for="#{tournament_presenter.tournament.id}">Closed</label>
+        <% end %>
+    </li>
+    <li class="dropdown-divider"></li>
+    <li><%= link_to "#", class: "dropdown-item", data: { bs_toggle: "modal", bs_target: "#editTournamentModal" } do %>
+          Edit Tournament
+        <% end %>
+    </li>
+  </ul>
+</div>
+
 <%= turbo_frame_tag dom_id(tournament_presenter.tournament) do %>
 	<% if tournament_presenter.tournament.status == false %>
 		<% classes_status_closed = 'btn btn-secondary disabled' %>
@@ -63,16 +84,6 @@
 				<span class="fw-bolder"><%= %></span> 
 				<span class="text-muted">
 					@<%= tournament_presenter.tournament.status == true ? "Tournament is opened" : "Tournament is closed" %> <%= tournament_presenter.created_at %></span>
-					<% if current_user.admin? %>
-						<%= link_to change_status_opened_tournament_path(tournament_presenter.tournament), data: {"turbo-method": "post"}, remote: true do %>
-							<input type="radio" class="btn-check" name="#{tournament_presenter.tournament.id}" id="#{tournament_presenter.tournament.id}" autocomplete="off">
-							<label class="btn btn-outline-primary btn-custom-small ms-1" for="#{tournament_presenter.tournament.id}">Opened</label>
-						<%end%>
-						<%= link_to change_status_closed_tournament_path(tournament_presenter.tournament), data: {"turbo-method": "post"}, remote: true do %>
-							<input type="radio" class="btn-check" name="#{tournament_presenter.tournament.id}" id="#{tournament_presenter.tournament.id}" autocomplete="off">
-							<label class="btn btn-outline-primary btn-custom-small ms-1" for="#{tournament_presenter.tournament.id}">Closed</label>
-						<%end%>
-					<%end%>
 			</p>
 
 			<p><%=  %></p>
@@ -107,7 +118,22 @@
 		
 	</div>
 	<br>
+	<div class="modal fade" id="editTournamentModal" tabindex="-1" aria-labelledby="editTournamentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editTournamentModalLabel">Edit Tournament</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "shared/update_tournament", tournament: tournament_presenter.tournament %>
+      </div>
+    </div>
+  </div>
+</div>
+	
 <%end%>
+
 
 <style>
   .btn-custom-small {

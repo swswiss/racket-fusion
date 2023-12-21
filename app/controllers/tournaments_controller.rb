@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_admin, only: [:create, :change_status_opened, :change_status_closed, :create_groups]
+	before_action :authenticate_admin, only: [:create, :change_status_opened, :change_status_closed, :create_groups, :destroy]
 	require "pagy/extras/array"
 	
 
@@ -19,6 +19,24 @@ class TournamentsController < ApplicationController
 		@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3", waitlisted: false).pluck(:id, :user_id)
 		@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4", waitlisted: false).pluck(:id, :user_id)
 		@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true).pluck(:id, :user_id)
+	end
+
+	def update
+		@tournament = Tournament.find(params[:id])
+  	if @tournament.update(tournament_params)
+			if params[:confirmation].present?
+				@tournament.update(confirmation: params[:confirmation] == "1" ? true : false)
+			end
+			if params[:tournament_status1].present?
+				@tournament.update(status: params[:tournament_status1] == "opened" ? true : false)
+			end
+    	respond_to do |format|
+				format.html { redirect_to tournaments_path }
+			end
+  	else
+    	# Handle errors, if any
+    	render json: { errors: @tournament.errors.full_messages }, status: :unprocessable_entity
+  	end
 	end
 
 	def create
