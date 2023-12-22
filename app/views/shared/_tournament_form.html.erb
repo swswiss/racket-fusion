@@ -1,19 +1,27 @@
 <%= form_with(model: Tournament.new, url: tournaments_path, method: :post, class: "w-100") do |f| %>
 
-	<%= f.text_area :name, placeholder: "Name for Tournament", class: "form-control  w-100 mb-4",style: "font-size: 15px;" %>
-	<%= f.text_area :description, placeholder: "Description for Tournament", class: "form-control  w-100 mb-4",style: "font-size: 15px;" %>
+	<%= f.text_area :name, placeholder: "Name for Tournament", class: "form-control  w-100 mb-4",style: "font-size: small;" %>
+	<%= f.text_area :description, placeholder: "Description for Tournament", class: "form-control  w-100 mb-4",style: "font-size: small:" %>
 
 	<%= f.label :number_of_players_beginner, class: "form-label" %>
-	<%= f.select :max_lvl1, (1..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: 15px;" } %>
+	<%= f.select :max_lvl1, (1..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: small;" } %>
 
 	<%= f.label :number_of_players_medium, class: "form-label" %>
-	<%= f.select :max_lvl2, (1..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: 15px;" } %>
+	<%= f.select :max_lvl2, (1..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: small;" } %>
 
 	<%= f.label :number_of_players_medium_plus, class: "form-label" %>
-	<%= f.select :max_lvl3, (1..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: 15px;" } %>
+	<%= f.select :max_lvl3, (1..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: small;" } %>
 
 	<%= f.label :number_of_players_expert, class: "form-label" %>
-	<%= f.select :max_lvl4, (1..10).to_a, {}, { class: "form-control w-100 mb-4", style: "font-size: 15px;" } %>
+	<%= f.select :max_lvl4, (1..10).to_a, {}, { class: "form-control w-100 mb-4", style: "font-size: small;" } %>
+
+	<%= f.label :start_sign_ups, class: "form-label" %>
+  <%= f.datetime_local_field :start_datetime, class: "form-control datetime-picker", style: "font-size: small;" %>
+	<br>
+
+	<%= f.label :finish_sign_ups, class: "form-label" %>
+  <%= f.datetime_local_field :finish_datetime, class: "form-control datetime-picker", style: "font-size: small;" %>
+	<br>
 
 	<div class="mb-4">
     <input type="radio" class="btn-check" name="tournament_status" id="option1" value="opened" autocomplete="off",style: "font-size: 15px;">
@@ -29,6 +37,6 @@
 </div>
 
 	<div class="d-flex justify-content-end">
-	  <%= f.submit "Create Tournament", class: "btn btn-lg btn-twitter rounded-pill",style: "font-size: 15px;" %>
+	  <%= f.submit "Create Tournament", class: "btn btn-lg btn-twitter rounded-pill",style: "font-size: small;" %>
 	</div>
 <% end %>

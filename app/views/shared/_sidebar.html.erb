@@ -6,7 +6,6 @@
   <% navbar_links = [
     { path: dashboard_path, image: "home.png", text: "Home" },
     { path: dashboard_path, image: "notification.png", text: "Notifications" },
-    { path: dashboard_path, image: "bookmark.png", text: "Bookmarks" },
     { path: new_username_path, image: "user.png", text: "Profile" },
     { path: users_path, image: "rank.png", text: "Rankings" },
     { path: tournaments_path, image: "tennis-c.png", text: "Events" }
@@ -38,6 +37,15 @@
           <%= image_tag "tournament.png", width: "27" %>
         </span>
         Creat Event
+      </div>
+    <% end %>
+
+		<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#creat_prom" } do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag "medal.png", width: "27" %>
+        </span>
+        Promotions
       </div>
     <% end %>
   <% end %>
@@ -75,6 +83,20 @@
       </div>
       <div class="modal-body">
 				<%= render "shared/tournament_form" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="creat_prom" tabindex="-1" aria-labelledby="creat_prom" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<%= render "shared/prom_form" %>
       </div>
       
     </div>

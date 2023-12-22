@@ -40,11 +40,14 @@ Rails.application.routes.draw do
   get :tournaments, to: "tournaments#index"
 
   resources :usernames, only: [:new, :update, :index]
-  resources :users, only: [:index]
+  resources :users, only: [:index] do
+    post 'create_promotion', on: :collection
+  end
 
   resources :groups, except: [:show] do
     member do
       post 'update_scores_group'
+      get 'print_groups_medium'
     end
   end
   resources :matches, only: [:update]

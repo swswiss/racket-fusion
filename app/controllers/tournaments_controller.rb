@@ -41,7 +41,6 @@ class TournamentsController < ApplicationController
 
 	def create
 		@tournament = Tournament.new(tournament_params.merge(user: current_user))
-
 		if @tournament.save
 			if params[:confirmation].present?
 				@tournament.update(confirmation: params[:confirmation] == "1" ? true : false)
@@ -190,6 +189,6 @@ class TournamentsController < ApplicationController
 	private
 
 	def tournament_params
-		params.require(:tournament).permit(:name, :description, :status, :max_lvl1, :max_lvl2, :max_lvl3, :max_lvl4, :confirmation)
+		params.require(:tournament).permit(:name, :description, :status, :max_lvl1, :max_lvl2, :max_lvl3, :max_lvl4, :confirmation, :start_datetime, :finish_datetime)
 	end
 end

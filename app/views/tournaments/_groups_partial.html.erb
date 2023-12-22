@@ -1,0 +1,88 @@
+<% @groups_with_matches.each_with_index do |(group, matches), index| %>
+    <%= turbo_frame_tag "group_#{group.id}" do %>
+        <h7>Group <%= (index + 'A'.ord).chr + " "+ group.id.to_s %></h7>
+        <% if current_user.admin? %>
+            <%= link_to group_path(group), method: :delete, data: { turbo_method: :delete }, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
+                <%= image_tag "cross-button.png", width: "17" %>
+            <% end %>
+        
+            <%= link_to print_groups_medium_group_path(group, format: :pdf), method: :get, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
+                <%= image_tag "printer.png", width: "17" %>
+            <% end %>
+
+        <% end %>
+
+        <%= form_tag update_scores_group_group_path(group), method: :post, remote: true do %>
+            <table class="tournament-table">
+                <thead>
+                    <tr>
+                        <th>nr.</th>
+                        <th>id</th>
+                        <th style="min-width: 150px;">Match</th>
+                        <th>Score</th>
+                        <th>Date</th>
+                        <% if params[:action] != "print_groups_medium" %>
+                            <th>Action</th>
+                        <% end %>
+                    </tr>
+                </thead>
+                <tbody>
+                <% matches.each_with_index do |match, match_index| %>
+                    <tr>
+                        <td><%= match_index + 1 %></td>
+                        <td><%= match.id %></td>
+                        <td><%= "#{Registration.find(match.first_player).user.username} vs #{Registration.find(match.second_player).user.username}" %></td>
+                        <% if current_user.admin? %>
+                            <td><%= text_field_tag "match_scores[#{match.id}]", match.score, disabled: false %></td>
+                        <% else  %>
+                            <td><%= text_field_tag "match_scores[#{match.id}]", match.score, disabled: true %></td>
+                        <% end %>
+                        <td>
+                        <% if current_user.admin? %>
+                            <%= datetime_field_tag "match_dates[#{match.id}]", match.date&.strftime('%Y-%m-%dT%H:%M'), class: "form-control datetime-picker", disabled: false, style: "font-size: small;" %>
+                        <% else  %>
+                            <%= datetime_field_tag "match_dates[#{match.id}]", match.date&.strftime('%Y-%m-%dT%H:%M'), class: "form-control datetime-picker", disabled: true, style: "font-size: small;" %>
+                        <% end %>
+              </td>
+              <% if params[:action] != "print_groups_medium" %>
+                        <% if current_user.admin? %>
+                            <td><%= submit_tag "Submit", class: "btn btn-sm tiny-button", style: "background-color: #53B092;" %></td>
+                        <% else %>
+                            <td>-</td>
+                        <% end %>
+                        <% end %>
+                    </tr>
+                <% end %>
+                </tbody>
+            </table>
+        <% end %>
+    <% end %>
+<% end %>
+
+<style>
+.tournament-table {
+	border-collapse: collapse;
+	width: 60%;
+}
+
+.tournament-table th, .tournament-table td {
+	border: 1px solid #ddd;
+	padding: 3px;
+	text-align: center;
+	font-size: 11px; 
+	height: 1px;
+}
+
+.tournament-table th {
+	background-color: #f2f2f2;
+}
+
+.tiny-button {
+	font-size: 9px;
+	color: white;
+	padding: 5px 10px;
+}
+.tiny-button:hover {
+color: white;
+}
+</style>

@@ -26,6 +26,25 @@ class GroupsController < ApplicationController
 		
 	end
 
+	def print_groups_medium
+		group = Group.find(params[:id])
+		tournament = group.tournament
+		@groups_medium = tournament.groups.where(level: "level_2")
+
+		@groups_with_matches = {}
+		@groups_medium.each do |group|
+			matches = group.matches # Assuming you have a `has_many :matches` association in your Group model
+			@groups_with_matches[group] = matches
+		end
+		
+		respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "file_name", template: 'tournaments/_groups_partial.html.erb'
+      end
+    end
+	end
+
 	def determine_winner(score, first_player, second_player)
 		sets = score.split(' ') # Split the score into sets
 		first_player_sets = 0
