@@ -2,6 +2,7 @@
     <%= turbo_frame_tag "group_#{group.id}" do %>
         <h7>Group <%= (index + 'A'.ord).chr + " "+ group.id.to_s %></h7>
         <% if current_user.admin? %>
+            <% if params[:action] != "print_groups_medium" %>
             <%= link_to group_path(group), method: :delete, data: { turbo_method: :delete }, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
                 <%= image_tag "cross-button.png", width: "17" %>
             <% end %>
@@ -9,7 +10,7 @@
             <%= link_to print_groups_medium_group_path(group, format: :pdf), method: :get, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
                 <%= image_tag "printer.png", width: "17" %>
             <% end %>
-
+            <% end %>
         <% end %>
 
         <%= form_tag update_scores_group_group_path(group), method: :post, remote: true do %>

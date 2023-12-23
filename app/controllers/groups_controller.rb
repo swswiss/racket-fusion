@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_admin, only: [:destroy, :update_scores_group]
+	before_action :authenticate_admin, only: [:destroy, :update_scores_group, :print_groups_medium]
 
 
 	def update_scores_group
