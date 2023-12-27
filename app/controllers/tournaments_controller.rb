@@ -67,7 +67,52 @@ class TournamentsController < ApplicationController
 		end
 	end
 
+	def create_brackets
+		return nil if params[:selected_players].length < 2
+
+		tournament = Tournament.find(params[:id])
+    selected_player_ids = params[:selected_players] || []
+		selected_player_ids = selected_player_ids.map(&:to_i)
+		level_round = Registration.find(selected_player_ids.first).level_registration
+
+		round = Round.create(level: level_round, tournament: tournament)
+		if level_round == "level_1"
+			level = "Beginner"
+		elsif level_round == "level_2"
+			level = "Medium"
+		elsif level_round == "level_3"
+			level = "Medium Plus"
+		else
+			level = "Expert"
+		end
+
+		generate_random_matches_for_brackets(selected_player_ids, round, tournament, level_round)
+	end
+
+	def generate_random_matches_for_brackets(players, round, tournament, level_round)
+		return nil if players.length < 2
+	
+		shuffled_players = players.shuffle
+		paired_players = shuffled_players.each_slice(2).to_a
+
+		paired_players.each do |pair|
+			first_player_id = pair[0]
+			second_player_id = pair[1]
+			match = Match.create(
+				first_player: first_player_id,
+				second_player: second_player_id,
+				round_id: round.id,
+				group_id: Group.first.id,
+				tournament: tournament,
+				level: level_round,
+				kind: "bracket"
+			)
+		end
+	end
+
 	def create_groups
+		return nil if params[:selected_players].length < 2
+
 		tournament = Tournament.find(params[:id])
     selected_player_ids = params[:selected_players] || []
 		selected_player_ids = selected_player_ids.map(&:to_i)
@@ -108,7 +153,7 @@ class TournamentsController < ApplicationController
 			first_player_id = match[0]
 			second_player_id = match[1]
 			match = Match.create(first_player: first_player_id, second_player: second_player_id, 
-													 group_id: group.id, tournament: tournament, level: level_group)
+													 group_id: group.id, tournament: tournament, level: level_group, kind: "group")
 		end
 	end
 
@@ -124,13 +169,13 @@ class TournamentsController < ApplicationController
 
 		@groups_with_matches = {}
 		@groups_medium.each do |group|
-			matches = group.matches # Assuming you have a `has_many :matches` association in your Group model
+			matches = group.matches.where(kind: "group") # Assuming you have a `has_many :matches` association in your Group model
 			@groups_with_matches[group] = matches
 		end
 
 		@ids_with_most_winners = {}
 		@groups_medium.each do |group|
-			winners = group.matches.pluck(:winner).compact
+			winners = group.matches.where(kind: "group").pluck(:winner).compact
 			#if winners.uniq.length == winners.length
 				# all_matches = group.matches
 				# all_matches.each do |m|

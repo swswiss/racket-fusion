@@ -8,6 +8,7 @@ class Tournament < ApplicationRecord
 
   has_many :groups, dependent: :destroy
   has_many :matches, dependent: :destroy
+  has_many :rounds, dependent: :destroy
 
   validates :max_lvl2, numericality: { only_integer: true }
   validates :max_lvl1, numericality: { only_integer: true }

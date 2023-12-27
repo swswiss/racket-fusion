@@ -1,0 +1,15 @@
+
+<% if flash[:notice].present? %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<%= form_tag create_brackets_tournament_path(tournament), method: :post, remote: true do %>
+    <%= render partial: 'player_info_bracket' %>
+    
+    
+            <%= submit_tag "Generate Bracket", class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+
+
+<% end %>

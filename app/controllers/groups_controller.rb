@@ -16,6 +16,8 @@ class GroupsController < ApplicationController
 				else
 					match.update(winner: second_player)
 				end
+			else
+				match.update(winner: nil)
 			end
 		end
 
@@ -33,7 +35,7 @@ class GroupsController < ApplicationController
 
 		@groups_with_matches = {}
 		@groups_medium.each do |group|
-			matches = group.matches # Assuming you have a `has_many :matches` association in your Group model
+			matches = group.matches.where(kind: "group") # Assuming you have a `has_many :matches` association in your Group model
 			@groups_with_matches[group] = matches
 		end
 		

@@ -1,0 +1,38 @@
+
+
+    <table class="table">
+      <tr>
+        <% ["Beginner", "Medium", "MediumPlus", "Expert","WaitListed"].each do |category| %>
+          <th><h7><%= category %></h7></th>
+        <% end %>
+      </tr>
+      <tr>
+    <% ["Beginner", "Medium", "MediumPlus", "Expert", "WaitListed"].each do |category| %>
+      <td class="#{}">
+        <% players_variable_name = "@players_lvl_#{category.downcase}" %>
+        <% eval(players_variable_name).each do |id, user_id| %>
+          <% id_reg = Registration.find(id) %>
+          <label>
+          <% if current_user.admin? %>
+            <%= check_box_tag "selected_players[]", id, false, class: 'tiny-checkbox' %>
+          <% end %>
+          <font size="2px"><%= User.find(user_id).username %></font>
+          </label>
+
+          <br>
+        
+        <% end %>
+      </td>
+    <% end %>
+    </tr>
+    
+          </table>
+
+  
+  <style>
+  .tiny-checkbox {
+    width: 10px;
+    height: 10px;
+    margin-right: 5px; /* Adjust spacing as needed */
+  }
+  </style>

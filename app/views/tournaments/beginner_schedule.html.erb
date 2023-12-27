@@ -54,7 +54,7 @@
 				<thead>
 					<tr>
 						<th>Player</th>
-						<% group.matches.each do |match| %>
+						<% group.matches.where(kind: "group").each do |match| %>
 							<th>vs Player <%= match.player_1_id %></th>
 							<th>vs Player <%= match.player_2_id %></th>
 						<% end %>

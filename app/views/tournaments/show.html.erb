@@ -68,10 +68,29 @@
 			<% end %>
 		<% end %>
 		<br>
+		<%= link_to dashboard_path, class: "btn btn-lg tiny-button", style: "background-color: #53B092;", data: { bs_toggle: "modal", bs_target: "#creat_bracket" } do %>
+
+        Create Bracket Matches
+     
+    <% end %>
+		<br>
 
 </div>
 <div class="col">
 asdsadsadas
+</div>
+
+<div class="modal fade" id="creat_bracket" tabindex="-1" aria-labelledby="creat_bracket" aria-hidden="true">
+  <div class="modal-dialog modal-lg"> <!-- Add modal-lg class for a larger width -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "shared/bracket_matches_form", tournament: @tournament %>
+      </div>
+    </div>
+  </div>
 </div>
 
 

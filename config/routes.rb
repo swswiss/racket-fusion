@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       post 'change_status_opened'
       post 'change_status_closed'
       post 'create_groups'
+      post 'create_brackets'
       get 'beginner_schedule'
       get 'medium_schedule'
       get 'medium_plus_schedule'
@@ -50,5 +51,5 @@ Rails.application.routes.draw do
       get 'print_groups_medium'
     end
   end
-  resources :matches, only: [:update]
+  resources :matches, only: [:update, :destroy]
 end

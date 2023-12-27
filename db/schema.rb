@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_22_170425) do
+ActiveRecord::Schema.define(version: 2023_12_27_215629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -85,12 +85,15 @@ ActiveRecord::Schema.define(version: 2023_12_22_170425) do
     t.integer "second_player"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "group_id", null: false
+    t.bigint "group_id"
     t.bigint "tournament_id", null: false
     t.string "score"
     t.integer "winner"
     t.datetime "date"
+    t.string "kind"
+    t.bigint "round_id"
     t.index ["group_id"], name: "index_matches_on_group_id"
+    t.index ["round_id"], name: "index_matches_on_round_id"
     t.index ["tournament_id"], name: "index_matches_on_tournament_id"
   end
 
@@ -103,6 +106,13 @@ ActiveRecord::Schema.define(version: 2023_12_22_170425) do
     t.boolean "waitlisted"
     t.index ["tournament_id"], name: "index_registrations_on_tournament_id"
     t.index ["user_id"], name: "index_registrations_on_user_id"
+  end
+
+  create_table "rounds", force: :cascade do |t|
+    t.integer "tournament_id"
+    t.string "level"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "tournaments", force: :cascade do |t|
@@ -159,6 +169,7 @@ ActiveRecord::Schema.define(version: 2023_12_22_170425) do
   add_foreign_key "likes", "tweets"
   add_foreign_key "likes", "users"
   add_foreign_key "matches", "groups"
+  add_foreign_key "matches", "rounds"
   add_foreign_key "matches", "tournaments"
   add_foreign_key "registrations", "tournaments"
   add_foreign_key "registrations", "users"

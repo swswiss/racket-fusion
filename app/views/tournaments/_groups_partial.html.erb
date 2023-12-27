@@ -29,7 +29,7 @@
                 </thead>
                 <tbody>
                 <% matches.each_with_index do |match, match_index| %>
-                    <tr>
+                    <tr id="match_<%= match.id %>">
                         <td><%= match_index + 1 %></td>
                         <td><%= match.id %></td>
                         <td><%= "#{Registration.find(match.first_player).user.username} vs #{Registration.find(match.second_player).user.username}" %></td>
@@ -47,7 +47,11 @@
               </td>
               <% if params[:action] != "print_groups_medium" %>
                         <% if current_user.admin? %>
-                            <td><%= submit_tag "Submit", class: "btn btn-sm tiny-button", style: "background-color: #53B092;" %></td>
+                            <td><%= submit_tag "Submit", class: "btn btn-sm tiny-button", style: "background-color: #53B092;" %>
+                            
+                            <%= link_to match_path(match), method: :delete, data: { turbo_method: :delete }, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
+                                Sterge
+                                <% end %></td>
                         <% else %>
                             <td>-</td>
                         <% end %>
