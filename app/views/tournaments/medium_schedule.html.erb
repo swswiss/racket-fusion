@@ -3,6 +3,10 @@
 		<div class="some_container_id"></div>
 	<%end%>
 
+	<%= link_to tournament_path(params[:id]) do %>
+  <%= image_tag "back.png", alt: "Back", width: "30", height: "30" %>
+<% end %>
+
 	<% if @tournament.status == false %>
 		<% classes_status_closed = 'btn btn-info disabled' %>
 		<% disabled_status_closed = true %>
@@ -72,51 +76,14 @@
 				</tbody>
 			</table></center>
 		<%end%>
-
-		
-		<section id="bracket">
-		<div class="container">
-		<div class="split split-one">
-			<div class="round round-one current">
-				<div class="round-details">Round 1<br/><span class="date">March 16</span></div>
-				<ul class="matchup">
-					<li class="team team-top">Duke<span class="score">1</span></li>
-					<li class="team team-bottom">Virginia<span class="score">2</span></li>
-				</ul>
-				<ul class="matchup">
-					<li class="team team-top">Wake Forest<span class="score">3</span></li>
-					<li class="team team-bottom">Clemson<span class="score">4</span></li>
-				</ul>
-				<ul class="matchup">
-					<li class="team team-top">North Carolina<span class="score">5</span></li>
-					<li class="team team-bottom">Florida State<span class="score">6</span></li>
-				</ul>
-				
-			</div>  <!-- END ROUND ONE -->
-	
-			<div class="round round-two current">
-				<div class="round-details">Round 2<br/><span class="date">March 18</span></div>     
-				<ul class="matchup">
-					<li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-					<li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-				</ul> 
-				<ul class="matchup">
-					<li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-					<li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-				</ul> 
-	                
-			</div>  <!-- END ROUND TWO -->
-			
-			<div class="round round-three current">
-				<div class="round-details">Round 3<br/><span class="date">March 22</span></div>     
-				<ul class="matchup">
-					<li class="team team-top">&nbsp;<span class="score">&nbsp;</span></li>
-					<li class="team team-bottom">&nbsp;<span class="score">&nbsp;</span></li>
-				</ul>                   
-			</div>  <!-- END ROUND THREE -->    
-		</div> 
-		</div>
-
+		<%= turbo_frame_tag "omg" do %>
+		<%= render partial: "tournaments/brackets_partial" %>
+		<%end%>
+		<% if current_user.admin? %>
+		<center>
+		<%= render partial: "tournaments/rounds_partial" %>
+		</center>
+		<%end%>
 	
 	
 </div>

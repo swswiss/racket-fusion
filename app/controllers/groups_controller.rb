@@ -4,6 +4,19 @@ class GroupsController < ApplicationController
 
 
 	def update_scores_group
+		if params[:rounds_submit] != nil
+			tournament_id = Round.find(params[:id]).tournament.id
+			level_round = Round.find(params[:id]).level
+			@tournament = Tournament.find(tournament_id)
+			@rounds_medium = @tournament.rounds.where(level: level_round)
+			@rounds_with_matches = {}
+			@rounds_medium.each do |round|
+				matches = round.matches.where(kind: "bracket") # Assuming you have a `has_many :matches` association in your Group model
+				@rounds_with_matches[round] = matches
+			end
+		end
+
+
 		params[:match_scores].each do |match_id, score|
 			match = Match.find(match_id)
 			first_player = match.first_player
@@ -24,6 +37,12 @@ class GroupsController < ApplicationController
 		params[:match_dates].each do |match_id, date_time|
 			match = Match.find(match_id)
 			match.update(date: date_time)
+		end
+		if params[:rounds_submit] != nil
+			render turbo_stream: 
+				turbo_stream.replace("omg",
+					partial: "tournaments/brackets_partial",
+					locals: {rounds_with_matches: @rounds_with_matches})
 		end
 		
 	end

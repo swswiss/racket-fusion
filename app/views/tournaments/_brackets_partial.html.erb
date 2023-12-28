@@ -1,0 +1,51 @@
+<% @rounds_with_matches ||= rounds_with_matches  %>
+
+<br>
+<%if @winner.present? %>
+<center>
+<%= image_tag "cup.png", width: "49" %><br>
+<%=@winner%></center>
+<% end %>
+<section id="bracket">
+
+		<div class="container">
+		<div class="split split-one">
+        
+		<% @rounds_with_matches.each_with_index do |(round, matches), round_index| %>
+			<% if round_index == 0 %>
+				<div class="round current">
+					<div class="round-details"><%= "Round #{round_index + 1}" %><br/><span class="date"><%= round.created_at.strftime("%B %e") %></span></div>
+					<% matches.each do |match| %>
+						<ul class="matchup">
+							<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
+							<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.score %></span></li>
+						</ul>
+					<% end %>
+				</div>
+			<% elsif round_index == 1 %>
+				<div class="round round-two current">
+				<div class="round-details"><%= "Round #{round_index + 1}" %><br/><span class="date"><%= round.created_at.strftime("%B %e") %></span></div>
+				<% matches.each do |match| %>
+					<ul class="matchup">
+						<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.score %></span></li>
+					</ul>
+				<% end %>
+			</div>
+			<% elsif round_index == 2 %>
+				<div class="round round-three current">
+					<div class="round-details"><%= "Round #{round_index + 1}" %><br/><span class="date"><%= round.created_at.strftime("%B %e") %></span></div>
+					<% matches.each do |match| %>
+						<ul class="matchup">
+							<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
+							<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.score %></span></li>
+						</ul>
+					<% end %>
+				</div>
+			<% end %>
+		<% end %> <!-- END ROUND ONE -->
+		
+        
+		</div> 
+		</div>
+     </section>

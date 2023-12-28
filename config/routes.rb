@@ -51,5 +51,13 @@ Rails.application.routes.draw do
       get 'print_groups_medium'
     end
   end
+
+  resources :rounds, except: [:show] do
+    member do
+      post 'update_scores_group'
+      get 'print_groups_medium'
+    end
+  end
+
   resources :matches, only: [:update, :destroy, :new]
 end

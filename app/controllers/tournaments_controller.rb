@@ -166,11 +166,23 @@ class TournamentsController < ApplicationController
 	def medium_schedule
 		@tournament = Tournament.find(params[:id])
 		@groups_medium = @tournament.groups.where(level: "level_2")
+		@rounds_medium = @tournament.rounds.where(level: "level_2")
+
+		@last_match = @tournament.rounds.where(level: "level_2").order(created_at: :desc).first&.matches&.size
+		if @last_match == 1 && @tournament.rounds.where(level: "level_2").order(created_at: :desc).first.matches.first&.winner != nil
+			@winner = Registration.find(@tournament.rounds.where(level: "level_2").order(created_at: :desc).first.matches.first&.winner).user.username
+		end
 
 		@groups_with_matches = {}
 		@groups_medium.each do |group|
 			matches = group.matches.where(kind: "group") # Assuming you have a `has_many :matches` association in your Group model
 			@groups_with_matches[group] = matches
+		end
+
+		@rounds_with_matches = {}
+		@rounds_medium.each do |round|
+			matches = round.matches.where(kind: "bracket") # Assuming you have a `has_many :matches` association in your Group model
+			@rounds_with_matches[round] = matches
 		end
 
 		@ids_with_most_winners = {}
