@@ -23,7 +23,8 @@
                         <th>Score</th>
                         <th>Date</th>
                         <% if params[:action] != "print_groups_medium" %>
-                            <th>Action</th>
+                            <th>Score</th>
+                            <th>Destroy</th>
                         <% end %>
                     </tr>
                 </thead>
@@ -47,11 +48,12 @@
               </td>
               <% if params[:action] != "print_groups_medium" %>
                         <% if current_user.admin? %>
-                            <td><%= submit_tag "Submit", class: "btn btn-sm tiny-button", style: "background-color: #53B092;" %>
+                            <td ><%= submit_tag "Submit", class: "btn btn-sm tiny-button me-2", style: "background-color: #53B092;"%></td >
                             
-                            <%= link_to match_path(match), method: :delete, data: { turbo_method: :delete }, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
+                            <td ><%= link_to match_path(match), method: :delete, data: { turbo_method: :delete }, class: "btn btn-sm tiny-button", style: "background-color: #53B092;" do %>
                                 Sterge
                                 <% end %></td>
+                                
                         <% else %>
                             <td>-</td>
                         <% end %>
@@ -63,6 +65,9 @@
         <% end %>
     <% end %>
 <% end %>
+
+
+
 
 <style>
 .tournament-table {
@@ -83,9 +88,9 @@
 }
 
 .tiny-button {
-	font-size: 9px;
+	font-size: 7px;
 	color: white;
-	padding: 5px 10px;
+	padding: 3px 7px;
 }
 .tiny-button:hover {
 color: white;

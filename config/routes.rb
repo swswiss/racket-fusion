@@ -51,5 +51,5 @@ Rails.application.routes.draw do
       get 'print_groups_medium'
     end
   end
-  resources :matches, only: [:update, :destroy]
+  resources :matches, only: [:update, :destroy, :new]
 end
