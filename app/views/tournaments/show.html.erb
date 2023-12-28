@@ -68,11 +68,36 @@
 			<% end %>
 		<% end %>
 		<br>
-		<%= link_to dashboard_path, class: "btn btn-lg tiny-button", style: "background-color: #53B092;", data: { bs_toggle: "modal", bs_target: "#creat_bracket" } do %>
+		<% if @tournament.status == true %>
+			<div style= "font-size: 13px;" >Tournament still opened, so you cannot generate bracket matches</div>
+			<%= link_to dashboard_path, class: "btn btn-lg tiny-button disabled", style: "background-color: #53B092;", data: { bs_toggle: "modal", bs_target: "#creat_bracket" } do %>
 
-        Create Bracket Matches
-     
-    <% end %>
+					Create Bracket Matches
+			
+			<% end %>
+		<% else %>
+			<%= link_to dashboard_path, class: "btn btn-lg tiny-button", style: "background-color: #53B092;", data: { bs_toggle: "modal", bs_target: "#creat_bracket" } do %>
+
+			Create Bracket Matches
+
+			<% end %>
+		<% end %>
+		<br>
+		<br>
+		<% if @tournament.status == true %>
+			<div style= "font-size: 13px;" >Tournament not finished yet, so you set points for players</div>
+			<%= link_to dashboard_path, class: "btn btn-lg tiny-button disabled", style: "background-color: #53B092;", data: { bs_toggle: "modal", bs_target: "#create_point" } do %>
+
+					Set Points for Players
+			
+			<% end %>
+		<% else %>
+			<%= link_to dashboard_path, class: "btn btn-lg tiny-button", style: "background-color: #53B092;", data: { bs_toggle: "modal", bs_target: "#create_point" } do %>
+
+				Set Points for Players
+
+			<% end %>
+		<% end %>
 		<br>
 
 </div>
@@ -88,6 +113,19 @@ asdsadsadas
       </div>
       <div class="modal-body">
         <%= render "shared/bracket_matches_form", tournament: @tournament %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="create_point" tabindex="-1" aria-labelledby="create_point" aria-hidden="true">
+  <div class="modal-dialog modal-sm"> <!-- Add modal-lg class for a larger width -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "shared/create_point", tournament: @tournament %>
       </div>
     </div>
   </div>

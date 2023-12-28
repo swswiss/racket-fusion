@@ -43,6 +43,7 @@ Rails.application.routes.draw do
   resources :usernames, only: [:new, :update, :index]
   resources :users, only: [:index] do
     post 'create_promotion', on: :collection
+    post 'create_points', on: :collection
   end
 
   resources :groups, except: [:show] do
@@ -55,7 +56,7 @@ Rails.application.routes.draw do
   resources :rounds, except: [:show] do
     member do
       post 'update_scores_group'
-      get 'print_groups_medium'
+      get 'print_rounds_medium'
     end
   end
 

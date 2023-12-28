@@ -1,23 +1,28 @@
 class RoundsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_admin, only: [:destroy, :print_groups_medium]
+	before_action :authenticate_admin, only: [:destroy, :print_rounds_medium]
 
-	def print_groups_medium
-		group = Group.find(params[:id])
-		tournament = group.tournament
-		@groups_medium = tournament.groups.where(level: "level_2")
+	def print_rounds_medium
+		round = Round.find(params[:id])
+		tournament = round.tournament
+		@rounds_medium = tournament.rounds.where(level: "level_2")
 
-		@groups_with_matches = {}
-		@groups_medium.each do |group|
-			matches = group.matches.where(kind: "group") # Assuming you have a `has_many :matches` association in your Group model
-			@groups_with_matches[group] = matches
+        @last_match = tournament.rounds.where(level: "level_2").order(created_at: :desc).first&.matches&.size
+		if @last_match == 1 && tournament.rounds.where(level: "level_2").order(created_at: :desc).first.matches.first&.winner != nil
+		    @winner = Registration.find(tournament.rounds.where(level: "level_2").order(created_at: :desc).first.matches.first&.winner).user.username
+		end
+
+		@rounds_with_matches = {}
+		@rounds_medium.each do |round|
+			matches = round.matches.where(kind: "bracket") # Assuming you have a `has_many :matches` association in your Group model
+			@rounds_with_matches[round] = matches
 		end
 		
 		respond_to do |format|
-      format.html
-      format.pdf do
-        render pdf: "file_name", template: 'tournaments/_groups_partial.html.erb'
-      end
+            format.html
+            format.pdf do
+            render pdf: "file_name", template: 'tournaments/_brackets_partial.html.erb'
+        end
     end
 	end
 

@@ -1,0 +1,24 @@
+
+<% if flash[:notice].present? %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<center><%= image_tag "success.png", width: "45",class: " mb-1" %></center>
+<% users = tournament.registrations.pluck(:user_id) %>
+<%= form_tag create_points_users_path, method: :post, class: "w-100", data: { controller: 'tweet-form' } do %>
+	<% users.each do |user_id| %>
+        <div class="mb-2">
+          <%= label_tag "points_#{user_id}", "Points for #{User.find(user_id).username}:", class: "small-text" %>
+          <%= select_tag "points[#{user_id}]", options_for_select((1..20).to_a), prompt: "Select Points", class: "form-control small-text" %>
+        </div>
+      <% end %>
+	<div class="d-flex justify-content-end">
+	  <%= submit_tag "Create Points", class: "btn btn-sm btn-twitter rounded-pill" %>
+	</div>
+<% end %>
+<style>
+.small-text {
+  font-size: 12px; /* Adjust the font size as needed */
+}
+</style>
