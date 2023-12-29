@@ -16,7 +16,6 @@ class GroupsController < ApplicationController
 			end
 		end
 
-
 		params[:match_scores].each do |match_id, score|
 			match = Match.find(match_id)
 			first_player = match.first_player

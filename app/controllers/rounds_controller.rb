@@ -17,14 +17,19 @@ class RoundsController < ApplicationController
 			matches = round.matches.where(kind: "bracket") # Assuming you have a `has_many :matches` association in your Group model
 			@rounds_with_matches[round] = matches
 		end
-		
+
 		respond_to do |format|
             format.html
             format.pdf do
-            render pdf: "file_name", template: 'tournaments/_brackets_partial.html.erb'
-        end
+              render pdf: "day_report",
+                     template: 'tournaments/_brackets_partial.html.erb',
+                     layout: 'pdf.html',
+                     page_size: 'A4',
+                     encoding: "UTF-8"
+            end
+          end
     end
-	end
+
 
 	def destroy
 		@round = Round.find(params[:id])
