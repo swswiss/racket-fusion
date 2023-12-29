@@ -27,14 +27,20 @@ class TournamentsController < ApplicationController
 			if params[:confirmation].present?
 				@tournament.update(confirmation: params[:confirmation] == "1" ? true : false)
 			end
-			if params[:tournament][:is_league].present?
-				@tournament.update(league: params[:tournament][:is_league] == "1" ? true : false)
+			if params[:tournament][:league].present?
+				@tournament.update(league: params[:tournament][:league] == "1" ? true : false)
 			end
 			if params[:tournament_status1].present?
 				@tournament.update(status: params[:tournament_status1] == "opened" ? true : false)
 			end
-    	respond_to do |format|
-				format.html { redirect_to tournaments_path }
+    	if params[:tournament][:league] == "1"
+				respond_to do |format|
+					format.html { redirect_to leagues_path }
+				end
+			else
+				respond_to do |format|
+					format.html { redirect_to tournaments_path }
+				end
 			end
   	else
     	# Handle errors, if any
@@ -48,14 +54,20 @@ class TournamentsController < ApplicationController
 			if params[:confirmation].present?
 				@tournament.update(confirmation: params[:confirmation] == "1" ? true : false)
 			end
-			if params[:tournament][:is_league].present?
-				@tournament.update(league: params[:tournament][:is_league] == "1" ? true : false)
+			if params[:tournament][:league].present?
+				@tournament.update(league: params[:tournament][:league] == "1" ? true : false)
 			end
 			if params[:tournament_status].present?
 				@tournament.update(status: params[:tournament_status] == "opened" ? true : false)
 			end
-			respond_to do |format|
-				format.html { redirect_to tournaments_path }
+			if params[:tournament][:league] == "1"
+				respond_to do |format|
+					format.html { redirect_to leagues_path }
+				end
+			else
+				respond_to do |format|
+					format.html { redirect_to tournaments_path }
+				end
 			end
 		else
 			@error_messages = @tournament.errors.full_messages
