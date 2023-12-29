@@ -4,14 +4,35 @@
   </div>
 
   <% navbar_links = [
-    { path: dashboard_path, image: "home.png", text: "Home" },
-    { path: dashboard_path, image: "notification.png", text: "Notifications" },
-    { path: new_username_path, image: "user.png", text: "Profile" },
-    { path: users_path, image: "rank.png", text: "Rankings" },
-    { path: tournaments_path, image: "tennis-c.png", text: "Events" }
-  ] %>
+  { path: dashboard_path, image: "home.png", text: "Home" },
+  { path: dashboard_path, image: "notification.png", text: "Notifications" },
+  { path: new_username_path, image: "user.png", text: "Profile" },
+  { path: expert_users_path, image: "rank.png", text: "Rankings", dropdown: [
+    { path: beginner_users_path, text: "Beginner" },
+    { path: medium_users_path, text: "Medium" },
+    { path: medium_plus_users_path, text: "Medium Plus" },
+  ] },
+  { path: tournaments_path, image: "tennis-c.png", text: "Events" }
+] %>
 
-  <% navbar_links.each do |link| %>
+<% navbar_links.each do |link| %>
+  <% if link[:dropdown] %>
+    <div class="dropdown">
+      <%= link_to link[:path], class: "d-flex align-items-center fs-5 mb-3 dropdown-toggle", 'data-bs-toggle' => 'dropdown', role: 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false' do %>
+        <div class="px-4 py-2 rounded-pill">
+          <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+            <%= image_tag link[:image], width: "27" %>
+          </span>
+          <%= link[:text] %>
+        </div>
+      <% end %>
+      <ul class="dropdown-menu">
+        <% link[:dropdown].each do |sublink| %>
+          <li><%= link_to sublink[:path], class: 'dropdown-item' do %><%= sublink[:text] %><% end %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% else %>
     <%= link_to link[:path], class: "d-flex align-items-center fs-5 mb-3" do %>
       <div class="px-4 py-2 rounded-pill">
         <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
@@ -21,6 +42,8 @@
       </div>
     <% end %>
   <% end %>
+<% end %>
+
 
   <% if current_user.admin? %>
     <center>

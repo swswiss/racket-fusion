@@ -44,6 +44,10 @@ Rails.application.routes.draw do
   resources :users, only: [:index] do
     post 'create_promotion', on: :collection
     post 'create_points', on: :collection
+    get 'beginner', on: :collection
+    get 'medium', on: :collection
+    get 'medium_plus', on: :collection
+    get 'expert', on: :collection
   end
 
   resources :groups, except: [:show] do

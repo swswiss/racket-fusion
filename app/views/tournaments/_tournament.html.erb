@@ -1,11 +1,13 @@
+<% if current_user.admin? %>
 <%= link_to tournament_path(tournament_presenter.tournament), method: :delete, data: { turbo_method: :delete }, class: "btn  btn-sm float-end", style: "font-size: 7px;" do %>
 	<%= image_tag "cross-button.png", width: "23" %>
+<% end %>
 <% end %>
 
 <%= link_to tournament_path(tournament_presenter.tournament), class: "btn  btn-sm float-end", remote: true do %>
 	<%= image_tag "menu.png", width: "23" %>
 <%end%>
-
+<% if current_user.admin? %>
 <div class="dropdown float-end">
   <button class="btn btn-sm dropdown-toggle" type="button" id="optionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
     <%= image_tag "dropdown.png", width: "29" %>
@@ -26,6 +28,7 @@
     </li>
   </ul>
 </div>
+<%end%>
 
 <%= turbo_frame_tag dom_id(tournament_presenter.tournament) do %>
 	<% if tournament_presenter.tournament.status == false %>

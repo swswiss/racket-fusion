@@ -1,13 +1,41 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
 	before_action :authenticate_admin, only: [:create_promotion]
-	def index
+
+
+	def expert
 		if params[:username].present?
-			@pagy, @users = pagy(User.order(points: :desc).search_by_username(params[:username]),  items: 13)
+			@pagy, @users = pagy(User.where(level: "Expert").order(points: :desc).search_by_username(params[:username]),  items: 13)
 		else
-			@pagy, @users = pagy(User.order(points: :desc).all,  items: 13)
+			@pagy, @users = pagy(User.where(level: "Expert").order(points: :desc),  items: 13)
 		end
 	end
+
+	def beginner
+		if params[:username].present?
+			@pagy, @users = pagy(User.where(level: "Beginner").order(points: :desc).search_by_username(params[:username]),  items: 13)
+		else
+			@pagy, @users = pagy(User.where(level: "Beginner").order(points: :desc),  items: 13)
+		end
+	end
+
+	def medium
+		if params[:username].present?
+			@pagy, @users = pagy(User.order(points: :desc).where(level: "Medium").search_by_username(params[:username]),  items: 13)
+		else
+			@pagy, @users = pagy(User.order(points: :desc).where(level: "Medium"),  items: 13)
+		end
+	end
+
+	def medium_plus
+		if params[:username].present?
+			@pagy, @users = pagy(User.order(points: :desc).where(level: "Medium Plus").search_by_username(params[:username]),  items: 13)
+		else
+			@pagy, @users = pagy(User.order(points: :desc).where(level: "Medium Plus"),  items: 13)
+		end
+	end
+
+
 
 	def create_points
 		points_params = params.require(:points).permit!
