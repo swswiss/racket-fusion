@@ -5,7 +5,7 @@ class TournamentsController < ApplicationController
 	
 
 	def index
-		@pagy, @all_tournaments = pagy_array(Tournament.includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
+		@pagy, @all_tournaments = pagy_array(Tournament.where(league: false).includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
 			TournamentPresenter.new(tournament: tournament, current_user: current_user)
 		end,
 		items: 5
@@ -27,6 +27,9 @@ class TournamentsController < ApplicationController
 			if params[:confirmation].present?
 				@tournament.update(confirmation: params[:confirmation] == "1" ? true : false)
 			end
+			if params[:tournament][:is_league].present?
+				@tournament.update(league: params[:tournament][:is_league] == "1" ? true : false)
+			end
 			if params[:tournament_status1].present?
 				@tournament.update(status: params[:tournament_status1] == "opened" ? true : false)
 			end
@@ -44,6 +47,9 @@ class TournamentsController < ApplicationController
 		if @tournament.save
 			if params[:confirmation].present?
 				@tournament.update(confirmation: params[:confirmation] == "1" ? true : false)
+			end
+			if params[:tournament][:is_league].present?
+				@tournament.update(league: params[:tournament][:is_league] == "1" ? true : false)
 			end
 			if params[:tournament_status].present?
 				@tournament.update(status: params[:tournament_status] == "opened" ? true : false)
@@ -246,6 +252,6 @@ class TournamentsController < ApplicationController
 	private
 
 	def tournament_params
-		params.require(:tournament).permit(:name, :description, :status, :max_lvl1, :max_lvl2, :max_lvl3, :max_lvl4, :confirmation, :start_datetime, :finish_datetime)
+		params.require(:tournament).permit(:name, :description, :status, :max_lvl1, :max_lvl2, :max_lvl3, :max_lvl4, :confirmation, :start_datetime, :finish_datetime, :league)
 	end
 end

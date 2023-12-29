@@ -65,4 +65,5 @@ Rails.application.routes.draw do
   end
 
   resources :matches, only: [:update, :destroy, :new]
+  resources :leagues
 end
