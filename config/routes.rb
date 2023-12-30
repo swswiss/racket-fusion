@@ -66,4 +66,5 @@ Rails.application.routes.draw do
 
   resources :matches, only: [:update, :destroy, :new]
   resources :leagues
+  resources :statistics
 end

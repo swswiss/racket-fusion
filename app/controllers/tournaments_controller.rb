@@ -214,6 +214,7 @@ class TournamentsController < ApplicationController
 
 				# Initialize data for winner if nil
 				@data[group.id][winner_id] ||= {
+					matches_played: 0,
 					sets_won: 0,
 					sets_lost: 0,
 					matches_won: 0
@@ -221,6 +222,7 @@ class TournamentsController < ApplicationController
 		
 				# Initialize data for loser if nil
 				@data[group.id][loser_id] ||= {
+					matches_played: 0,
 					sets_won: 0,
 					sets_lost: 0,
 					matches_won: 0
@@ -250,6 +252,10 @@ class TournamentsController < ApplicationController
 				# Count matches won for the winner
 				if @data[group.id][winner_id]
 					@data[group.id][winner_id][:matches_won] += 1
+					@data[group.id][winner_id][:matches_played] += 1 if match.score.present?
+				end
+				if @data[group.id][loser_id] && match.score.present?
+					@data[group.id][loser_id][:matches_played] += 1
 				end
 			end
 		end

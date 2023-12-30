@@ -1,0 +1,88 @@
+
+
+
+
+
+
+<div class="col-7">
+	<div class = "mb-3">
+	<!-- In your view file, e.g., tournaments/index.html.erb -->
+
+	<!-- In your view file, e.g., tournaments/index.html.erb -->
+
+<table class="table small-font">
+  <thead>
+    <tr>
+      <th>Tournament Name</th>
+
+      <th>First Player</th>
+      <th>Second Player</th>
+      <th>Score</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @matches_for_current_user.each do |match| %>
+      <% tournament = match.tournament %>
+				<tr>
+					<td><%= tournament.name %></td>
+
+					<td><%= Registration.find(match.first_player).user.username %></td>
+					<td><%=  Registration.find(match.second_player).user.username %></td>
+					<td><%= match.score %></td>
+				</tr>
+    <% end %>
+  </tbody>
+</table>
+
+</div>	
+<div class="d-flex justify-content-center ">
+  		<%== pagy_bootstrap_nav(@pagy) %>
+		</div>
+
+</div>
+
+<div class="col">
+	asdsadsad
+</div>
+
+
+<style>
+.page-item a.page-link {
+    color: #28a745;
+}
+.page-item.active a.page-link {
+    background-color: white;
+    border-color: #6c757d;
+}
+.page-item a.page-link {
+    font-size: 11px; 
+}
+.table.small-font {
+  font-size: 13px; /* Adjust the font size as needed */
+}
+	.tournament-table {
+		border-collapse: collapse;
+		width: 60%;
+	}
+
+	.tournament-table th, .tournament-table td {
+		border: 1px solid #ddd;
+		padding: 3px;
+		text-align: center;
+		font-size: 11px; 
+		height: 1px;
+	}
+
+	.tournament-table th {
+		background-color: #f2f2f2;
+	}
+
+	.tiny-button {
+		font-size: 13px;
+		color: white;
+		padding: 5px 10px;
+	}
+	.tiny-button:hover {
+  color: white;
+}
+</style>

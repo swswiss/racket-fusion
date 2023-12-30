@@ -79,6 +79,7 @@
 						<tr>
 							<th>Group</th>
 							<th>Player</th>
+                            <th>Matches played</th>
 							<th>Sets Won</th>
 							<th>Sets Lost</th>
 							<th>Matches Won</th>
@@ -90,6 +91,7 @@
 								<tr style="background-color: <%= index.even? ? '#ffe6e6' : '#e6f7ff' %>;">
 									<td><%= group_id %></td>
 									<td><%= player_id.nil? ? "(nil)" : Registration.find(player_id).user.username %></td>
+                                    <td><%= data[:matches_played] %></td>
 									<td><%= data[:sets_won] %></td>
 									<td><%= data[:sets_lost] %></td>
 									<td><%= data[:matches_won] %></td>

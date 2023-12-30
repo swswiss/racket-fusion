@@ -55,7 +55,17 @@ class UsersController < ApplicationController
 		if params[:level].present?
 			user.update(level: params[:level])
 		end
+		if params[:level] == "Beginner"
+			r = "beginner"
+		elsif params[:level] == "Medium"
+			r = "medium"
+		elsif params[:level] == "Medium Plus"
+			r = "medium_plus"
+		else
+			r = "expert"
+		end
+
 		flash[:notice] = "#{user.username} is promoted to level #{params[:level]}"
-    redirect_to users_path
+    redirect_to send("#{r}_users_path")
 	end
 end
