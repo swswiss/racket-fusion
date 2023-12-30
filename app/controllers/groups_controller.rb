@@ -68,6 +68,7 @@ class GroupsController < ApplicationController
 
 				# Initialize data for winner if nil
 				@data[group.id][winner_id] ||= {
+					matches_played: 0,
 					sets_won: 0,
 					sets_lost: 0,
 					matches_won: 0
@@ -75,6 +76,7 @@ class GroupsController < ApplicationController
 		
 				# Initialize data for loser if nil
 				@data[group.id][loser_id] ||= {
+					matches_played: 0,
 					sets_won: 0,
 					sets_lost: 0,
 					matches_won: 0
@@ -104,9 +106,19 @@ class GroupsController < ApplicationController
 				# Count matches won for the winner
 				if @data[group.id][winner_id]
 					@data[group.id][winner_id][:matches_won] += 1
+					@data[group.id][winner_id][:matches_played] += 1 if match.score.present?
+				end
+				if @data[group.id][loser_id] && match.score.present?
+					@data[group.id][loser_id][:matches_played] += 1
 				end
 			end
 		end
+		@data = @data.transform_values do |players_data|
+			players_data.sort_by do |player_id, data|
+				[-data[:matches_won], -data[:sets_won]]
+			end.to_h
+		end.to_h
+
 		@data = @data.transform_values do |players_data|
 			players_data.sort_by do |player_id, data|
 				[-data[:matches_won], -data[:sets_won]]
