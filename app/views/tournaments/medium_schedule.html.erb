@@ -51,31 +51,8 @@
 		<br>
 		<center>
 		<%= render partial: "tournaments/groups_partial" %>
-		
 		</center>
-		<br>
-
-		<% if @ids_with_most_winners.present? %>
-					<center>Qualificated Players
-					<table class="tournament-table">
-				<thead>
-					<tr>
-						<th>Group ID</th>
-						<th>Player</th>
-					</tr>
-				</thead>
-				<tbody>
-					<% @ids_with_most_winners.each do |group_id, registration_id| %>
-						<tr>
-							<td><%= group_id %></td>
-							<% if registration_id.present? %>
-								<td><%= Registration.find(registration_id).user.username %></td>
-							<%end%>
-						</tr>
-					<% end %>
-				</tbody>
-			</table></center>
-		<%end%>
+		
 		<%= turbo_frame_tag "omg" do %>
 			<%= render partial: "tournaments/brackets_partial" %>
 		<%end%>

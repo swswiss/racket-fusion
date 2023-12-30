@@ -1,4 +1,5 @@
-<% @groups_with_matches.each_with_index do |(group, matches), index| %>
+
+<center><% @groups_with_matches.each_with_index do |(group, matches), index| %>
     <%= turbo_frame_tag "group_#{group.id}" do %>
         <h7>Group <%= (index + 'A'.ord).chr + " "+ group.id.to_s %></h7>
         <% if current_user.admin? %>
@@ -53,7 +54,7 @@
                             <td ><%= submit_tag "Submit", class: "btn btn-sm tiny-button me-2", style: "background-color: #53B092;"%></td >
                             
                             <td ><%= link_to match_path(match), method: :delete, data: { turbo_method: :delete }, class: "btn btn-sm tiny-button", style: "background-color: #53B092;" do %>
-                                Sterge
+                                Destroy
                                 <% end %></td>
                                 
                         <% else %>
@@ -67,6 +68,38 @@
         <% end %>
     <% end %>
 <% end %>
+</center>
+<br>
+
+		<% if @data.present? %>
+					<center>Qualificated Players
+					<table class="tournament-table">
+
+					<thead>
+						<tr>
+							<th>Group</th>
+							<th>Player</th>
+							<th>Sets Won</th>
+							<th>Sets Lost</th>
+							<th>Matches Won</th>
+						</tr>
+					</thead>
+					<tbody>
+						<% @data.each_with_index do |(group_id, players_data), index| %>
+							<% players_data.each do |player_id, data| %>
+								<tr style="background-color: <%= index.even? ? '#ffe6e6' : '#e6f7ff' %>;">
+									<td><%= group_id %></td>
+									<td><%= player_id.nil? ? "(nil)" : Registration.find(player_id).user.username %></td>
+									<td><%= data[:sets_won] %></td>
+									<td><%= data[:sets_lost] %></td>
+									<td><%= data[:matches_won] %></td>
+								</tr>
+							<% end %>
+						<% end %>
+					</tbody>
+				</table>
+				</center>
+		<%end%>
 
 
 

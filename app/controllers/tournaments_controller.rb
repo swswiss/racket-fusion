@@ -203,34 +203,62 @@ class TournamentsController < ApplicationController
 			@rounds_with_matches[round] = matches
 		end
 
-		@ids_with_most_winners = {}
+		@data = {}
+
 		@groups_medium.each do |group|
-			winners = group.matches.where(kind: "group").pluck(:winner).compact
-			#if winners.uniq.length == winners.length
-				# all_matches = group.matches
-				# all_matches.each do |m|
-				# 	score = m.score
-				# 	sets = score.split(' ')
-				# 	sets.each do |s|
-				# 		games = s.split('-') 
-				# 		first_player_games = games[0].to_i
-				# 		second_player_games = games[1].to_i
+			@data[group.id] = {}
+
+			group.matches.where(kind: "group").each do |match|
+				winner_id = match.winner
+				loser_id = match.first_player == match.winner ? match.second_player : match.first_player
+
+				# Initialize data for winner if nil
+				@data[group.id][winner_id] ||= {
+					sets_won: 0,
+					sets_lost: 0,
+					matches_won: 0
+				}
+		
+				# Initialize data for loser if nil
+				@data[group.id][loser_id] ||= {
+					sets_won: 0,
+					sets_lost: 0,
+					matches_won: 0
+				}
+		
+				# Extract sets from the score string
+				sets = match.score&.split(' ')
+
+				# Count sets won and lost for both winner and loser
+				sets&.each do |set|
+					player_score, opponent_score = set.split('-').map(&:to_i)
+					if @data[group.id][winner_id] && @data[group.id][loser_id]
+						if player_score > opponent_score
+							
+								@data[group.id][match.first_player][:sets_won] += 1
+								@data[group.id][match.second_player][:sets_lost] += 1
 						
-				# 		if first_player_games > second_player_games
-				# 			first_player_sets += 1
-				# 		else
-				# 			second_player_sets += 1
-				# 		end
-				# 	end
-				# 	if first_player_sets > second_player_sets
-				# 		return true
-				# 	elsif second_player_sets > first_player_sets
-				# 		return false
-				# 	end
-				# end
-  		most_frequent_winner = winners.max_by { |winner| winners.count(winner) }
-  		@ids_with_most_winners[group.id] = most_frequent_winner
+						else
+					
+								@data[group.id][match.second_player][:sets_won] += 1
+								@data[group.id][match.first_player][:sets_lost] += 1
+						
+						end
+					end
+				end
+		
+				# Count matches won for the winner
+				if @data[group.id][winner_id]
+					@data[group.id][winner_id][:matches_won] += 1
+				end
+			end
 		end
+		@data = @data.transform_values do |players_data|
+			players_data.sort_by do |player_id, data|
+				[-data[:matches_won], -data[:sets_won]]
+			end.to_h
+		end.to_h
+
 	end
 
 	def medium_plus_schedule

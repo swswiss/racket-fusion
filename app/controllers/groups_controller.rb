@@ -56,6 +56,64 @@ class GroupsController < ApplicationController
 			matches = group.matches.where(kind: "group") # Assuming you have a `has_many :matches` association in your Group model
 			@groups_with_matches[group] = matches
 		end
+		####
+		@data = {}
+
+		@groups_medium.each do |group|
+			@data[group.id] = {}
+
+			group.matches.where(kind: "group").each do |match|
+				winner_id = match.winner
+				loser_id = match.first_player == match.winner ? match.second_player : match.first_player
+
+				# Initialize data for winner if nil
+				@data[group.id][winner_id] ||= {
+					sets_won: 0,
+					sets_lost: 0,
+					matches_won: 0
+				}
+		
+				# Initialize data for loser if nil
+				@data[group.id][loser_id] ||= {
+					sets_won: 0,
+					sets_lost: 0,
+					matches_won: 0
+				}
+		
+				# Extract sets from the score string
+				sets = match.score&.split(' ')
+
+				# Count sets won and lost for both winner and loser
+				sets&.each do |set|
+					player_score, opponent_score = set.split('-').map(&:to_i)
+					if @data[group.id][winner_id] && @data[group.id][loser_id]
+						if player_score > opponent_score
+							
+								@data[group.id][match.first_player][:sets_won] += 1
+								@data[group.id][match.second_player][:sets_lost] += 1
+						
+						else
+					
+								@data[group.id][match.second_player][:sets_won] += 1
+								@data[group.id][match.first_player][:sets_lost] += 1
+						
+						end
+					end
+				end
+		
+				# Count matches won for the winner
+				if @data[group.id][winner_id]
+					@data[group.id][winner_id][:matches_won] += 1
+				end
+			end
+		end
+		@data = @data.transform_values do |players_data|
+			players_data.sort_by do |player_id, data|
+				[-data[:matches_won], -data[:sets_won]]
+			end.to_h
+		end.to_h
+
+		####
 		
 		respond_to do |format|
       format.html
