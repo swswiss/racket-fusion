@@ -7,7 +7,7 @@
   { path: dashboard_path, image: "home.png", text: "Home" },
   { path: dashboard_path, image: "notification.png", text: "Notifications" },
   { path: new_username_path, image: "user.png", text: "Profile" },
-	{ path: new_username_path, image: "award.png", text: "Badges" },
+	{ path: badges_path, image: "award.png", text: "Badges" },
 	{ path: statistics_path, image: "stats.png", text: "Stats" },
   { path: expert_users_path, image: "rank.png", text: "Rankings", dropdown: [
     { path: beginner_users_path, text: "Beginner" },
@@ -64,6 +64,15 @@
           <%= image_tag "tournament.png", width: "27" %>
         </span>
         Creat Event
+      </div>
+    <% end %>
+
+		<%= link_to usernames_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag "group.png", width: "27" %>
+        </span>
+        All Players
       </div>
     <% end %>
 

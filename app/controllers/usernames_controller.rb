@@ -1,10 +1,14 @@
 class UsernamesController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_admin, only: [:index]
 	skip_before_action :redirect_to_username_form
 
 	def index
-		@q = User.ransack(params[:q])
-  	@users = @q.result(distinct: true)
+		if params[:username].present?
+			@pagy, @users = pagy(User.search_by_username(params[:username]),  items: 13)
+		else
+			@pagy, @users = pagy(User.all,  items: 13)
+		end
 	end
 
 	def new
@@ -31,6 +35,6 @@ class UsernamesController < ApplicationController
 	private
 
 	def username_params
-		params.require(:user).permit(:username, :display_name, :avatar)
+		params.require(:user).permit(:username, :display_name, :avatar, :phone, :email)
 	end
 end

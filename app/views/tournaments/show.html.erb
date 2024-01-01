@@ -88,7 +88,7 @@
 		<br>
 		<% if current_user.admin? %>
 		<% if @tournament.status == true %>
-			<div style= "font-size: 13px;" >Tournament not finished yet, so you set points for players</div>
+			<div style= "font-size: 13px;" >Tournament not finished yet, so you cannot set points for players</div>
 			<%= link_to dashboard_path, class: "btn btn-lg tiny-button disabled", style: "background-color: #53B092;", data: { bs_toggle: "modal", bs_target: "#create_point" } do %>
 
 					Set Points for Players
