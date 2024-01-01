@@ -132,7 +132,7 @@
 					</li>
 					<li>
 						<%= link_to tournament_presenter.registration_tournament_url_lvl2(level_param: "level_2"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: classes_lvl2, :disabled => disabled_lvl2, remote: true do %>
-							<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_2").count %>/<%= tournament_presenter.tournament.max_lvl2 %> Medium</span>
+							<span><%= tournament_presenter.tournament.registrations.where(level_registration: "level_2").count %>/<%= tournament_presenter.tournament.max_lvl2 %> Medium </span>
 						<% end %>
 					</li>
 					<li>
@@ -146,7 +146,8 @@
 						<% end %>
 					</li>
 				</ul>
-			</div></div>
+			</div>
+			</div>
 
 		</div>
 		
