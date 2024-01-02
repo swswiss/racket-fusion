@@ -53,9 +53,9 @@
 		<%= render partial: "tournaments/groups_partial" %>
 		</center>
 		
-		<%= turbo_frame_tag "omg" do %>
+		
 			<%= render partial: "tournaments/brackets_partial" %>
-		<%end%>
+
 		<% if current_user.admin? %>
 			<center>
 			<%= render partial: "tournaments/rounds_partial" %>

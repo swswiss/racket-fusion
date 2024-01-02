@@ -22,10 +22,23 @@
 				<% @matches_for_current_user.each do |match| %>
 					<% tournament = match.tournament %>
 						<tr>
-							<td><%= tournament.name %></td>
 
-							<td><%= Registration.find(match.first_player).user.username %></td>
-							<td><%= Registration.find(match.second_player).user.username %></td>
+							<td><%= tournament.name %></td>
+							<% if tournament.double == false %>
+								<td>
+								<%= Registration.find(match.first_player).user.username %>
+								</td>
+								<td>
+								<%= Registration.find(match.second_player).user.username %>
+								</td>
+							<%else%>
+							<td>
+								<%= Registration.find(match.first_player).name %>
+								</td>
+								<td>
+								<%= Registration.find(match.second_player).name%>
+								</td>
+							<%end%>
 							<td><%= match.score %></td>
 						</tr>
 				<% end %>

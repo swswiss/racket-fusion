@@ -48,8 +48,8 @@ class GroupsController < ApplicationController
 
 	def print_groups_medium
 		group = Group.find(params[:id])
-		tournament = group.tournament
-		@groups_medium = tournament.groups.where(level: "level_2")
+		@tournament = group.tournament
+		@groups_medium = @tournament.groups.where(level: "level_2")
 
 		@groups_with_matches = {}
 		@groups_medium.each do |group|
@@ -113,12 +113,6 @@ class GroupsController < ApplicationController
 				end
 			end
 		end
-		@data = @data.transform_values do |players_data|
-			players_data.sort_by do |player_id, data|
-				[-data[:matches_won], -data[:sets_won]]
-			end.to_h
-		end.to_h
-
 		@data = @data.transform_values do |players_data|
 			players_data.sort_by do |player_id, data|
 				[-data[:matches_won], -data[:sets_won]]

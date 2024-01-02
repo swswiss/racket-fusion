@@ -14,11 +14,19 @@ class TournamentsController < ApplicationController
 
 	def show
 		@tournament = Tournament.find(params[:id])
-		@players_lvl_beginner = @tournament.registrations.where(level_registration: "level_1", waitlisted: false).pluck(:id, :user_id)
-		@players_lvl_medium = @tournament.registrations.where(level_registration: "level_2", waitlisted: false).pluck(:id, :user_id)
-		@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3", waitlisted: false).pluck(:id, :user_id)
-		@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4", waitlisted: false).pluck(:id, :user_id)
-		@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true).pluck(:id, :user_id)
+		if @tournament.double == false
+			@players_lvl_beginner = @tournament.registrations.where(level_registration: "level_1", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_medium = @tournament.registrations.where(level_registration: "level_2", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true).pluck(:id, :user_id)
+		else
+			@players_lvl_beginner = @tournament.registrations.where(level_registration: "level_1", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_medium = @tournament.registrations.where(level_registration: "level_2", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true, pending: "accepted").pluck(:id, :user_id)
+		end
 	end
 
 	def update
@@ -53,6 +61,9 @@ class TournamentsController < ApplicationController
 		if @tournament.save
 			if params[:confirmation].present?
 				@tournament.update(confirmation: params[:confirmation] == "1" ? true : false)
+			end
+			if params[:tournament][:double].present?
+				@tournament.update(double: params[:tournament][:double] == "1" ? true : false)
 			end
 			if params[:tournament][:league].present?
 				@tournament.update(league: params[:tournament][:league] == "1" ? true : false)
@@ -298,6 +309,6 @@ class TournamentsController < ApplicationController
 	private
 
 	def tournament_params
-		params.require(:tournament).permit(:name, :description, :status, :max_lvl1, :max_lvl2, :max_lvl3, :max_lvl4, :confirmation, :start_datetime, :finish_datetime, :league)
+		params.require(:tournament).permit(:name, :description, :status, :max_lvl1, :max_lvl2, :max_lvl3, :max_lvl4, :confirmation, :start_datetime, :finish_datetime, :league, :double)
 	end
 end

@@ -31,6 +31,16 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :registrations do
+    collection do
+      post 'invite'
+    end
+    member do
+      post 'accept'
+      post 'decline'
+    end
+  end
+
   resources :tweets, only: [:create, :destroy] do
     resources :likes, only: [:create, :destroy]
     resources :bookmarks, only: [:create, :destroy]
@@ -67,5 +77,5 @@ Rails.application.routes.draw do
   resources :matches, only: [:update, :destroy, :new]
   resources :leagues
   resources :statistics
-  resources :badges
+  resources :invitations
 end

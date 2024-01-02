@@ -1,4 +1,6 @@
-
+<% if params[:action] == "print_groups_medium" %>
+    <%= image_tag wicked_pdf_asset_base64('fusion.png'), width: "135" %><br>
+<% end %>
 <center><% @groups_with_matches.each_with_index do |(group, matches), index| %>
     <%= turbo_frame_tag "group_#{group.id}" do %>
         <h7>Group <%= (index + 'A'.ord).chr + " "+ group.id.to_s %></h7>
@@ -36,7 +38,13 @@
                     <tr id="match_<%= match.id %>">
                         <td><%= match_index + 1 %></td>
                         <td><%= match.id %></td>
-                        <td><%= "#{Registration.find(match.first_player).user.username} vs #{Registration.find(match.second_player).user.username}" %></td>
+                        <td>
+                            <% if @tournament.double == false  %>
+                                <%= "#{Registration.find(match.first_player).user.username} vs #{Registration.find(match.second_player).user.username}" %>
+                            <% else  %>
+                                <%= "#{Registration.find(match.first_player).name} vs #{Registration.find(match.second_player).name}" %>
+                            <% end %>
+                        </td>
                         <% if current_user.admin? %>
                             <td><%= text_field_tag "match_scores[#{match.id}]", match.score, disabled: false %></td>
                         <% else  %>
@@ -90,7 +98,13 @@
 							<% players_data.each do |player_id, data| %>
 								<tr style="background-color: <%= index.even? ? '#ffe6e6' : '#e6f7ff' %>;">
 									<td><%= group_id %></td>
-									<td><%= player_id.nil? ? "(nil)" : Registration.find(player_id).user.username %></td>
+									<td>
+                                    <% if @tournament.double == false  %>
+                                        <%= player_id.nil? ? "(nil)" : Registration.find(player_id).user.username %>
+                                    <% else  %>
+                                        <%= player_id.nil? ? "(nil)" : Registration.find(player_id).name %>
+                                    <% end  %>
+                                    </td>
                                     <td><%= data[:matches_played] %></td>
 									<td><%= data[:sets_won] %></td>
 									<td><%= data[:sets_lost] %></td>

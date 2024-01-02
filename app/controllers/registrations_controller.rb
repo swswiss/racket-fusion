@@ -2,6 +2,64 @@ class RegistrationsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :authenticate_admin, only: [:modify_waitlisted_users]
 
+	def invite
+		@teammate = User.find(params[:user_id])
+		@team_name = current_user.username + " + "+ @teammate.username
+
+		team_is_existed = (Registration.find_by(tournament: tournament, user_id: current_user.id) rescue false) || (Registration.find_by(tournament: tournament, user_id: @teammate.id) rescue false) || (Registration.find_by(tournament: tournament, teammate_id: @teammate.id) rescue false) || (Registration.find_by(tournament: tournament, teammate_id: current_user.id) rescue false)
+
+		if team_is_existed.present?
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream
+			end
+		else
+			if params[:level] == "Beginner"
+				lvl = "level_1"
+			elsif params[:level] == "Medium"
+				lvl = "level_2"
+			elsif params[:level] == "Medium Plus"
+				lvl = "level_3"
+			else
+				lvl = "level_4"
+			end
+			@registration_double = current_user.registrations.create(tournament: tournament)
+			@registration_double.update(waitlisted: tournament.confirmation, double: true, teammate_id: @teammate.id, pending: "pending", name: @team_name, level_registration: lvl)
+		end
+
+		@registrations_current_user = current_user.registrations.where(double: true)
+    @registrations_from_user= Registration.where(teammate_id: current_user.id, double: true)
+
+		render turbo_stream: 
+				turbo_stream.replace("invitations",
+					partial: "registrations/teams_table",
+					locals: {registrations_current_user: @registrations_current_user, registrations_from_user: @registrations_from_user })
+	end
+
+	def accept
+		registration = Registration.find(params[:id])
+		registration.update(pending: "accepted")
+		@registrations_current_user = current_user.registrations.where(double: true)
+    @registrations_from_user= Registration.where(teammate_id: current_user.id, double: true)
+
+		render turbo_stream: 
+				turbo_stream.replace("invitations",
+					partial: "registrations/teams_table",
+					locals: {registrations_current_user: @registrations_current_user, registrations_from_user: @registrations_from_user })
+	end
+
+	def decline
+		registration = Registration.find(params[:id])
+		registration.update(pending: "declined")
+		@registrations_current_user = current_user.registrations.where(double: true)
+    @registrations_from_user= Registration.where(teammate_id: current_user.id, double: true)
+
+		render turbo_stream: 
+				turbo_stream.replace("invitations",
+					partial: "registrations/teams_table",
+					locals: {registrations_current_user: @registrations_current_user, registrations_from_user: @registrations_from_user })
+	end
+
 	def create
 		if current_user.level == "Beginner"
 			@eligible = true

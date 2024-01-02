@@ -1,0 +1,41 @@
+<div class="col-7">
+  <%= form_tag invite_registrations_path, method: :post do %>
+    <div class="mb-3">
+      <%= label_tag :user_id, 'Select User to Invite:', class: 'form-label' %>
+      <%= select_tag :user_id, options_for_select(User.all.map { |user| [user.username, user.id] }), class: 'form-control', style: '' %>
+    </div>
+
+    <div class="mb-3">
+      <%= label_tag :tournament_id, 'Select Tournament to Invite:', class: 'form-label' %>
+      <%= select_tag :tournament_id, options_for_select(@tournaments_double.map { |tournament| [tournament.name, tournament.id] }), class: 'form-control', style: '' %>
+    </div>
+
+    <div class="mb-3">
+      <%= label_tag :level, 'Select Level to Sign Up:', class: 'form-label' %>
+      <%= select_tag :level, options_for_select(['Beginner', 'Medium', 'Medium Plus', 'Expert']), class: 'form-control' %>
+    </div>
+    
+    <%= submit_tag 'Invite', class: 'btn btn-primary btn-sm' %>
+  <% end %>
+
+
+    <div id="teams_table">
+      <%= render partial: 'registrations/teams_table' %>
+    </div>
+
+
+
+
+
+
+
+</div>
+<div class="col">
+	asdsadsad
+</div>
+
+<style>
+
+</style>
+
+
