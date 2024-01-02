@@ -38,8 +38,8 @@
     </div>
   <% else %>
     <%= link_to link[:path], class: "d-flex align-items-center fs-5 mb-3" do %>
-      <div class="px-4 py-2 rounded-pill">
-        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+      <div class="px-4 py-2 rounded-pill d-none d-sm-flex">
+        <span class="me-4 position-relative " style="bottom: 3px;">
           <%= image_tag link[:image], width: "27" %>
         </span>
         <%= link[:text] %>
