@@ -4,7 +4,7 @@
 <table class="table">
     <thead>
       <tr>
-        <th><h7>Team ID</h7></th>
+        <th><h7>SignUp ID</h7></th>
         <th><h7>Team Name</h7></th>
         <th><h7>Tournament Name</h7></th>
         <th><h7>Status</h7></th>
@@ -14,10 +14,10 @@
     <tbody>
       <% (@registrations_current_user + @registrations_from_user).each do |registration| %>
         <tr>
-          <td><font size="2px"><%= registration.teammate_id %><font></td>
+          <td><font size="2px"><%= registration.id %><font></td>
           <td><font size="2px"><%= registration.name %><font></td>
           <td><font size="2px"><%= registration.tournament.name %><font></td>
-          <td><font size="2px"><%= registration.pending %><font></td>
+          <td><font size="2px"><span class="badge text-bg-dark"><%= registration.pending %></span><font></td>
           <% if registration.teammate_id == current_user.id %>
           <td class="d-flex "><%= button_to 'Accept', accept_registration_path(registration), method: :post, class: 'btn btn-success btn-sm', style: 'margin-right: 5px;' %>
                 <%= button_to 'Decline', decline_registration_path(registration), method: :post, class: 'btn btn-warning btn-sm' %>

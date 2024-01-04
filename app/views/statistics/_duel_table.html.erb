@@ -1,0 +1,38 @@
+<div class="mb-3">
+  <%= turbo_frame_tag "duels" do %>
+    <table class="table small-font">
+      <thead>
+        <tr>
+          <th>Tournament Name</th>
+          <th>First Player</th>
+          <th>Second Player</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <% if @duels.present? %>
+        <tbody>
+          <% @duels&.each do |match| %>
+            <% tournament = match.tournament %>
+            <tr>
+              <td><%= tournament.name %></td>
+			  <%if tournament.double == false%>
+              <td><%= Registration.find(match.first_player).user.username %></td>
+              <td><%= Registration.find(match.second_player).user.username %></td>
+			  <% else %>
+			  <td><%= Registration.find(match.first_player).name %></td>
+              <td><%= Registration.find(match.second_player).name %></td>
+			  <% end %>
+              <td><%= match.score %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% else %>
+        <tbody>
+          <tr>
+            <td colspan="4", class="text-center">No duels</td>
+          </tr>
+        </tbody>
+      <% end %>
+    </table>
+  <% end %>
+</div>

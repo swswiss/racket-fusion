@@ -76,6 +76,9 @@ Rails.application.routes.draw do
 
   resources :matches, only: [:update, :destroy, :new]
   resources :leagues
-  resources :statistics
+  resources :statistics do
+    get 'duel', on: :collection
+    get 'headtohead', on: :collection
+  end
   resources :invitations
 end

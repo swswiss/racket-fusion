@@ -22,7 +22,7 @@
                     <tr>
                         <th>nr.</th>
                         <th>id</th>
-                        <th style="min-width: 150px;">Match</th>
+                        <th style="min-width: 180px;">Match</th>
                         <th>Score</th>
                         <th>Date</th>
                         <% if current_user.admin? %>
@@ -52,9 +52,9 @@
                         <% end %>
                         <td>
                         <% if current_user.admin? %>
-                            <%= datetime_field_tag "match_dates[#{match.id}]", match.date&.strftime('%Y-%m-%dT%H:%M'), class: "form-control datetime-picker", disabled: false, style: "font-size: small;" %>
+                            <%= datetime_field_tag "match_dates[#{match.id}]", match.date&.strftime('%Y-%m-%dT%H:%M'), class: "form-control datetime-picker", disabled: false, style: "font-size: 11px;" %>
                         <% else  %>
-                            <%= datetime_field_tag "match_dates[#{match.id}]", match.date&.strftime('%Y-%m-%dT%H:%M'), class: "form-control datetime-picker", disabled: true, style: "font-size: small;" %>
+                            <%= datetime_field_tag "match_dates[#{match.id}]", match.date&.strftime('%Y-%m-%dT%H:%M'), class: "form-control datetime-picker", disabled: true, style: "font-size: 11px;" %>
                         <% end %>
               </td>
               <% if params[:action] != "print_groups_medium" %>

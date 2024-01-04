@@ -1,0 +1,69 @@
+<div class="col-7", style="margin-top: 30px;">
+  <%= form_tag headtohead_statistics_path, method: :get do %>
+    <div class="mb-2">
+      <%= label_tag :user_id, 'Select User to see Duels:', class: 'form-label' %>
+      <%= select_tag :user_id, options_for_select(User.all.map { |user| [user.username, user.id] }), class: 'form-control form-control-sm', style: '' %>
+    </div>
+
+		<%= submit_tag 'See HeadToHead', class: 'btn btn-sm tiny-button', style: "background-color: #53B092;" %>
+  <% end %>
+
+	<div id="duel" style="margin-top: 20px;">
+	<%= render partial: 'statistics/duel_table' %>
+</div>
+
+
+	
+
+
+</div>
+<div class="col">
+	asdsadsad
+</div>
+
+
+
+<style>
+.page-item a.page-link {
+    color: #28a745;
+}
+.page-item.active a.page-link {
+    background-color: white;
+    border-color: #6c757d;
+}
+.page-item a.page-link {
+    font-size: 11px; 
+}
+.table.small-font {
+  font-size: 12px; /* Adjust the font size as needed */
+	margin-top: 73px;
+}
+.table.small-font th {
+  font-size: 15px; /* Larger font size for th elements */
+}
+	.tournament-table {
+		border-collapse: collapse;
+		width: 60%;
+	}
+
+	.tournament-table th, .tournament-table td {
+		border: 1px solid #ddd;
+		padding: 3px;
+		text-align: center;
+		font-size: 11px; 
+		height: 1px;
+	}
+
+	.tournament-table th {
+		background-color: #f2f2f2;
+	}
+
+	.tiny-button {
+		font-size: 13px;
+		color: white;
+		padding: 5px 10px;
+	}
+	.tiny-button:hover {
+  color: white;
+}
+</style>

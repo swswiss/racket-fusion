@@ -1,27 +1,31 @@
 <div class="col-7">
   <%= form_tag invite_registrations_path, method: :post do %>
-    <div class="mb-3">
+    <div class="mb-2">
       <%= label_tag :user_id, 'Select User to Invite:', class: 'form-label' %>
-      <%= select_tag :user_id, options_for_select(User.all.map { |user| [user.username, user.id] }), class: 'form-control', style: '' %>
+      <%= select_tag :user_id, options_for_select(User.all.map { |user| [user.username, user.id] }), class: 'form-control form-control-sm', style: '' %>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-2">
       <%= label_tag :tournament_id, 'Select Tournament to Invite:', class: 'form-label' %>
-      <%= select_tag :tournament_id, options_for_select(@tournaments_double.map { |tournament| [tournament.name, tournament.id] }), class: 'form-control', style: '' %>
+      <%= select_tag :tournament_id, options_for_select(@tournaments_double.map { |tournament| [tournament.name, tournament.id] }), class: 'form-control form-control-sm', style: '' %>
     </div>
 
-    <div class="mb-3">
+    <div class="mb-2">
       <%= label_tag :level, 'Select Level to Sign Up:', class: 'form-label' %>
-      <%= select_tag :level, options_for_select(['Beginner', 'Medium', 'Medium Plus', 'Expert']), class: 'form-control' %>
+      <%= select_tag :level, options_for_select(['Beginner', 'Medium', 'Medium Plus', 'Expert']), class: 'form-control form-control-sm' %>
+    </div>
+    <div class="mb-2">
+      <label for="exampleColorInput" class="form-label">Pick Team Color</label>
+      <input type="color" class="form-control form-control-color" id="exampleColorInput" value="#563d7c" title="Choose your color">
     </div>
     
-    <%= submit_tag 'Invite', class: 'btn btn-primary btn-sm' %>
+    <%= submit_tag 'Invite', class: 'btn btn-sm tiny-button', style: "background-color: #53B092;" %>
   <% end %>
 
 
-    <div id="teams_table">
-      <%= render partial: 'registrations/teams_table' %>
-    </div>
+  <div id="teams_table" style="margin-top: 20px;">
+    <%= render partial: 'registrations/teams_table' %>
+  </div>
 
 
 
@@ -35,7 +39,11 @@
 </div>
 
 <style>
-
+.tiny-button {
+		font-size: 13px;
+		color: white;
+		padding: 5px 10px;
+	}
 </style>
 
 
