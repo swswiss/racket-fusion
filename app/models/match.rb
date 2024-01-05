@@ -1,6 +1,6 @@
 class Match < ApplicationRecord
     belongs_to :group
-    belongs_to :round
+    #belongs_to :round
     belongs_to :tournament
 
     scope :for_current_user, ->(user) {

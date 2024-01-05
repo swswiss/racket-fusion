@@ -21,11 +21,14 @@ class RoundsController < ApplicationController
 		respond_to do |format|
             format.html
             format.pdf do
+                pdf_html = render_to_string(template: 'tournaments/_brackets_partial.html.erb', layout: 'pdf.html')
+                File.open(Rails.root.join('tmp', 'generated_pdf.html'), 'w') { |file| file.write(pdf_html) }
               render pdf: "day_report",
                      template: 'tournaments/_brackets_partial.html.erb',
                      layout: 'pdf.html',
                      page_size: 'A4',
-                     encoding: "UTF-8"
+                     encoding: "UTF-8",
+                     save_to_file: Rails.root.join('tmp', 'generated_pdf.pdf') # Optionally save the generated PDF to a file
             end
           end
     end

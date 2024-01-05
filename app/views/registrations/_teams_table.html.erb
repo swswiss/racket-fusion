@@ -18,8 +18,9 @@
           <td><font size="2px"><%= registration.name %><font></td>
           <td><font size="2px"><%= registration.tournament.name %><font></td>
           <td><font size="2px"><span class="badge text-bg-dark"><%= registration.pending %></span><font></td>
-          <% if registration.teammate_id == current_user.id %>
-          <td class="d-flex "><%= button_to 'Accept', accept_registration_path(registration), method: :post, class: 'btn btn-success btn-sm', style: 'margin-right: 5px;' %>
+          <% if registration.teammate_id == current_user.id && registration.tournament.status == true%>
+          <td class="d-flex ">
+                <%= button_to 'Accept', accept_registration_path(registration), method: :post, class: 'btn btn-success btn-sm', style: 'margin-right: 5px;' %>
                 <%= button_to 'Decline', decline_registration_path(registration), method: :post, class: 'btn btn-warning btn-sm' %>
             </td>
           <% else %>

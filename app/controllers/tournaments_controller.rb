@@ -181,6 +181,7 @@ class TournamentsController < ApplicationController
 		matches.each do |match|
 			first_player_id = match[0]
 			second_player_id = match[1]
+
 			match = Match.create(first_player: first_player_id, second_player: second_player_id, 
 													 group_id: group.id, tournament: tournament, level: level_group, kind: "group")
 		end
