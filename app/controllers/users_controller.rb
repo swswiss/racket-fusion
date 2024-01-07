@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_admin, only: [:create_promotion]
+	before_action :authenticate_admin, only: [:create_promotion, :create_points]
+	before_action :authorize_user, only: [:show]
 
+	def show
+		@user = User.find(params[:id])
+	end
 
 	def expert
 		if params[:username].present?
@@ -68,4 +72,13 @@ class UsersController < ApplicationController
 		flash[:notice] = "#{user.username} is promoted to level #{params[:level]}"
     redirect_to send("#{r}_users_path")
 	end
+
+	private
+
+  def authorize_user
+    # Check if the current user is an admin or the same as the user being shown
+    if !(current_user.id.to_s == params[:id])
+      redirect_to root_path, alert: "You are not authorized to view this page."
+    end
+  end
 end

@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   devise_scope :user do  
     get '/users/sign_out' => 'devise/sessions#destroy'     
   end
+  
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root "home#index"
 
@@ -51,7 +52,7 @@ Rails.application.routes.draw do
   get :tournaments, to: "tournaments#index"
 
   resources :usernames, only: [:new, :update, :index]
-  resources :users, only: [:index] do
+  resources :users, only: [:index, :show] do
     post 'create_promotion', on: :collection
     post 'create_points', on: :collection
     get 'beginner', on: :collection
