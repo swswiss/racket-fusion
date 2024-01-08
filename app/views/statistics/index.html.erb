@@ -1,14 +1,9 @@
 
-
-
-
-
-
 <div class="col-7">
 	<div class = "mb-3">
 
 
-		<table class="table small-font">
+		<table class="table small-font table-hover table-responsive">
 			<thead>
 				<tr>
 					<th>Tournament Name</th>
@@ -16,10 +11,13 @@
 					<th>First Player</th>
 					<th>Second Player</th>
 					<th>Score</th>
+					<th>W/L</th>
 				</tr>
 			</thead>
 			<tbody>
 				<% @matches_for_current_user.each do |match| %>
+
+					<% wl = ((Registration.find(match.winner).user.id == current_user.id  )) ? true : false   %>
 					<% tournament = match.tournament %>
 						<tr>
 
@@ -40,6 +38,15 @@
 								</td>
 							<%end%>
 							<td><%= match.score %></td>
+							<%if wl == true%>
+							<td><span class="badge bg-success" style="color: white; font-size: 9px;">
+              W
+            </span></td>
+							<%else%>
+							<td><span class="badge bg-danger" style="color: white; font-size: 9px;">
+              L
+            </span></td>
+							<%end%>
 						</tr>
 				<% end %>
 			</tbody>

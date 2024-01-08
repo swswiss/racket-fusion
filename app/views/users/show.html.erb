@@ -3,9 +3,42 @@
 <div class="flex-shrink-0">
             <%= image_tag "no_user.png", size: "99x99", class: "rounded-circle mr-2" if !@user.image_profile.present? %>
 			<%= image_tag "#{@user.image_profile}.png", size: "99x99", class: "rounded-circle mr-2" if @user.image_profile.present? %>
-            <span style="font-size: 21px;  margin-left: 9px;"><%= @user.username%></span>
-
             
+            <span style="font-size: 21px;  margin-left: 9px;"><%= @user.username%>
+            <br>
+            <div style="display: inline-block;">
+            <span class="text-muted", style="margin-right: 5px; font-size: 13px;">Rank:</span>
+            <span class="badge bg-secondary" style="color: white; font-size: 9px;">
+              <%= @user_rank %>
+            </span>
+    
+            <span class="text-muted", style="margin-right: 5px; font-size: 13px;">Points:</span>
+            <span class="badge bg-secondary" style="color: white; font-size: 9px;">
+              <%= @user.points %>
+            </span>
+            </div>
+            
+            </span>
+            
+            <br><br>
+           
+            <br>
+            <span style="margin-right: 15px;">Level:</span>
+            
+              <h7><%= @user.level %></h7>
+            
+            <br>
+            <span style="margin-right: 15px;">Email:</span>
+            
+              <h7><%= @user.email %></h7>
+            
+            <br>
+            <span style="margin-right: 15px;">Phone:</span>
+            
+              <h7><%= @user.phone %></h7>
+            
+            <br>
+
 </div>
 
 </div>

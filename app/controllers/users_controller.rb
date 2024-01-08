@@ -5,6 +5,11 @@ class UsersController < ApplicationController
 
 	def show
 		@user = User.find(params[:id])
+		lvl_user = @user.level
+		users = User.where(level: @user.level).order(points: :desc)
+		user = User.find(params[:id])  # Replace with the actual user you're interested in
+
+		@user_rank = users.index(user) + 1
 	end
 
 	def expert
