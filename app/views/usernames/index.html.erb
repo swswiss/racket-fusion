@@ -7,11 +7,12 @@
 <% end %>
 
 <%= turbo_frame_tag :user_results do %>
-<table class="table">
+<table class="table table-hover table-responsive">
 	<thead>
 		<tr>
 			<th><h7>Username</h7></th>
 			<th><h7>Email</h7></th>
+			<th><h7>Age</h7></th>
 			<th><h7>Phone</h7></th>
 			<th><h7>Level</h7></th>
 		</tr>
@@ -21,6 +22,7 @@
 			<tr>
 				<td><font size="2px"><%= user.username %></font></td>
 				<td><font size="2px"><%= user.email %></font></td>
+				<td><font size="2px"><%= user.calculate_age %></font></td>
 				<td><font size="2px"><%= user.phone %></font></td>
 				<td><font size="2px"><%= user.level %></font></td>
 			</tr>

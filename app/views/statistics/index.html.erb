@@ -16,8 +16,9 @@
 			</thead>
 			<tbody>
 				<% @matches_for_current_user.each do |match| %>
-
-					<% wl = ((Registration.find(match.winner).user.id == current_user.id  )) ? true : false   %>
+					<%if match.score.present?%>
+						<% wl = ((Registration.find(match.winner).user.id == current_user.id  )) ? true : false   %>
+					<%end%>
 					<% tournament = match.tournament %>
 						<tr>
 
@@ -39,13 +40,16 @@
 							<%end%>
 							<td><%= match.score %></td>
 							<%if wl == true%>
-							<td><span class="badge bg-success" style="color: white; font-size: 9px;">
-              W
-            </span></td>
+								<td><span class="badge bg-success" style="color: white; font-size: 9px;">
+              		W
+            		</span></td>
 							<%else%>
-							<td><span class="badge bg-danger" style="color: white; font-size: 9px;">
-              L
-            </span></td>
+								<% if wl == nil || match.score == "0-0 0-0"%>
+									<td><span class="badge bg-warning" style="color: white; font-size: 9px;">WO</span></td>
+								<%else%>
+									<td><span class="badge bg-danger" style="color: white; font-size: 9px;"> L</span></td>
+								<%end%>
+             
 							<%end%>
 						</tr>
 				<% end %>

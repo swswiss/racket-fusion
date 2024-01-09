@@ -5,6 +5,7 @@ class User < ApplicationRecord
 
   validates :phone, presence: true, length: { minimum: 10, maximum: 15 }
   validates :level, presence: true
+  validates :date_of_birth, presence: true
 
   pg_search_scope :search_by_username, against: [:username], using: { tsearch: { prefix: true } }
 
@@ -36,6 +37,22 @@ class User < ApplicationRecord
 
   def set_display_name
     self.display_name = username.humanize
+  end
+
+  def calculate_age
+    if date_of_birth.present?
+      current_date = Date.current
+
+      # Calculate age
+      age = current_date.year - date_of_birth.year
+
+      # Adjust age if the birthday hasn't occurred yet this year
+      age -= 1 if current_date < date_of_birth + age.years
+
+      age
+    else
+      "-"
+    end
   end
 
   private

@@ -1,17 +1,21 @@
 <div class="mb-3">
   <%= turbo_frame_tag "duels" do %>
-    <table class="table small-font">
+    <table class="table small-font table-hover table-responsive">
       <thead>
         <tr>
           <th>Tournament Name</th>
           <th>First Player</th>
           <th>Second Player</th>
           <th>Score</th>
+		  <th>W/L</th>
         </tr>
       </thead>
       <% if @duels.present? %>
         <tbody>
           <% @duels&.each do |match| %>
+			<%if match.score.present?%>
+				<% wl = ((Registration.find(match.winner).user.id == current_user.id  )) ? true : false   %>
+			<%end%>
             <% tournament = match.tournament %>
             <tr>
               <td><%= tournament.name %></td>
@@ -23,6 +27,18 @@
               <td><%= Registration.find(match.second_player).name %></td>
 			  <% end %>
               <td><%= match.score %></td>
+			  <%if wl == true%>
+								<td><span class="badge bg-success" style="color: white; font-size: 9px;">
+              		W
+            		</span></td>
+							<%else%>
+								<% if wl == nil || match.score == "0-0 0-0"%>
+									<td><span class="badge bg-warning" style="color: white; font-size: 9px;">WO</span></td>
+								<%else%>
+									<td><span class="badge bg-danger" style="color: white; font-size: 9px;"> L</span></td>
+								<%end%>
+             
+							<%end%>
             </tr>
           <% end %>
         </tbody>
