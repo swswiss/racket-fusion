@@ -1,8 +1,13 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from 'stimulus';
 
-// Connects to data-controller="tweet-form"
 export default class extends Controller {
   connect() {
-    console.log("Sdsfsfsdfsdfds");
+    this.hideAfterDelay();
+  }
+
+  hideAfterDelay() {
+    setTimeout(() => {
+      this.element.remove();
+    }, 5000); // 5000 milliseconds = 5 seconds
   }
 }

@@ -49,6 +49,17 @@
 					</ul>
 				<% end %>
 			</div>
+		
+		<% elsif round_index == 3 %>
+			<div class="round round-three current">
+				<div class="round-details"><%= "Round #{round_index + 1}" %><br/><span class="date"><%= round.created_at.strftime("%B %e") %></span></div>
+				<% matches.each do |match| %>
+					<ul class="matchup">
+						<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.score %></span></li>
+					</ul>
+				<% end %>
+			</div>
 		<% end %>
 	<% end %> 
 	

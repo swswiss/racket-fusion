@@ -104,6 +104,16 @@ class TournamentsController < ApplicationController
 		selected_player_ids = selected_player_ids.map(&:to_i)
 		level_round = Registration.find(selected_player_ids.first).level_registration
 
+		if level_round == "level_1"
+			level = "Beginner"
+		elsif level_round == "level_2"
+			level = "Medium"
+		elsif level_round == "level_3"
+			level = "Medium Plus"
+		else
+			level = "Expert"
+		end
+
 		round = Round.create(level: level_round, tournament: tournament)
 		if level_round == "level_1"
 			level = "Beginner"
@@ -116,6 +126,18 @@ class TournamentsController < ApplicationController
 		end
 
 		generate_random_matches_for_brackets(selected_player_ids, round, tournament, level_round)
+
+		respond_to do |format|
+			format.html { redirect_to dashboard_path }
+			format.turbo_stream do
+				render turbo_stream: turbo_stream.prepend('crate_flash_bracket') { 
+					"<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" style=\"position:absolute;top:0;right:0;\">
+						<strong>Great!</strong> You have just created a Bracket for #{level}.
+						<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+					</div>".html_safe
+				}
+			end
+		end
 	end
 
 	def generate_random_matches_for_brackets(players, round, tournament, level_round)
@@ -140,7 +162,20 @@ class TournamentsController < ApplicationController
 	end
 
 	def create_groups
-		return nil if params[:selected_players].length < 2
+		if params[:selected_players].length < 2
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream do
+					render turbo_stream: turbo_stream.prepend('altceva') { 
+						"<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" style=\"position:absolute;top:0;right:0;\">
+							<strong>Ooops!</strong> Something went worng!.
+							<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+						</div>".html_safe
+					}
+				end
+			end
+			return nil
+		end
 
 		tournament = Tournament.find(params[:id])
     selected_player_ids = params[:selected_players] || []
@@ -162,9 +197,9 @@ class TournamentsController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to dashboard_path }
 			format.turbo_stream do
-				render turbo_stream: turbo_stream.replace('altceva') { 
-					"<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\">
-						<strong>Great!</strong> You have just created a group for #{level}.
+				render turbo_stream: turbo_stream.prepend('altceva') { 
+					"<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" style=\"position:absolute;top:0;right:0;width:400px;\">
+					<strong style=\"font-size: 12px;\">Great!</strong><font style=\"font-size: 12px;\">You have just created a group for #{level}.</font>
 						<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
 					</div>".html_safe
 				}
