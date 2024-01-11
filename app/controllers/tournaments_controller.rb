@@ -97,7 +97,20 @@ class TournamentsController < ApplicationController
 	end
 
 	def create_brackets
-		return nil if params[:selected_players].length < 2
+		if params[:selected_players].length < 2
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream do
+					render turbo_stream: turbo_stream.prepend('altceva') { 
+						"<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" style=\"position: fixed; top: 10px; right: 10px; width: 300px; display: inline-block;\">
+						<strong style=\"font-size: 12px;\">Ooops!</strong> <font style=\"font-size: 12px;\">Something went worng!</font>
+							<button type=\"button\" class=\"btn-close btn-sm\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+						</div>".html_safe
+					}
+				end
+			end
+			return nil
+		end
 
 		tournament = Tournament.find(params[:id])
     selected_player_ids = params[:selected_players] || []
@@ -130,10 +143,10 @@ class TournamentsController < ApplicationController
 		respond_to do |format|
 			format.html { redirect_to dashboard_path }
 			format.turbo_stream do
-				render turbo_stream: turbo_stream.prepend('crate_flash_bracket') { 
-					"<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" style=\"position:absolute;top:0;right:0;\">
-						<strong>Great!</strong> You have just created a Bracket for #{level}.
-						<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+				render turbo_stream: turbo_stream.append('altceva') { 
+					"<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" style=\"position: fixed; top: 10px; right: 10px; width: 300px; display: inline-block;\">
+					<strong style=\"font-size: 12px;\">Great!</strong> <font style=\"font-size: 12px;\">You have just created a Bracket!</font>
+						<button type=\"button\" class=\"btn-close btn-sm\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
 					</div>".html_safe
 				}
 			end
@@ -167,9 +180,9 @@ class TournamentsController < ApplicationController
 				format.html { redirect_to dashboard_path }
 				format.turbo_stream do
 					render turbo_stream: turbo_stream.prepend('altceva') { 
-						"<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" style=\"position:absolute;top:0;right:0;\">
-							<strong>Ooops!</strong> Something went worng!.
-							<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+						"<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" style=\"position: fixed; top: 10px; right: 10px; width: 300px; display: inline-block;\">
+						<strong style=\"font-size: 12px;\">Ooops!</strong> <font style=\"font-size: 12px;\">Something went worng!.</font>
+							<button type=\"button\" class=\"btn-close btn-sm\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
 						</div>".html_safe
 					}
 				end
@@ -183,27 +196,20 @@ class TournamentsController < ApplicationController
 		level_group = Registration.find(selected_player_ids.first).level_registration
 		group = Group.create(level: level_group, tournament: tournament)
 		if level_group == "level_1"
-			level = "Beginner"
+			@level = "Beginner"
 		elsif level_group == "level_2"
-			level = "Medium"
+			@level = "Medium"
 		elsif level_group == "level_3"
-			level = "Medium Plus"
+			@level = "Medium Plus"
 		else
-			level = "Expert"
+			@level = "Expert"
 		end
 		
 		generate_random_matches(selected_player_ids, group, tournament, level_group)
 
 		respond_to do |format|
 			format.html { redirect_to dashboard_path }
-			format.turbo_stream do
-				render turbo_stream: turbo_stream.prepend('altceva') { 
-					"<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" style=\"position:absolute;top:0;right:0;width:400px;\">
-					<strong style=\"font-size: 12px;\">Great!</strong><font style=\"font-size: 12px;\">You have just created a group for #{level}.</font>
-						<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
-					</div>".html_safe
-				}
-			end
+			format.turbo_stream
 		end
   end
 

@@ -82,6 +82,9 @@ class UsersController < ApplicationController
 
   def authorize_user
     # Check if the current user is an admin or the same as the user being shown
+		if (current_user.admin == true)
+      return true
+    end
     if !(current_user.id.to_s == params[:id])
       redirect_to root_path, alert: "You are not authorized to view this page."
     end
