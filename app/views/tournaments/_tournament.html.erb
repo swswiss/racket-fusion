@@ -124,7 +124,10 @@
 				<div class="dropdown">
 					<button  class= "btn btn-sm tiny-button", style= "background-color: #53B092;", type="button" id="levelDropdown" data-bs-toggle="dropdown" aria-expanded="false">
 						Sign Up Here
-					</button>
+					</button> 
+					<% if tournament_presenter.tournament.registrations.where(user_id: current_user.id).first %>
+						<span class="badge text-bg-light">Registered</span>
+					<%end%>
 					<ul class="dropdown-menu custom-dropdown" aria-labelledby="levelDropdown">
 						<li>
 							<%= link_to tournament_presenter.registration_tournament_url(level_param: "level_1"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: classes_lvl1, :disabled => disabled_lvl1, remote: true do %>
