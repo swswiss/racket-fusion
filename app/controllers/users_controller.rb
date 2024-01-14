@@ -57,6 +57,17 @@ class UsersController < ApplicationController
       user.points += user_points || 0
       user.save
     end
+		respond_to do |format|
+			format.html { redirect_to dashboard_path }
+			format.turbo_stream do
+				render turbo_stream: turbo_stream.append('points') { 
+					"<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" style=\"position: fixed; top: 10px; right: 10px; width: 300px; display: inline-block;\">
+					<strong style=\"font-size: 12px;\">Great!</strong> <font style=\"font-size: 12px;\">You have just created a Points for Players</font>
+						<button type=\"button\" class=\"btn-close btn-sm\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+					</div>".html_safe
+				}
+			end
+		end
 	end
 
 	def create_promotion

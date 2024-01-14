@@ -5,7 +5,7 @@ class User < ApplicationRecord
 
   validates :phone, presence: true, length: { minimum: 10, maximum: 15 }
   validates :level, presence: true
-  validates :date_of_birth, presence: true
+  validates :date_of_birth, presence: false
 
   pg_search_scope :search_by_username, against: [:username], using: { tsearch: { prefix: true } }
 

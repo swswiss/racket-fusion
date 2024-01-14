@@ -123,10 +123,14 @@
 			<% if tournament_presenter.tournament.double == false %>
 				<div class="dropdown">
 					<button  class= "btn btn-sm tiny-button", style= "background-color: #53B092;", type="button" id="levelDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-						Sign Up Here
+						Sign Up Here<button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
 					</button> 
 					<% if tournament_presenter.tournament.registrations.where(user_id: current_user.id).first %>
-						<span class="badge text-bg-light">Registered</span>
+						<%= link_to tournament_presenter.registration_tournament_url, data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, remote: true do %>
+							<span class="badge text-bg-light">Registered</span>
+						<%end%>
+					<%else%>
+						<span class="badge text-bg-light">UnRegistered</span>
 					<%end%>
 					<ul class="dropdown-menu custom-dropdown" aria-labelledby="levelDropdown">
 						<li>
@@ -199,7 +203,10 @@
 	<% end %>
 	
 <%end%>
-
+<script>
+const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]')
+const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
+</script>
 
 <style>
 .tiny-button {
