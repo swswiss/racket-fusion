@@ -91,7 +91,10 @@
 			</p>
 			<br>
 			<p class="text-muted">Start Sign Ups: <%= tournament_presenter.tournament.start_datetime %><br>
-			Finish Sign Ups: <%= tournament_presenter.tournament.finish_datetime %></p>
+			Finish Sign Ups: <%= tournament_presenter.tournament.finish_datetime %><br>
+			<%if @weather%>
+			Weather: <%= image_tag "#{@weather}.png", width: "29" %></p>
+			<%end%>
 
 			<div class = "d-flex justify-content-between align-items-center action-links">
 			<!-- 	<div> 
@@ -123,7 +126,7 @@
 			<% if tournament_presenter.tournament.double == false %>
 				<div class="dropdown">
 					<button  class= "btn btn-sm tiny-button", style= "background-color: #53B092;", type="button" id="levelDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-						Sign Up Here<button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
+						Sign Up Here
 					</button> 
 					<% if tournament_presenter.tournament.registrations.where(user_id: current_user.id).first %>
 						<%= link_to tournament_presenter.registration_tournament_url, data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, remote: true do %>
@@ -132,6 +135,10 @@
 					<%else%>
 						<span class="badge text-bg-light">UnRegistered</span>
 					<%end%>
+					<button type="button "class="btn btn-sm btn-info float-end" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="<%= @weather_content %>">
+						Prizes
+					</button>
+
 					<ul class="dropdown-menu custom-dropdown" aria-labelledby="levelDropdown">
 						<li>
 							<%= link_to tournament_presenter.registration_tournament_url(level_param: "level_1"), data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, class: classes_lvl1, :disabled => disabled_lvl1, remote: true do %>

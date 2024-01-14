@@ -104,6 +104,9 @@ GEM
       rails (>= 6.0.0)
       stimulus-rails
       turbo-rails
+    httparty (0.21.0)
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     jbuilder (2.11.5)
@@ -128,6 +131,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.5)
     minitest (5.20.0)
+    multi_xml (0.6.0)
     net-imap (0.4.7)
       date
       net-protocol
@@ -258,6 +262,7 @@ DEPENDENCIES
   dartsass-sprockets
   devise
   hotwire-rails
+  httparty
   jbuilder (~> 2.5)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
