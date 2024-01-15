@@ -1,19 +1,22 @@
 <div class="col-7">
 
-  
-
   <h1>All Blogs</h1>
-  <div class="blog-list">
-    <% @blogs.each do |blog| %>
-      <%= blog.body%><br>
-    <% end %>
-  </div>
+
+  <%= render partial: 'blog' %>
 </div>
 <div class="col">
   <!-- Other content in the right column -->
 </div>
 
 <style>
+.blog-content a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Underline the links */
+  }
+
+  .blog-content a:hover {
+    color: #0056b3; /* Link color on hover */
+  }
 
 .col-7 {
   overflow: hidden;

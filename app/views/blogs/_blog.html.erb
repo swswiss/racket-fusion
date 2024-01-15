@@ -1,0 +1,9 @@
+<% @blogs ||= blogs %>
+<%= turbo_frame_tag "blog_here" do %>
+    <div class="blog-list">
+      <% @blogs.each do |blog| %>
+          <div class="blog-content">
+        <%= blog.body %></div><br>
+      <% end %>
+    </div>
+    <%end%>

@@ -1,6 +1,6 @@
 class BlogsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_admin, only: :destroy
+	before_action :authenticate_admin, only: [:create, :destroy]
 
 	def index
 		@blogs = Blog.all
@@ -10,12 +10,15 @@ class BlogsController < ApplicationController
 		@blog = Blog.new(blog_params)
 
 		if @blog.save
-			respond_to do |format|
-				format.html { redirect_to dashboard_path }
-				format.turbo_stream
+			
+					render turbo_stream: 
+					turbo_stream.replace("blog_here",
+						partial: "blogs/blog",
+						locals: {blogs: Blog.all})
+				end
 			end
-		end
-	end
+		
+	
 
 	private
 
