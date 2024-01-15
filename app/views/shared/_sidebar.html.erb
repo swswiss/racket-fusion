@@ -6,6 +6,7 @@
   <% navbar_links = [
   { path: dashboard_path, image: "home.png", text: "Home" },
 	{ path: dashboard_path, image: "online-video.png", text: "Guide" },
+	{ path: blogs_path, image: "newspaper.png", text: "Blog" },
 	{ path: user_path(current_user.id), image: "user.png", text: "Profile" },
   { path: new_username_path, image: "profile_settings.png", text: "Settings" },
 	{ path: invitations_path, image: "pair.png", text: "Invite" },
@@ -98,6 +99,15 @@
         Promotions
       </div>
     <% end %>
+
+		<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#create_blog" } do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag "blog.png", width: "27" %>
+        </span>
+        Create Blog
+      </div>
+    <% end %>
   <% end %>
 
   <div class="d-flex align-items-center fs-4 px-4 mb-3">
@@ -147,6 +157,20 @@
       </div>
       <div class="modal-body">
 				<%= render "shared/prom_form" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="create_blog" tabindex="-1" aria-labelledby="create_blog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<%= render "shared/create_blog" %>
       </div>
       
     </div>

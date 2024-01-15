@@ -82,4 +82,5 @@ Rails.application.routes.draw do
     get 'headtohead', on: :collection
   end
   resources :invitations
+  resources :blogs
 end

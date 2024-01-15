@@ -20,7 +20,7 @@
 	<tbody>
 		<% @users.each_with_index do |user, index| %>
 			<tr>
-				<td><font size="2px"><%= user.username %></font></td>
+			<td><font size="2px"><%= link_to user.username, user_path(user.id), class: 'user-link', target: "_blank" %></font></td>
 				<td><font size="2px"><%= user.email %></font></td>
 				<td><font size="2px"><%= user.calculate_age %></font></td>
 				<td><font size="2px"><%= user.phone %></font></td>
@@ -44,6 +44,15 @@
 
 
 <style>
+.user-link {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease; /* Add smooth transition effect on color change */
+  }
+
+  .user-link:hover {
+    color: #53B092; /* Change to the desired color on hover */
+  }
 .col {
     overflow: hidden; 
 }

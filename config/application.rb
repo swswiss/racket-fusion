@@ -1,6 +1,7 @@
 require_relative 'boot'
 
-require "rails"
+
+require 'rails/all'
 # Pick the frameworks you want:
 require "active_model/railtie"
 require "active_job/railtie"
@@ -29,5 +30,6 @@ module RacketFusion
     # Don't generate system test files.
     config.generators.system_tests = nil
     config.autoload_paths += %W(#{config.root}/app/presenters)
+    config.autoload_paths += %w(#{config.root}/app/models/ckeditor)
   end
 end

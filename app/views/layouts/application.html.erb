@@ -6,7 +6,8 @@
     <%= turbo_include_tags %>
 
     <%= javascript_include_tag 'application', 'data-turbo-track': 'reload' %>
-    
+    <%= stylesheet_link_tag 'trix' %>
+    <%= javascript_include_tag 'trix' %>
     <%= wicked_pdf_stylesheet_link_tag "stylesheets" %>
     <%= favicon_link_tag asset_path("tennis-court.png") %>
     <%= javascript_include_tag 'application' %>

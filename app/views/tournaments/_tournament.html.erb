@@ -1,5 +1,5 @@
 <% if current_user.admin? %>
-<%= link_to tournament_path(tournament_presenter.tournament), method: :delete, data: { turbo_method: :delete }, class: "btn  btn-sm float-end", style: "font-size: 7px;" do %>
+<%= link_to tournament_path(tournament_presenter.tournament), method: :delete, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete the Tournament?" }, class: "btn  btn-sm float-end", style: "font-size: 7px;" do %>
 	<%= image_tag "cross-button.png", width: "23" %>
 <% end %>
 <% end %>

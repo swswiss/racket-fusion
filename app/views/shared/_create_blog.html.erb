@@ -1,0 +1,34 @@
+<%= form_with(model: Blog.new) do |form| %>
+    <!-- Other form fields -->
+  
+    <div class="form-group">
+      <%= form.rich_text_area :body, class: "form-control", id: "blog_body" %>
+    </div>
+  
+    <%= form.submit "Create Blog", class: "btn btn-primary" %>
+  <% end %>
+
+  <style>
+
+.col-7 {
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+
+/* Style the submit button */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+</style>
