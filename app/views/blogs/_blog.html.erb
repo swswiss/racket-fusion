@@ -1,9 +1,22 @@
 <% @blogs ||= blogs %>
-<%= turbo_frame_tag "blog_here" do %>
-    <div class="blog-list">
-      <% @blogs.each do |blog| %>
-          <div class="blog-content">
-        <%= blog.body %></div><br>
-      <% end %>
-    </div>
-    <%end%>
+
+  <div class="blog-list">
+    <% @blogs.each do |blog| %>
+      <div class="blog-content">
+        <div class="card mb-3">
+          <div class="card-body">
+            <p class="card-text">
+              <%= truncate(strip_tags(blog.body.to_plain_text), length: 500, separator: ' ') %>
+              <%= button_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+            </p>
+            <% if blog.body.to_plain_text.length > 200 %>
+              <%= link_to "Read more", blog_path(blog) %>
+             
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <br>
+    <% end %>
+  </div>
+
