@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 		user = User.find(params[:id])  # Replace with the actual user you're interested in
 
 		@user_rank = users.index(user) + 1
+
 	end
 
 	def expert

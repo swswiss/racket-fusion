@@ -128,16 +128,24 @@
 					<button  class= "btn btn-sm tiny-button", style= "background-color: #53B092;", type="button" id="levelDropdown" data-bs-toggle="dropdown" aria-expanded="false">
 						Sign Up Here
 					</button> 
-					<% if tournament_presenter.tournament.registrations.where(user_id: current_user.id).first %>
-						<%= link_to tournament_presenter.registration_tournament_url, data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, remote: true do %>
-							<span class="badge text-bg-light">Registered</span>
+					<% if tournament_presenter.tournament.status == true %>
+						<% if tournament_presenter.tournament.registrations.where(user_id: current_user.id).first %>
+							<%= link_to tournament_presenter.registration_tournament_url, data: {"turbo-method": tournament_presenter.turbo_data_registration_method}, remote: true do %>
+								<span class="badge text-bg-light">UnRegister</span>
+							<%end%>
+						<%else%>
+							<span class="badge text-bg-light">Not Registered</span>
 						<%end%>
 					<%else%>
-						<span class="badge text-bg-light">UnRegistered</span>
+						<% if tournament_presenter.tournament.registrations.where(user_id: current_user.id).first %>
+							<span class="badge text-bg-light">Event started</span>
+						<%else%>
+								<span class="badge text-bg-light">Event started</span>
+						<%end%>
 					<%end%>
-					<button type="button "class="btn btn-sm btn-info float-end" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="<%= @weather_content %>">
+					<!--<button type="button "class="btn btn-sm btn-info float-end" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="<%= @weather_content %>">
 						Prizes
-					</button>
+					</button>-->
 
 					<ul class="dropdown-menu custom-dropdown" aria-labelledby="levelDropdown">
 						<li>
