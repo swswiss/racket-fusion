@@ -17,7 +17,7 @@ services:
         fromDatabase:
           name: racketfusion
           property: connectionString
-      - key: ENV["SECRET_KEY_BASE"]
+      - key: RAILS_MASTER_KEY
         sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
