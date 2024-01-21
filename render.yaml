@@ -17,7 +17,7 @@ services:
         fromDatabase:
           name: racketfusion
           property: connectionString
-      - key: RAILS_MASTER_KEY
+      - key: a9099c36c432156257a5be3762ada2f8
         sync: false
       - key: WEB_CONCURRENCY
         value: 2 # sensible default
