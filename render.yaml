@@ -1,7 +1,7 @@
 databases:
   - name: racketFusionn
     databaseName: racketFusionn
-    user: swswiss
+    user: racketFusionn
     plan: free
 
 services:
