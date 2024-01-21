@@ -9,6 +9,7 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 ruby '3.0.0'
 gem 'rails', '~> 6.0'
+gem 'trix'
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
 # Use Puma as the app server
@@ -64,4 +65,5 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "ransack", "~> 4.1"
 gem 'pg_search'
 gem 'wicked_pdf'
+gem 'axlsx'
 gem 'wkhtmltopdf-binary'

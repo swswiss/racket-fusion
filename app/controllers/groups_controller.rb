@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_admin, only: [:destroy, :update_scores_group, :print_groups_medium]
+	before_action :authenticate_admin, only: [:destroy, :update_scores_group, :print_groups_medium, :csv_groups_medium]
 
 
 	def update_scores_group
@@ -45,6 +45,24 @@ class GroupsController < ApplicationController
 		end
 		
 	end
+
+	def csv_groups_medium
+    require 'axlsx'
+    respond_to do |format|
+      format.xlsx do
+        p = Axlsx::Package.new
+        p.workbook.add_worksheet(name: 'Sheet1') do |sheet|
+          # Add data to the spreadsheet
+          sheet.add_row ['Name', 'Age', 'Occupation']
+          sheet.add_row ['John Doe', 30, 'Developer']
+          sheet.add_row ['Jane Doe', 25, 'Designer']
+        end
+
+        # Send the workbook as a response
+        send_data p.to_stream.read, type: "application/xlsx", filename: 'example1.xlsx'
+      end
+    end
+  end
 
 	def print_groups_medium
 		group = Group.find(params[:id])
@@ -119,8 +137,6 @@ class GroupsController < ApplicationController
 			end.to_h
 		end.to_h
 
-		####
-		
 		respond_to do |format|
       format.html
       format.pdf do

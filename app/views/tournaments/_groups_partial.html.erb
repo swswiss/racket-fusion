@@ -13,6 +13,9 @@
             <%= link_to print_groups_medium_group_path(group, format: :pdf), method: :get, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
                 <%= image_tag "printer.png", width: "17" %>
             <% end %>
+            <%= link_to csv_groups_medium_group_path(group, format: :xlsx), method: :get, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
+                <%= image_tag "csv.png", width: "17" %>
+            <% end %>
             <% end %>
         <% end %>
 

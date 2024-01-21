@@ -65,6 +65,7 @@ Rails.application.routes.draw do
     member do
       post 'update_scores_group'
       get 'print_groups_medium'
+      get 'csv_groups_medium'
     end
   end
 
