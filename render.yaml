@@ -1,7 +1,7 @@
 databases:
   - name: racketfusion
     databaseName: racketfusion
-    user: swswiss
+    user: ioanalauramunteanu
     plan: free
 
 services:
