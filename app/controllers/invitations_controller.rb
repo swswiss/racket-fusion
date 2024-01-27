@@ -6,4 +6,10 @@ class InvitationsController < ApplicationController
         @registrations_current_user = current_user.registrations.where(double: true)
         @registrations_from_user= Registration.where(teammate_id: current_user.id, double: true)
     end
+    def receive_data
+        data = "pulaaa"
+        # Process the received data as needed
+        render json: { status: 'success' }
+    end
+    
 end

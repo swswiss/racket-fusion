@@ -26,7 +26,7 @@
         <font size="2px">
         <% if @tournament.double == false %>
           <% if current_user.admin? %>
-            <%= link_to User.find(user_id).username, user_path(user_id), class: 'user-link', target: "_blank" %>
+            <%= link_to User.find(user_id).username, user_path(user_id), class: 'user-link', data: { turbo_frame: "_top" } %>
 
           <% else %>
             <%= User.find(user_id).username %>

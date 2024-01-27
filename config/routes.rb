@@ -83,5 +83,6 @@ Rails.application.routes.draw do
     get 'headtohead', on: :collection
   end
   resources :invitations
+  post '/receive_data', to: 'invitations#receive_data'
   resources :blogs
 end

@@ -109,6 +109,7 @@ class TournamentsController < ApplicationController
 	end
 
 	def create_brackets
+		debugger
 		if params[:selected_players].length < 2
 			respond_to do |format|
 				format.html { redirect_to dashboard_path }
@@ -167,7 +168,8 @@ class TournamentsController < ApplicationController
 
 	def generate_random_matches_for_brackets(players, round, tournament, level_round)
 		return nil if players.length < 2
-	
+
+		debugger
 		shuffled_players = players.shuffle
 		paired_players = shuffled_players.each_slice(2).to_a
 
