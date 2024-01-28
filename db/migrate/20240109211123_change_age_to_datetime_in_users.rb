@@ -4,11 +4,13 @@ class ChangeAgeToDatetimeInUsers < ActiveRecord::Migration[6.0]
     User.reset_column_information
 
     # Migrate data from old 'age' column to new 'date_of_birth' column
-    User.find_each do |user|
-      user.update(date_of_birth: user.age)
-    end
+    if column_exists?(:users, :age)
+      User.find_each do |user|
+        user.update(date_of_birth: user.age)
+      end
 
-    remove_column :users, :age
+      remove_column :users, :age
+    end
   end
 
   def down
