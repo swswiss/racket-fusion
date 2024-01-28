@@ -11,4 +11,4 @@ User.create( email: "omg@yahoo.com", username: "viorel", display_name: "Viorel",
 User.create( email: "alex@yahoo.com", username: "alex1", display_name: "alex1", image_profile: "man", admin: nil, points: 20, rank: nil, phone: "3243254325", level: "Medium", date_of_birth: nil)
 
 
-User.create( email: "silviu@yahoo.com", username: "Silviu", display_name: "Silviuss", image_profile: "tennis1", admin: true, points: 84, rank: nil, phone: "324535651110", level: "Medium", date_of_birth: Wed, 20 Oct 1993 00:00:00.000000000 UTC +00:00)
+User.create( email: "silviu@yahoo.com", username: "Silviu", display_name: "Silviuss", image_profile: "tennis1", admin: true, points: 84, rank: nil, phone: "324535651110", level: "Medium", date_of_birth: "1993-10-20 00:00:00.000000000 +0000")
