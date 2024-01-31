@@ -21,7 +21,7 @@
 				<% matches.each do |match| %>
 					<ul class="matchup">
 						<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
-						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.score %></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"></span></li>
 					</ul>
 					<br>
 				<% end %>
@@ -32,7 +32,7 @@
 			<% matches.each do |match| %>
 				<ul class="matchup">
 					<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
-					<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.score %></span></li>
+					<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"></span></li>
 				</ul>
 				<br>
 				<br>
@@ -45,7 +45,7 @@
 				<% matches.each do |match| %>
 					<ul class="matchup">
 						<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
-						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.score %></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"></span></li>
 					</ul>
 				<% end %>
 			</div>
@@ -56,7 +56,7 @@
 				<% matches.each do |match| %>
 					<ul class="matchup">
 						<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
-						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.score %></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"></span></li>
 					</ul>
 				<% end %>
 			</div>

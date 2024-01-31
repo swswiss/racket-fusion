@@ -95,13 +95,14 @@
 							<th>Sets Won</th>
 							<th>Sets Lost</th>
 							<th>Matches Won</th>
+                            <th>Games Won</th>
 						</tr>
 					</thead>
 					<tbody>
 						<% @data.each_with_index do |(group_id, players_data), index| %>
 							<% players_data.each do |player_id, data| %>
 								<tr style="background-color: <%= index.even? ? '#ffe6e6' : '#e6f7ff' %>;">
-									<td><%= group_id %></td>
+									<td><%= (index + 'A'.ord).chr %></td>
 									<td>
                                     <% if @tournament.double == false  %>
                                         <%= player_id.nil? ? "(nil)" : Registration.find(player_id).user.username %>
@@ -113,6 +114,7 @@
 									<td><%= data[:sets_won] %></td>
 									<td><%= data[:sets_lost] %></td>
 									<td><%= data[:matches_won] %></td>
+                                    <td><%= data[:games_won] %></td>
 								</tr>
 							<% end %>
 						<% end %>

@@ -89,7 +89,8 @@ class GroupsController < ApplicationController
 					matches_played: 0,
 					sets_won: 0,
 					sets_lost: 0,
-					matches_won: 0
+					matches_won: 0,
+					games_won: 0
 				}
 		
 				# Initialize data for loser if nil
@@ -97,7 +98,8 @@ class GroupsController < ApplicationController
 					matches_played: 0,
 					sets_won: 0,
 					sets_lost: 0,
-					matches_won: 0
+					matches_won: 0,
+					games_won: 0
 				}
 		
 				# Extract sets from the score string
@@ -111,11 +113,15 @@ class GroupsController < ApplicationController
 							
 								@data[group.id][match.first_player][:sets_won] += 1
 								@data[group.id][match.second_player][:sets_lost] += 1
+								@data[group.id][match.first_player][:games_won] += player_score
+								@data[group.id][match.second_player][:games_won] += opponent_score
 						
 						else
 					
 								@data[group.id][match.second_player][:sets_won] += 1
 								@data[group.id][match.first_player][:sets_lost] += 1
+								@data[group.id][match.first_player][:games_won] += player_score
+								@data[group.id][match.second_player][:games_won] += opponent_score
 						
 						end
 					end

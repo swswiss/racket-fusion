@@ -109,8 +109,17 @@ class TournamentsController < ApplicationController
 	end
 
 	def create_brackets
-		debugger
-		if params[:selected_players].length < 2
+		reg_seed = {}
+		params[:selected_players].each do |reg, seed|
+			if seed.present?
+				reg_seed[reg] = seed
+			end
+		end
+
+		inverted_grouped_params = reg_seed.group_by { |_, value| value }.transform_values { |entries| entries.map(&:first) }
+		checking = inverted_grouped_params.select { |key, values| values.length != 2 }.keys
+
+		if reg_seed.length < 2 || !checking.empty?
 			respond_to do |format|
 				format.html { redirect_to dashboard_path }
 				format.turbo_stream do
@@ -126,9 +135,7 @@ class TournamentsController < ApplicationController
 		end
 
 		tournament = Tournament.find(params[:id])
-    selected_player_ids = params[:selected_players] || []
-		selected_player_ids = selected_player_ids.map(&:to_i)
-		level_round = Registration.find(selected_player_ids.first).level_registration
+		level_round = Registration.find(reg_seed.first.first.to_i).level_registration
 
 		if level_round == "level_1"
 			level = "Beginner"
@@ -151,7 +158,7 @@ class TournamentsController < ApplicationController
 			level = "Expert"
 		end
 
-		generate_random_matches_for_brackets(selected_player_ids, round, tournament, level_round)
+		generate_random_matches_for_brackets(reg_seed, round, tournament, level_round)
 
 		respond_to do |format|
 			format.html { redirect_to dashboard_path }
@@ -169,13 +176,11 @@ class TournamentsController < ApplicationController
 	def generate_random_matches_for_brackets(players, round, tournament, level_round)
 		return nil if players.length < 2
 
-		debugger
-		shuffled_players = players.shuffle
-		paired_players = shuffled_players.each_slice(2).to_a
+		players = players.group_by { |_, value| value }.transform_values { |entries| entries.map(&:first) }
 
-		paired_players.each do |pair|
-			first_player_id = pair[0]
-			second_player_id = pair[1]
+		players.each do |value, player_ids|
+			first_player_id = player_ids[0]
+			second_player_id = player_ids[1]
 			match = Match.create(
 				first_player: first_player_id,
 				second_player: second_player_id,
@@ -284,7 +289,8 @@ class TournamentsController < ApplicationController
 					matches_played: 0,
 					sets_won: 0,
 					sets_lost: 0,
-					matches_won: 0
+					matches_won: 0,
+					games_won: 0
 				}
 		
 				# Initialize data for loser if nil
@@ -292,7 +298,8 @@ class TournamentsController < ApplicationController
 					matches_played: 0,
 					sets_won: 0,
 					sets_lost: 0,
-					matches_won: 0
+					matches_won: 0,
+					games_won: 0
 				}
 		
 				# Extract sets from the score string
@@ -306,8 +313,13 @@ class TournamentsController < ApplicationController
 							
 								@data[group.id][match.first_player][:sets_won] += 1
 								@data[group.id][match.second_player][:sets_lost] += 1
+
+								@data[group.id][match.first_player][:games_won] += player_score
+								@data[group.id][match.second_player][:games_won] += opponent_score
 						
 						else
+								@data[group.id][match.first_player][:games_won] += player_score
+								@data[group.id][match.second_player][:games_won] += opponent_score
 					
 								@data[group.id][match.second_player][:sets_won] += 1
 								@data[group.id][match.first_player][:sets_lost] += 1
