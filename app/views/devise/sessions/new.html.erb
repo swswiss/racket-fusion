@@ -1,5 +1,5 @@
 <div class = 'container py-5', style= "max-width: 540px">
-
+<div class="login-card">
   <h2>Log in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -21,9 +21,26 @@
     <% end %>
 
     <div class="mb-3">
-      <%= f.submit "Log in", class: 'btn btn-primary btn-twitter rounded-pill' %>
+      <%= f.submit "Log in", class: 'btn btn-lg btn-twitter ',style: "font-size: 15px;" %>
+
     </div>
   <% end %>
 
   <%= render "devise/shared/links" %>
 </div>
+</div>
+
+<style>
+    body {
+      background-image: url('<%= asset_path('wall1.png') %>');
+    }
+
+    .login-card {
+      max-width: 400px;
+      margin: 100px auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Tiny shadow */
+      padding: 20px;
+      border-radius: 5px;
+    }
+  </style>

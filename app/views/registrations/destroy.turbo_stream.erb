@@ -1,4 +1,9 @@
 <%= turbo_stream.replace dom_id(@tournament) do %>
+	<div class="alert alert-success alert-dismissible  show" role="alert" style="position: fixed; top: 10px; right: 10px; width: 350px; display: inline-block; id="flash-message"">
+        <strong style="font-size: 12px;">Sorry!</strong><font style="font-size: 12px;">You just retired from <%=@tournament.name%> tournament.</font>
+
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 	<%= render partial: "tournaments/tournament", locals: {tournament_presenter: TournamentPresenter.new(tournament: @tournament, current_user: current_user)} %>
 <%end%>
 
