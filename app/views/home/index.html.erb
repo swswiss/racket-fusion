@@ -1,5 +1,50 @@
 
-<%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-lg' %>
-<%= link_to "Log In", new_user_session_path, class: 'btn btn-outline-primary btn-lg' %>
+<!-- <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-lg' %> -->
+<!-- <%= link_to "Log In", new_user_session_path, class: 'btn btn-outline-primary btn-lg' %> -->
 
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar-bg p-0">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><%= image_tag "racket_fusion.webp", width: "125" %></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#">Products</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link mx-2" href="#">Pricing</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Company
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <li><a class="dropdown-item" href="#">Blog</a></li>
+              <li><a class="dropdown-item" href="#">About Us</a></li>
+              <li><a class="dropdown-item" href="#">Contact us</a></li>
+            </ul>
+          </li>
+          <!-- Log In and Sign Up buttons -->
+          <li class="nav-item">
+            <%= link_to "Log In", new_user_session_path, class: 'nav-link mx-2' %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link mx-2' %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
+  <style>
+  /* Custom style for the navbar background color */
+  .custom-navbar-bg {
+    background-color: rgb(167, 193, 176) !important;
+  }
+</style>

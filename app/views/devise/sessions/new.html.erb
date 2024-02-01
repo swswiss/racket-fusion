@@ -1,5 +1,8 @@
 <div class = 'container py-5', style= "max-width: 540px">
 <div class="login-card">
+<div class="close-container">
+<a href="/" class="btn-close" aria-label="Close"></a> <!-- Close button to go to the homepage -->
+</div>
   <h2>Log in</h2>
 
   <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
@@ -41,6 +44,15 @@
       background-color: #fff;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Tiny shadow */
       padding: 20px;
-      border-radius: 5px;
+      border-radius: 17px;
     }
+    .close-container {
+    position: relative;
+    top: -11px;
+    right: -360px;
+  }
+
+  .btn-close {
+    color: #000; /* Change the color according to your design */
+  }
   </style>

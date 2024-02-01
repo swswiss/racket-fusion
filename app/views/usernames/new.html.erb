@@ -23,6 +23,20 @@
 			<%= f.label :email, class: "form-label" %>
 			<%= f.text_field :email, class: "form-control" %>
 		</div>
+		<div class="mb-4">
+      <%= f.label :current_password, class: "form-label" %>
+      <%= f.password_field :current_password, class: "form-control" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :password, class: "form-label" %>
+      <%= f.password_field :password, class: "form-control" %>
+    </div>
+
+    <div class="mb-4">
+      <%= f.label :password_confirmation, class: "form-label" %>
+      <%= f.password_field :password_confirmation, class: "form-control" %>
+    </div>
 		<!--  <div class = "input-group mb-3">
 			<%= f.label :avatar, class: "input-group-text" %>
 			<%= f.file_field :avatar, class: "form-control" %>
