@@ -9,12 +9,17 @@
       <td class="#{}">
         <% players_variable_name = "@players_lvl_#{category.downcase}" %>
         <% eval(players_variable_name).each do |id, user_id| %>
+         
           <% id_reg = Registration.find(id) %>
           <label>
             <% if current_user.admin? %>
               <%= text_field_tag "selected_players[#{id}]", '', class: 'tiny-input' %>
             <% end %>
+            <%if @tournament.double == true%>
+            <font size="2px"><%= Registration.find(id).name %></font>
+            <% else %>
             <font size="2px"><%= User.find(user_id).username %></font>
+            <% end %>
           </label>
           <br>
         <% end %>

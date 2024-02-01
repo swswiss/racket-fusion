@@ -24,6 +24,44 @@ class TournamentsController < ApplicationController
 		end
   end
 
+	def create_team
+		tournament = Tournament.find(params[:id])
+		@first_player = User.find(params[:user_id])
+		@second_player = User.find(params[:teammate_id])
+		@team_name = @first_player .username + " + "+ @second_player.username
+
+		team_is_existed = (Registration.find_by(tournament: tournament, user_id: @first_player.id) rescue false) || (Registration.find_by(tournament: tournament, user_id: @second_player.id) rescue false) || (Registration.find_by(tournament: tournament, teammate_id: @second_player.id) rescue false) || (Registration.find_by(tournament: tournament, teammate_id: @first_player.id) rescue false)
+
+		if team_is_existed.present?
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream
+			end
+		else
+			if params[:level] == "Beginner"
+				lvl = "level_1"
+			elsif params[:level] == "Medium"
+				lvl = "level_2"
+			elsif params[:level] == "Medium Plus"
+				lvl = "level_3"
+			else
+				lvl = "level_4"
+			end
+			
+			@registration_double = @first_player.registrations.create(tournament: tournament)
+			@registration_double.update(waitlisted: tournament.confirmation, double: true, teammate_id: @second_player.id, name: @team_name, level_registration: lvl)
+		end
+		if false
+			@registrations_current_user = current_user.registrations.where(double: true)
+			@registrations_from_user= Registration.where(teammate_id: current_user.id, double: true)
+
+			render turbo_stream: 
+					turbo_stream.replace("invitations",
+						partial: "registrations/teams_table",
+						locals: {registrations_current_user: @registrations_current_user, registrations_from_user: @registrations_from_user })
+		end
+	end
+
 	def show
 		@tournament = Tournament.find(params[:id])
 		if @tournament.double == false
@@ -33,11 +71,11 @@ class TournamentsController < ApplicationController
 			@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4", waitlisted: false).pluck(:id, :user_id)
 			@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true).pluck(:id, :user_id)
 		else
-			@players_lvl_beginner = @tournament.registrations.where(level_registration: "level_1", waitlisted: false, pending: "accepted").pluck(:id, :user_id)
-			@players_lvl_medium = @tournament.registrations.where(level_registration: "level_2", waitlisted: false, pending: "accepted").pluck(:id, :user_id)
-			@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3", waitlisted: false, pending: "accepted").pluck(:id, :user_id)
-			@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4", waitlisted: false, pending: "accepted").pluck(:id, :user_id)
-			@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true, pending: "accepted").pluck(:id, :user_id)
+			@players_lvl_beginner = @tournament.registrations.where(level_registration: "level_1", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_medium = @tournament.registrations.where(level_registration: "level_2", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4", waitlisted: false).pluck(:id, :user_id)
+			@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true).pluck(:id, :user_id)
 		end
 	end
 
@@ -194,7 +232,9 @@ class TournamentsController < ApplicationController
 	end
 
 	def create_groups
-		if params[:selected_players].length < 2
+		debugger
+		if params[:selected_players]&.length < 2
+			debugger
 			respond_to do |format|
 				format.html { redirect_to dashboard_path }
 				format.turbo_stream do

@@ -4,6 +4,7 @@ class StatisticsController < ApplicationController
 
 	def index
 		@pagy, @matches_for_current_user = pagy(Match.for_current_user(current_user), items: 13)
+
 	end
 
 	def duel

@@ -17,7 +17,10 @@ Rails.application.routes.draw do
       get 'medium_schedule'
       get 'medium_plus_schedule'
       get 'expert_schedule'
+      post 'create_team'
     end
+
+
     post 'create_level_two', on: :member, to: 'registrations#create_level_two'
     post 'create_level_three', on: :member, to: 'registrations#create_level_three'
     post 'create_level_four', on: :member, to: 'registrations#create_level_four'
@@ -32,15 +35,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :registrations do
-    collection do
-      post 'invite'
-    end
-    member do
-      post 'accept'
-      post 'decline'
-    end
-  end
+  # resources :registrations do
+  #   collection do
+  #     post 'invite'
+  #   end
+  #   member do
+  #     post 'accept'
+  #     post 'decline'
+  #   end
+  # end
 
   resources :tweets, only: [:create, :destroy] do
     resources :likes, only: [:create, :destroy]
@@ -54,6 +57,7 @@ Rails.application.routes.draw do
   resources :usernames, only: [:new, :update, :index]
   resources :users, only: [:index, :show] do
     post 'create_promotion', on: :collection
+    
     post 'create_points', on: :collection
     get 'beginner', on: :collection
     get 'medium', on: :collection

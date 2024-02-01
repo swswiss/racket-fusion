@@ -20,8 +20,15 @@
 				<div class="round-details"><%= "Round #{round_index + 1}" %><br/><span class="date"><%= round.created_at.strftime("%B %e") %></span></div>
 				<% matches.each do |match| %>
 					<ul class="matchup">
-						<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
+					<%if @tournament.double == true%>
+					<li class="team team-top"><%= Registration.find(match.first_player).name %><span class="score"><%= match.score %></span></li>
+					
+						<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"></span></li>
+					<%else%>
+					<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
 						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"></span></li>
+					<%end%>
+						
 					</ul>
 					<br>
 				<% end %>
@@ -31,8 +38,13 @@
 			<div class="round-details"><%= "Round #{round_index + 1}" %><br/><span class="date"><%= round.created_at.strftime("%B %e") %></span></div>
 			<% matches.each do |match| %>
 				<ul class="matchup">
-					<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
+				<%if @tournament.double == true%>
+				<li class="team team-top"><%= Registration.find(match.first_player).name %><span class="score"><%= match.score %></span></li>
+					<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"></span></li>
+				<%else%>
+				<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
 					<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"></span></li>
+				<%end%>
 				</ul>
 				<br>
 				<br>
@@ -44,8 +56,14 @@
 				<div class="round-details"><%= "Round #{round_index + 1}" %><br/><span class="date"><%= round.created_at.strftime("%B %e") %></span></div>
 				<% matches.each do |match| %>
 					<ul class="matchup">
-						<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
+					<%if @tournament.double == true%>
+					<li class="team team-top"><%= Registration.find(match.first_player).name %><span class="score"><%= match.score %></span></li>
+
+						<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"></span></li>
+					<%else%>
+					<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
 						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"></span></li>
+					<%end%>
 					</ul>
 				<% end %>
 			</div>
@@ -55,8 +73,13 @@
 				<div class="round-details"><%= "Round #{round_index + 1}" %><br/><span class="date"><%= round.created_at.strftime("%B %e") %></span></div>
 				<% matches.each do |match| %>
 					<ul class="matchup">
-						<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
+					<%if @tournament.double == true%>
+					<li class="team team-top"><%= Registration.find(match.first_player).name %><span class="score"><%= match.score %></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"></span></li>
+					<%else%>
+					<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
 						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"></span></li>
+					<%end%>
 					</ul>
 				<% end %>
 			</div>

@@ -49,9 +49,9 @@
 		
 		<%= form_tag create_groups_tournament_path(@tournament), method: :post, remote: true do %>
 			<%= render partial: 'player_info' %>
-			<%= link_to "Beginner Schedule", beginner_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
-		<%= link_to "Medium Schedule", medium_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
-		<%= link_to "Medium Plus Schedule", medium_plus_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+			<%= link_to "Beginner Schedule", beginner_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %><br><br>
+		<%= link_to "Medium Schedule", medium_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %><br><br>
+		<%= link_to "Medium Plus Schedule", medium_plus_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %><br><br>
 		<%= link_to "Expert Schedule", expert_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
 		<br><br>
 			<% if current_user.admin? %>
@@ -101,7 +101,27 @@
 			<% end %>
 		<% end %>
 		<% end %>
-		<br>
+		<br><br>
+		<% if current_user.admin? %>
+		<% if @tournament.status == true %>
+			<% if @tournament.double == true %>
+			<div style= "font-size: 13px;" >Tournament still opened, so you cannot generate teams</div>
+			<%= link_to dashboard_path, class: "btn btn-lg tiny-button disabled", style: "background-color: #53B092;", data: { bs_toggle: "modal", bs_target: "#create_team" } do %>
+
+					Generate Teams
+			
+			<% end %>
+			<% end %>
+		<% else %>
+		<% if @tournament.double == true %>
+			<%= link_to dashboard_path, class: "btn btn-lg tiny-button", style: "background-color: #53B092;", data: { bs_toggle: "modal", bs_target: "#create_team" } do %>
+
+			Generate Teams
+
+			<% end %>
+		<% end %>
+		<% end %>
+		<% end %>
 
 </div>
 <div class="col">
@@ -130,6 +150,19 @@
       </div>
       <div class="modal-body">
         <%= render "shared/create_point", tournament: @tournament %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="create_team" tabindex="-1" aria-labelledby="create_team" aria-hidden="true">
+  <div class="modal-dialog modal-sm"> <!-- Add modal-lg class for a larger width -->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <%= render "shared/create_team", tournament: @tournament %>
       </div>
     </div>
   </div>

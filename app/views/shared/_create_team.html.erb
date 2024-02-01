@@ -1,0 +1,18 @@
+
+<% if flash[:notice].present? %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+<%= form_tag create_team_tournament_path, method: :post, class: "w-100", data: { controller: 'tweet-form' } do %>
+	<%= select_tag "user_id", options_from_collection_for_select(User.all, "id", "username"), prompt: "Select User", class: "form-control w-100 mb-2" %>
+    <center><%= image_tag "friends.png", width: "29",class: " mb-1" %></center>
+    <%= select_tag "teammate_id", options_from_collection_for_select(User.all, "id", "username"), prompt: "Select User", class: "form-control w-100 mb-2" %>
+    <br>
+  
+	<%= select_tag "level", options_for_select(["Beginner", "Medium", "Medium Plus", "Expert"]), prompt: "Select Level", class: "form-control w-100 mb-4" %>
+  
+	<div class="d-flex justify-content-end">
+	  <%= submit_tag "Generate Team", class: "btn btn-sm btn-twitter rounded-pill" %>
+	</div>
+<% end %>

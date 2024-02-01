@@ -35,7 +35,11 @@
                     <tr id="match_<%= match.id %>">
                         <td><%= match_index + 1 %></td>
                         <td><%= match.id %></td>
+                        <%if @tournament.double == true%>
+                        <td><%= "#{Registration.find(match.first_player).name} vs #{Registration.find(match.second_player).name}" %></td>
+                        <%else%>
                         <td><%= "#{Registration.find(match.first_player).user.username} vs #{Registration.find(match.second_player).user.username}" %></td>
+                        <%end%>
                         <% if current_user.admin? %>
                             <td><%= text_field_tag "match_scores[#{match.id}]", match.score, disabled: false %></td>
                         <% else  %>

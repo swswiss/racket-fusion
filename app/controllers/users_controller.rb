@@ -71,6 +71,8 @@ class UsersController < ApplicationController
 		end
 	end
 
+	
+
 	def create_promotion
 		user = User.find(params[:user_id])
 		if params[:level].present?
