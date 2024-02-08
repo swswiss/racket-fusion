@@ -1,5 +1,6 @@
 class UsernamesController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_blocked
 	before_action :authenticate_admin, only: [:index]
 	skip_before_action :redirect_to_username_form
 
@@ -10,6 +11,25 @@ class UsernamesController < ApplicationController
 			@pagy, @users = pagy(User.all,  items: 13)
 		end
 	end
+
+	def update_status
+    @user = User.find(params[:id])
+		current_status = @user.status
+
+		if current_status == 0 || current_status == nil
+			new_status = 1
+		else
+			new_status = 0
+		end
+    if @user.update(status: new_status)
+      # Assuming you have a `new_status` method defined somewhere, adjust this accordingly
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.replace(@user, partial: "user", locals: { user: @user }) }
+      end
+    else
+      # Handle errors if any
+    end
+  end
 
 	def new
 

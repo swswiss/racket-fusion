@@ -12,6 +12,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def authenticate_blocked
+    if current_user.status == 0 || current_user.status == nil 
+      flash[:alert] = "You don't have permission to perform this action."
+      redirect_to root_path
+    end
+  end
+
   def after_sign_in_path_for(resource)
     dashboard_path
   end

@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_blocked
 	before_action :authenticate_admin, only: [:create_promotion, :create_points]
 	before_action :authorize_user, only: [:show]
 

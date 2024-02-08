@@ -1,5 +1,6 @@
 class InvitationsController < ApplicationController
 	before_action :authenticate_user!
+    before_action :authenticate_blocked
 
     def index
         if false

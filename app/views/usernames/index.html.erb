@@ -15,18 +15,11 @@
 			<th><h7>Age</h7></th>
 			<th><h7>Phone</h7></th>
 			<th><h7>Level</h7></th>
+			<th><h7>Status</h7></th>
 		</tr>
 	</thead>
 	<tbody>
-		<% @users.each_with_index do |user, index| %>
-			<tr>
-			<td><font size="2px"><%= link_to user.username, user_path(user.id), class: 'user-link', data: { turbo_frame: "_top" } %></font></td>
-				<td><font size="2px"><%= user.email %></font></td>
-				<td><font size="2px"><%= user.calculate_age %></font></td>
-				<td><font size="2px"><%= user.phone %></font></td>
-				<td><font size="2px"><%= user.level %></font></td>
-			</tr>
-		<% end %>
+			<%= render @users %>
 	</tbody>
 </table>
 <%end%>
@@ -75,5 +68,9 @@
 }
 .page-item a.page-link {
     font-size: 11px; 
+}
+.btn-tiny {
+  padding: 0.2rem 0.5rem;
+  font-size: 0.7rem;
 }
 </style>

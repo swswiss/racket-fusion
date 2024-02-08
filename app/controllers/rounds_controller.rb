@@ -1,5 +1,6 @@
 class RoundsController < ApplicationController
 	before_action :authenticate_user!
+    before_action :authenticate_blocked
 	before_action :authenticate_admin, only: [:destroy, :print_rounds_medium]
 
 	def print_rounds_medium
@@ -14,7 +15,7 @@ class RoundsController < ApplicationController
 
 		@rounds_with_matches = {}
 		@rounds_medium.each do |round|
-			matches = round.matches.where(kind: "bracket") # Assuming you have a `has_many :matches` association in your Group model
+			matches = round.matches.where(kind: "bracket").order(created_at: :asc) # Assuming you have a `has_many :matches` association in your Group model
 			@rounds_with_matches[round] = matches
 		end
 

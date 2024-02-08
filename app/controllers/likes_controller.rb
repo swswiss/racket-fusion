@@ -1,5 +1,6 @@
 class LikesController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_blocked
 
 	def create
 		@like = current_user.likes.create(tweet: tweet)

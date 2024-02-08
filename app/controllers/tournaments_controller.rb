@@ -1,5 +1,6 @@
 class TournamentsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_blocked
 	before_action :authenticate_admin, only: [:create, :change_status_opened, :change_status_closed, :create_groups, :destroy]
 	require "pagy/extras/array"
 	require 'httparty'
@@ -25,6 +26,20 @@ class TournamentsController < ApplicationController
   end
 
 	def create_team
+		if !params[:user_id].present? || !params[:teammate_id].present? || !params[:level].present? 
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream do
+					render turbo_stream: turbo_stream.prepend('altceva') { 
+						"<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" style=\"position: fixed; top: 10px; right: 10px; width: 300px; display: inline-block;\">
+						<strong style=\"font-size: 12px;\">Ooops!</strong> <font style=\"font-size: 12px;\">Something went worng!</font>
+							<button type=\"button\" class=\"btn-close btn-sm\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+						</div>".html_safe
+					}
+				end
+			end
+			return nil
+		end
 		tournament = Tournament.find(params[:id])
 		@first_player = User.find(params[:user_id])
 		@second_player = User.find(params[:teammate_id])
@@ -35,8 +50,16 @@ class TournamentsController < ApplicationController
 		if team_is_existed.present?
 			respond_to do |format|
 				format.html { redirect_to dashboard_path }
-				format.turbo_stream
+				format.turbo_stream do
+					render turbo_stream: turbo_stream.prepend('altceva') { 
+						"<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" style=\"position: fixed; top: 10px; right: 10px; width: 300px; display: inline-block;\">
+						<strong style=\"font-size: 12px;\">Ooops!</strong> <font style=\"font-size: 12px;\">Something went worng!</font>
+							<button type=\"button\" class=\"btn-close btn-sm\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+						</div>".html_safe
+					}
+				end
 			end
+			return nil
 		else
 			if params[:level] == "Beginner"
 				lvl = "level_1"
@@ -59,6 +82,17 @@ class TournamentsController < ApplicationController
 					turbo_stream.replace("invitations",
 						partial: "registrations/teams_table",
 						locals: {registrations_current_user: @registrations_current_user, registrations_from_user: @registrations_from_user })
+		end
+		respond_to do |format|
+			format.html { redirect_to dashboard_path }
+			format.turbo_stream do
+				render turbo_stream: turbo_stream.prepend('altceva') { 
+					"<div class=\"alert alert-success alert-dismissible fade show\" role=\"alert\" style=\"position: fixed; top: 10px; right: 10px; width: 300px; display: inline-block;\">
+					<strong style=\"font-size: 12px;\">Great!</strong> <font style=\"font-size: 12px;\">You have just created a team!</font>
+						<button type=\"button\" class=\"btn-close btn-sm\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+					</div>".html_safe
+				}
+			end
 		end
 	end
 
@@ -232,9 +266,7 @@ class TournamentsController < ApplicationController
 	end
 
 	def create_groups
-		debugger
 		if params[:selected_players]&.length < 2
-			debugger
 			respond_to do |format|
 				format.html { redirect_to dashboard_path }
 				format.turbo_stream do
@@ -311,7 +343,7 @@ class TournamentsController < ApplicationController
 
 		@rounds_with_matches = {}
 		@rounds_medium.each do |round|
-			matches = round.matches.where(kind: "bracket") # Assuming you have a `has_many :matches` association in your Group model
+			matches = round.matches.where(kind: "bracket").order(created_at: :asc) # Assuming you have a `has_many :matches` association in your Group model
 			@rounds_with_matches[round] = matches
 		end
 

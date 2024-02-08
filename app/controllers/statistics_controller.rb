@@ -1,5 +1,6 @@
 class StatisticsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_blocked
 	require "pagy/extras/array"
 
 	def index
@@ -8,6 +9,7 @@ class StatisticsController < ApplicationController
 	end
 
 	def duel
+		@pagy, @matches_for_current_user = pagy(Match.for_current_user(current_user), items: 13)
 	end
 
 	def headtohead

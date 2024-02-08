@@ -1,5 +1,6 @@
 class BlogsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_blocked
 	before_action :authenticate_admin, only: [:create, :destroy]
 
 	def index
@@ -21,7 +22,7 @@ class BlogsController < ApplicationController
 
 		end
 	end
-	
+
 	def destroy
 		@blog = Blog.find(params[:id])
 		@blog.destroy

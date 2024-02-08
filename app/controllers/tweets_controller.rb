@@ -1,5 +1,6 @@
 class TweetsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_blocked
 	before_action :authenticate_admin, only: :destroy
 
 	def create

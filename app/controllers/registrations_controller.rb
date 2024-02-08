@@ -1,5 +1,6 @@
 class RegistrationsController < ApplicationController
 	before_action :authenticate_user!
+	before_action :authenticate_blocked
 	before_action :authenticate_admin, only: [:modify_waitlisted_users]
 
 	def invite

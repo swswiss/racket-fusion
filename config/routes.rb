@@ -54,8 +54,11 @@ Rails.application.routes.draw do
   get :dashboard, to: "dashboard#index"
   get :tournaments, to: "tournaments#index"
 
-  resources :usernames, only: [:new, :update, :index]
+  resources :usernames, only: [:new, :update, :index] do
+    patch 'update_status', on: :member
+  end
   resources :users, only: [:index, :show] do
+
     post 'create_promotion', on: :collection
     
     post 'create_points', on: :collection
