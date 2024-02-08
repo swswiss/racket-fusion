@@ -1,48 +1,127 @@
 
 <!-- <%= link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-lg' %> -->
 <!-- <%= link_to "Log In", new_user_session_path, class: 'btn btn-outline-primary btn-lg' %> -->
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar-bg p-0 sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><%= image_tag "racket_fusion.webp", width: "125" %></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-<nav class="navbar navbar-expand-lg navbar-dark custom-navbar-bg p-0">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#"><%= image_tag "racket_fusion.webp", width: "125" %></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-    
-      <div class="collapse navbar-collapse" id="navbarNavDropdown">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-2" href="#">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link mx-2" href="#">Pricing</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Company
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Blog</a></li>
-              <li><a class="dropdown-item" href="#">About Us</a></li>
-              <li><a class="dropdown-item" href="#">Contact us</a></li>
-            </ul>
-          </li>
-          <!-- Log In and Sign Up buttons -->
-          <li class="nav-item">
-            <%= link_to "Log In", new_user_session_path, class: 'nav-link mx-2' %>
-          </li>
-          <li class="nav-item">
-            <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link mx-2' %>
-          </li>
-        </ul>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="https://docs.google.com/forms/d/e/1FAIpQLSfTqTDKRlDb1pN9R8kBrLAn4qUD_oDmziY3GAYy6tYE2WzUWg/viewform">Shop</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="#">Blog</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Social
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="https://www.facebook.com/racketfusion/">Facebook</a></li>
+            <li><a class="dropdown-item" href="https://www.instagram.com/racketfusion/">Instagram</a></li>
+            <li><a class="dropdown-item" href="https://www.linkedin.com/company/racket-fusion/">Linkedin </a></li>
+            <li><a class="dropdown-item" href="https://api.whatsapp.com/send/?phone=400755451562&text&type=phone_number&app_absent=0">WhatsApp</a></li>
+          </ul>
+        </li>
+        <!-- Log In and Sign Up buttons -->
+        <li class="nav-item">
+          <%= link_to "Log In", new_user_session_path, class: 'nav-link mx-2' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link mx-2' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  <br>
+  <div id="carouselExampleCaptions" class="carousel slide" style="width: 100%; height: 550px;">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner" style="width: 100%; height: 500px;">
+    <div class="carousel-item active" style="width: 100%; height: 500px;">
+      <img src="<%= asset_path('carousel1.png') %>" class="d-block w-100" style="width: 100%; height: 500px;" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        <h5>Racket Fusion</h5>
+        <p>Scopul nostru este de a oferi posibilitatea de a juca tenis atât la nivel de hobby cât și competitiv tuturor persoanelor, indiferent de vârstă, la cele mai înalte standarde.</p>
       </div>
     </div>
-  </nav>
+    <div class="carousel-item" style="width: 100%; height: 500px;">
+    <img src="<%= asset_path('carousel2.jpeg') %>" class="d-block w-100" alt="...">
+    <div class="carousel-caption d-none d-md-block" style="position: absolute; top: 0; left: 0; width: 100%; color: black;">
+      <h5>Magazin Racket Fusion</h5>
+      <p>Vizitează acum noul nostru magazin online de unde poți achiziționa accesorii sportive marcă proprie.</p><br>
+      
+<a href="https://docs.google.com/forms/d/e/1FAIpQLSfTqTDKRlDb1pN9R8kBrLAn4qUD_oDmziY3GAYy6tYE2WzUWg/viewform" target="_blank" class="btn btn-lg tiny-button" style="background-color: #53B092;">Spre Magazin</a>
+
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<br>
+<center><h2>Racket Fusion - Turnee Tenis Iași</h2></center>
+<center>
+<div class="d-flex justify-content-center">
+<div class="card" style="width: 18rem;">
+  <img src="<%= asset_path('index3.jpeg') %>" class="card-img-top" style="width: 100%; height: 250px;" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Turnee simplu</h5>
+    <p class="card-text">
+    Turnee în formatul cunoscut: grupe + eliminatoriu.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<div class="card" style="width: 18rem; margin-right: 15px; margin-left: 15px;">
+  <img src="<%= asset_path('index1.avif') %>" class="card-img-top" style="width: 100%; height: 250px;" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Ligă</h5>
+    <p class="card-text">
+    Turnee in formatul ligă unde fiecare joacă cu fiecare acumulând puncte la victorie.</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+<div class="card" style="width: 18rem;">
+  <img src="<%= asset_path('index2.jpeg') %>" class="card-img-top" style="width: 100%; height: 250px;" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Turnee dublu</h5>
+    <p class="card-text">
+    Categoriile turneelor sunt: Începător, Mediu și Avansat</p>
+    <a href="#" class="btn btn-primary">Go somewhere</a>
+  </div>
+</div>
+</div>
+
+</center>
+
+
 
   <style>
+  @media (max-width: 199.98px) {
+    .carousel-caption {
+      display: none !important; /* Hide the caption on screens smaller than 200px */
+    }
+  }
+
+ 
+
   /* Custom style for the navbar background color */
   .custom-navbar-bg {
     background-color: rgb(167, 193, 176) !important;
