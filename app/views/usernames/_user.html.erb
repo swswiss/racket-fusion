@@ -12,5 +12,7 @@
 					<%= button_to "Free", update_status_username_path(user), method: :patch,class: 'btn btn-success btn-sm btn-tiny', remote: true, data: { turbo_method: :replace, turbo_frame: :user_results } %>
 				<%end%>
 				</td>
+				<td><%= button_to "Destroy", username_path(user), method: :delete, class: 'btn btn-danger btn-sm btn-tiny', remote: true, data: { turbo_method: :replace, turbo_frame: :user_results }, form: { 'data-turbo-confirm': "Are you sure you want to delete this User?" } %>
+				</td>
 			</tr>
 			

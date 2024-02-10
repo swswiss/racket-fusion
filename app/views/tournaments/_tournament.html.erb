@@ -87,9 +87,14 @@
 				<span class="fw-bolder"><%= %></span> 
 				<span class="text-muted">
 					@<%= tournament_presenter.tournament.status == true ? "Tournament is opened" : "Tournament is closed" %> <%= tournament_presenter.created_at %></span>
-				
+					<% if tournament_presenter.tournament.double == true %>
+						<span class="badge rounded-pill text-bg-secondary" style="font-size: 0.59rem;">Double</span>
+						<%else%>
+						<span class="badge rounded-pill text-bg-secondary" style="font-size: 0.59rem;">Single</span>
+						<% end %>
+	
 			</p>
-			<br>
+			
 			<p class="text-muted">Start Sign Ups: <%= tournament_presenter.tournament.start_datetime %><br>
 			Finish Sign Ups: <%= tournament_presenter.tournament.finish_datetime %><br>
 			<%if @weather%>

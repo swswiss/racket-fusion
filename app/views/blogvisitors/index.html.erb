@@ -1,0 +1,132 @@
+<nav class="navbar navbar-expand-lg navbar-dark custom-navbar-bg p-0 sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><%= image_tag "racket_fusion.webp", width: "125" %></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link mx-2" href="https://docs.google.com/forms/d/e/1FAIpQLSfTqTDKRlDb1pN9R8kBrLAn4qUD_oDmziY3GAYy6tYE2WzUWg/viewform">Shop</a>
+        </li>
+        <li class="nav-item">
+        <a class="nav-link mx-2" href="<%= blogvisitors_path %>">Blog</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Social
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" href="https://www.facebook.com/racketfusion/">Facebook</a></li>
+            <li><a class="dropdown-item" href="https://www.instagram.com/racketfusion/">Instagram</a></li>
+            <li><a class="dropdown-item" href="https://www.linkedin.com/company/racket-fusion/">Linkedin </a></li>
+            <li><a class="dropdown-item" href="https://api.whatsapp.com/send/?phone=400755451562&text&type=phone_number&app_absent=0">WhatsApp</a></li>
+          </ul>
+        </li>
+        <!-- Log In and Sign Up buttons -->
+        <li class="nav-item">
+          <%= link_to "Log In", new_user_session_path, class: 'nav-link mx-2' %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign Up", new_user_registration_path, class: 'nav-link mx-2' %>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<br>
+<center>
+<img src="<%= asset_path('carousel1.png') %>" class="d-block w-100" style="width: 100%; height: 350px;" alt="...">
+<br>
+
+
+
+
+
+<div class="blog-list">
+  <% @blogs.each do |blog| %>
+    <div class="card ">
+  
+  <div class="card-body">
+    <h5 class="card-title">Special title treatment</h5>
+    <p class="card-text"><%= truncate(strip_tags(blog.body.to_plain_text), length: 500, separator: ' ') %></p>
+    <% if blog.body.to_plain_text.length > 200 %>
+            <%= link_to "Read more", blogvisitor_path(blog) %>
+           
+          <% end %>
+
+  </div>
+  <div class="card-footer text-body-secondary card-footer-custom ">
+    <%=time_ago_in_words(blog.created_at) %> ago
+  </div>
+</div>
+    <br>
+  <% end %>
+</div>
+</center>
+<div class="d-flex justify-content-center ">
+  		<%== pagy_bootstrap_nav(@pagy) %>
+		</div>
+
+
+
+<style>
+
+.blog-content a {
+    color: #007bff; /* Link color */
+    text-decoration: none; /* Underline the links */
+  }
+
+  .blog-content a:hover {
+    color: #0056b3; /* Link color on hover */
+  }
+
+.col-7 {
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+  .card {
+    width: 900px; /* Set the desired height */
+    overflow: hidden; /* Hide overflowing content */
+  }
+
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+/* Style the submit button */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+</style>
+
+
+
+<style>
+@media (max-width: 199.98px) {
+  .carousel-caption {
+    display: none !important; /* Hide the caption on screens smaller than 200px */
+  }
+}
+
+
+
+/* Custom style for the navbar background color */
+.custom-navbar-bg {
+  background-color: rgb(167, 193, 176) !important;
+}
+</style>

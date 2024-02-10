@@ -54,7 +54,7 @@ Rails.application.routes.draw do
   get :dashboard, to: "dashboard#index"
   get :tournaments, to: "tournaments#index"
 
-  resources :usernames, only: [:new, :update, :index] do
+  resources :usernames, only: [:new, :update, :index, :destroy] do
     patch 'update_status', on: :member
   end
   resources :users, only: [:index, :show] do
@@ -92,4 +92,8 @@ Rails.application.routes.draw do
   resources :invitations
   post '/receive_data', to: 'invitations#receive_data'
   resources :blogs
+
+  resources :blogvisitors do
+    get 'index', on: :collection
+  end
 end

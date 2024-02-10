@@ -1,15 +1,18 @@
 class BlogsController < ApplicationController
 	before_action :authenticate_user!
 	before_action :authenticate_blocked
-	before_action :authenticate_admin, only: [:create, :destroy]
+	before_action :authenticate_admin, only: [:index, :show, :create, :destroy]
 
 	def index
 		@blogs = Blog.all
 	end
 
+	def index_for_visitors
+		@blogs = Blog.all
+	end
+
 	def show
 		@blog = Blog.find(params[:id])
-		
 	end
 
 	def create

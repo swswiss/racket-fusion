@@ -5,8 +5,8 @@
 
   <% navbar_links = [
   { path: dashboard_path, image: "home.png", text: "Home" },
-	{ path: dashboard_path, image: "online-video.png", text: "Guide" },
-	{ path: blogs_path, image: "newspaper.png", text: "Blog" },
+	#{ path: dashboard_path, image: "online-video.png", text: "Guide" },
+	#{ path: blogs_path, image: "newspaper.png", text: "Blog" },
 	{ path: user_path(current_user.id), image: "user.png", text: "Profile" },
   { path: new_username_path, image: "profile_settings.png", text: "Settings" },
 	#{ path: invitations_path, image: "pair.png", text: "Invite" },
@@ -88,6 +88,15 @@
           <%= image_tag "group.png", width: "27" %>
         </span>
         All Players
+      </div>
+    <% end %>
+
+		<%= link_to blogs_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag "newspaper.png", width: "27" %>
+        </span>
+        Blogs
       </div>
     <% end %>
 
