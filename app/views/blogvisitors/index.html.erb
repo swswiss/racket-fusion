@@ -41,12 +41,13 @@
 
 <br>
 <center>
-<img src="<%= asset_path('carousel1.png') %>" class="d-block w-100" style="width: 100%; height: 350px;" alt="...">
+<div style="position: relative;">
+  <img src="<%= asset_path('carousel1.png') %>" class="d-block w-100" style="width: 100%; height: 500px;" alt="...">
+  <div style="position: absolute; top: 20%; left: 50%; transform: translate(-50%, -50%); color: white; text-align: center; background-color: rgba(0, 0, 0, 0.3); padding: 20px;">
+    <h2>Blog Racket Fusion</h2>
+  </div>
+</div>
 <br>
-
-
-
-
 
 <div class="blog-list">
   <% @blogs.each do |blog| %>
@@ -117,6 +118,16 @@
 
 
 <style>
+.page-item a.page-link {
+    color: #28a745;
+}
+.page-item.active a.page-link {
+    background-color: white;
+    border-color: #6c757d;
+}
+.page-item a.page-link {
+    font-size: 11px; 
+}
 @media (max-width: 199.98px) {
   .carousel-caption {
     display: none !important; /* Hide the caption on screens smaller than 200px */

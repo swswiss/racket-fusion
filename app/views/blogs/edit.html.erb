@@ -1,0 +1,18 @@
+<div class="col-7">
+<h1>Edit Blog Post</h1>
+
+<%= form_with(model: @blog, local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label :body, class: "control-label" %>
+    <%= form.rich_text_area :body, class: "form-control", id: "blog_body", value: @blog.body %>
+  </div>
+
+  <%= form.submit "Update Blog", class: "btn btn-primary" %>
+<% end %>
+
+
+</div>
+<div class="col">
+
+</div>
+

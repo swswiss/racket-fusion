@@ -8,17 +8,18 @@
             <p class="card-text">
               <%= truncate(strip_tags(blog.body.to_plain_text), length: 500, separator: ' ') %>
               <% if current_user.admin? %>
-                <%= button_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+                <%= button_to 'Destroy', blog, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+                <%= link_to 'Edit', edit_blog_path(blog), class: 'btn btn-warning btn-sm' %>
               <% end %>
             </p>
             <% if blog.body.to_plain_text.length > 200 %>
               <%= link_to "Read more", blog_path(blog) %>
              
             <% end %>
+            
           </div>
         </div>
       </div>
       <br>
     <% end %>
   </div>
-
