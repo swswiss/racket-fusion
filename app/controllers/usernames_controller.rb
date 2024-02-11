@@ -1,6 +1,5 @@
 class UsernamesController < ApplicationController
 	before_action :authenticate_user!
-	before_action :authenticate_blocked
 	before_action :authenticate_admin, only: [:index, :update_status, :destroy]
 	skip_before_action :redirect_to_username_form
 
