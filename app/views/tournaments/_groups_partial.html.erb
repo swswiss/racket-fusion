@@ -1,6 +1,21 @@
 <% if params[:action] == "print_groups_medium" %>
     <%= image_tag wicked_pdf_asset_base64('fusion.png'), width: "135" %><br>
 <% end %>
+<% if params[:action] != "print_groups_medium" %>
+<div class="modal fade" id="add_match" tabindex="-1" aria-labelledby="add_match" aria-hidden="true">
+<div class="modal-dialog modal-sm"> 
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<%= render "shared/add_match", tournament: @tournament %>
+		</div>
+	</div>
+</div>
+</div>
+<%end%>
+<%= turbo_frame_tag "groupsss" do %>
 <center><% @groups_with_matches.each_with_index do |(group, matches), index| %>
     <%= turbo_frame_tag "group_#{group.id}" do %>
         <h7>Group <%= (index + 'A'.ord).chr + " "+ group.id.to_s %></h7>
@@ -16,8 +31,13 @@
             <%= link_to csv_groups_medium_group_path(group, format: :xlsx), method: :get, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
                 <%= image_tag "csv.png", width: "17" %>
             <% end %>
+            <%= link_to add_match_to_group_groups_path, method: :post, data: { turbo_method: :post, bs_toggle: "modal", bs_target: "#add_match" }, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
+                <%= image_tag "add.png", width: "17" %>   
+            <% end %>
             <% end %>
         <% end %>
+
+       
 
         <%= form_tag update_scores_group_group_path(group), method: :post, remote: true do %>
             <table class="tournament-table">
@@ -81,6 +101,7 @@
     <% end %>
 <% end %>
 </center>
+<% end %>
 <br>
 
 		<% if @data.present? %>

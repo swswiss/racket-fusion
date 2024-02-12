@@ -13,12 +13,13 @@ class UsernamesController < ApplicationController
 
 	def destroy
 		@user = User.find(params[:id])
-		@user.destroy
 		regs = @user.registrations.pluck(:id)
+		debugger
 		matches = Match.where(first_player: regs)
-		macthes.delete_all if matches.present?
+		matches.delete_all if matches.present?
 		matches = Match.where(second_player: regs)
-		macthes.delete_all if matches.present?
+		matches.delete_all if matches.present?
+		@user.destroy
 		respond_to do |format|
 			format.turbo_stream { render turbo_stream: turbo_stream.remove(@user) }
 		end

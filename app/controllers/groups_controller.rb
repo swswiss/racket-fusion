@@ -184,5 +184,57 @@ class GroupsController < ApplicationController
       format.html { redirect_to groups_path, notice: 'Group was successfully destroyed.' }
     end
 	end
+
+	def add_match_to_group
+		if params[:group_id].present? && params[:first_player].present? && params[:second_player].present?
+			group = Group.find(params[:group_id])
+			tournament = group.tournament
+			registrations_first = tournament.registrations.where(user_id: params[:first_player]).first.id
+			registrations_second = tournament.registrations.where(user_id: params[:second_player]).first.id
+		else
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream do
+					render turbo_stream: turbo_stream.prepend('interesant') { 
+						"<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" style=\"position: fixed; top: 10px; right: 10px; width: 300px; display: inline-block;\">
+						<strong style=\"font-size: 12px;\">Ooops!</strong> <font style=\"font-size: 12px;\">Something went worng!</font>
+							<button type=\"button\" class=\"btn-close btn-sm\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+						</div>".html_safe
+					}
+				end
+			end
+			return nil
+		end
+		if registrations_first.present? && registrations_second.present? && tournament.present?
+			match = Match.create(first_player: registrations_first, second_player: registrations_second, 
+														group_id: group.id, tournament: tournament, level: group.level, kind: "group")
+			@groups_medium = tournament.groups.where(level: "level_2")
+
+			@groups_with_matches = {}
+			@groups_medium.each do |group|
+				matches = group.matches.where(kind: "group") # Assuming you have a `has_many :matches` association in your Group model
+				@groups_with_matches[group] = matches
+			end
+			@tournament = tournament
+			render turbo_stream: 
+				turbo_stream.replace("groupsss",
+					partial: "tournaments/groups_partial",
+					locals: { groups_with_matches: @groups_with_matches, tournament: @tournament})
+		else
+			respond_to do |format|
+				format.html { redirect_to dashboard_path }
+				format.turbo_stream do
+					render turbo_stream: turbo_stream.prepend('interesant') { 
+						"<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" style=\"position: fixed; top: 10px; right: 10px; width: 300px; display: inline-block;\">
+						<strong style=\"font-size: 12px;\">Ooops!</strong> <font style=\"font-size: 12px;\">Something went worng!</font>
+							<button type=\"button\" class=\"btn-close btn-sm\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+						</div>".html_safe
+					}
+				end
+			end
+			return nil
+		end
+		
+	end
 end
   

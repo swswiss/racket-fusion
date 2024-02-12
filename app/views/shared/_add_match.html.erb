@@ -1,0 +1,25 @@
+
+<% if flash[:notice].present? %>
+  <div class="alert alert-success">
+    <%= flash[:notice] %>
+  </div>
+<% end %>
+
+<% regs_users = tournament.registrations.where(level_registration: "level_2").pluck(:user_id) %>
+<% regs = tournament.registrations.where(level_registration: "level_2").pluck(:id) %>
+
+<% users = User.where(id: regs_users) %>
+
+<% groups = tournament.groups.pluck(:id) %>
+
+<%= form_tag add_match_to_group_groups_path, method: :post, class: "w-100" do %>
+	<%= select_tag "first_player", options_from_collection_for_select(User.where(id: users), "id", "username"), prompt: "Select User", class: "form-control w-100 mb-2" %>
+    <center><%= image_tag "friends.png", width: "29",class: " mb-1" %></center>
+    <%= select_tag "second_player", options_from_collection_for_select(User.where(id: users), "id", "username"), prompt: "Select User", class: "form-control w-100 mb-2" %>
+    <br>
+    <%= select_tag "group_id", options_from_collection_for_select(Group.where(id: groups), "id", "id"), prompt: "Select Group", class: "form-control w-100 mb-2" %>
+  
+	<div class="d-flex justify-content-end">
+	  <%= submit_tag "Generate Team", class: "btn btn-sm btn-twitter rounded-pill" %>
+	</div>
+<% end %>

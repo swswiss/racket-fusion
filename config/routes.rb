@@ -74,6 +74,9 @@ Rails.application.routes.draw do
       get 'print_groups_medium'
       get 'csv_groups_medium'
     end
+    collection do
+      post 'add_match_to_group'
+    end
   end
 
   resources :rounds, except: [:show] do

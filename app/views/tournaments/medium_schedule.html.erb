@@ -1,7 +1,10 @@
+
 <div class="col-7" style="overflow-x: auto;">
 	<%= turbo_frame_tag dom_id(@tournament) do %>
 		<div class="some_container_id"></div>
 	<%end%>
+	<%= turbo_frame_tag "interesant" do %>
+		<%end%>
 
 	<%= link_to tournament_path(params[:id]) do %>
   <%= image_tag "back.png", alt: "Back", width: "30", height: "30" %>
