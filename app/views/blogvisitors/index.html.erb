@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ms-auto">
         <li class="nav-item">
-          <a class="nav-link mx-2 active" aria-current="page" href="#">Home</a>
+          <a class="nav-link mx-2 active" aria-current="page" href="<%= root_path %>">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link mx-2" href="https://docs.google.com/forms/d/e/1FAIpQLSfTqTDKRlDb1pN9R8kBrLAn4qUD_oDmziY3GAYy6tYE2WzUWg/viewform">Shop</a>
@@ -74,10 +74,60 @@
   		<%== pagy_bootstrap_nav(@pagy) %>
 		</div>
 
-
-
+<br>
+        <footer class="footer custom-bg-color">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+              <ul class="list-unstyled custom-text-color">
+              <br>
+              <li>DESPRE NOI</li>
+                <li>Racket Fusion este o platformă online care are în vedere organizarea competițiilor în domeniul sporturilor cu rachetă.</li>
+                <li>Noi suntem cei care ne ocupăm de intermedierea relațiilor dintre persoanele fizice și bazele sportive, dintre pasionații de sport, fie ei amatori sau semi-profesioniști, respectând conceptul de „Minte sănătoasă, într-un corp sănătos”.</li>
+                <li class="text-white">ANPC</li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+            <br>
+              <ul class="list-unstyled custom-text-color">
+              <li>Racket Fusion</li>
+              <li><img src="<%= asset_path('phone-call.png') %>"  style=" height: 15px;" alt="..."> 0755 451 562</li>
+              <li><img src="<%= asset_path('point.png') %>"  style=" height: 17px;" alt="..."> Iași, Str. Ovidiu, nr. 3</li>
+              <li><img src="<%= asset_path('email.png') %>"  style=" height: 17px;" alt="..."> info@racketfusion.ro</li>
+              </ul>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+            <br>
+        <h5 class="text-white">Contact Us</h5>
+        <form action="/send_email" method="post">
+          <!-- Email Address Input -->
+          <div class="mb-1">
+            <label for="email" class="form-label text-white">Email address</label>
+            <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp" required>
+            <div id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</div>
+          </div>
+          <!-- Message Input -->
+          <div class="mb-1">
+            <label for="message" class="form-label text-white">Message</label>
+            <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
+          </div>
+          <!-- Submit Button -->
+          <button type="submit" class="btn btn-primary">Send</button>
+        </form>
+      </div>
+          </div>
+        </div>
+      </footer>
+      <footer class="small-footer bg-dark text-white text-center py-2">
+  ©2023 Toate drepturile rezervate.
+</footer>
 <style>
-
+.custom-bg-color {
+  background-color: #1a1a1a;
+}
+.custom-text-color li {
+  color: #666666;
+}
 .blog-content a {
     color: #007bff; /* Link color */
     text-decoration: none; /* Underline the links */
