@@ -31,8 +31,10 @@
             <%= link_to csv_groups_medium_group_path(group, format: :xlsx), method: :get, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
                 <%= image_tag "csv.png", width: "17" %>
             <% end %>
+            <%if @tournament.double == false%>
             <%= link_to add_match_to_group_groups_path, method: :post, data: { turbo_method: :post, bs_toggle: "modal", bs_target: "#add_match" }, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
                 <%= image_tag "add.png", width: "17" %>   
+            <% end %>
             <% end %>
             <% end %>
         <% end %>
