@@ -121,7 +121,7 @@
     <img src="<%= asset_path('decathlon.png') %>"  style="width: 320px; height: 130px;" alt="...">
     </div>
     <div class="col">
-    <h3>Dacă ați fost mulțumiți, nu uitați să apăsați butonul Like și să le împărtășiți prietenilor.</h3>
+    <h4>Dacă ați fost mulțumiți, nu uitați să apăsați butonul Like și să le împărtășiți prietenilor.</h4>
     <img src="<%= asset_path('facebook.png') %>"  style="width: 29px; height: 29px;" alt="...">
     <img src="<%= asset_path('instagram.png') %>"  style="width: 29px; height: 29px;" alt="...">
     <img src="<%= asset_path('linkedin.png') %>"  style="width: 29px; height: 29px;" alt="...">
@@ -177,7 +177,7 @@
       <textarea class="form-control" id="message" name="message" rows="4" required></textarea>
     </div>
     <!-- Submit Button -->
-    <button type="submit" class="btn btn-primary">Send</button>
+    <button type="submit" class="btn btn-primary btn-send">Send</button>
   </form>
 </div>
     </div>
@@ -208,5 +208,24 @@
   /* Custom style for the navbar background color */
   .custom-navbar-bg {
     background-color: rgb(167, 193, 176) !important;
+  }
+
+  /* Custom styles to make form elements tiny */
+  .form-label,
+  .form-control {
+    font-size: 13px; /* Adjust the font size as needed */
+  }
+  /* Optional: Adjust padding and margin to make elements compact */
+  .form-control {
+    padding: 0.15rem 0.3rem;
+    margin-bottom: 0.1rem;
+  }
+  /* Optional: Make the form text muted smaller */
+  .form-text {
+    font-size: 8px; /* Adjust the font size as needed */
+  }
+  .btn-send {
+    font-size: 13px; /* Adjust the font size as needed */
+    padding: 0.25rem 0.5rem; /* Adjust padding as needed */
   }
 </style>

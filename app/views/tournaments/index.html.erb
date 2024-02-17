@@ -4,7 +4,7 @@
 	</div>
 	<%= form_with(url: tournaments_path, method: :get, data: { turbo_frame: :tournament_results }) do |form| %>
 		<div class="mb-3">
-			<%= form.label :name, class: "form-label" %>
+			<%= form.label :search_by_name, class: "form-label" %>
 			<%= form.text_field :name, class: "form-control", oninput: 'this.form.requestSubmit()'%>
 		</div>
 	<% end %>
