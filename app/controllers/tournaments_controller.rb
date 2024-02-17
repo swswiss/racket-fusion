@@ -7,11 +7,21 @@ class TournamentsController < ApplicationController
 	
 
 	def index
-		@pagy, @all_tournaments = pagy_array(Tournament.where(league: false).includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
-			TournamentPresenter.new(tournament: tournament, current_user: current_user)
-		end,
-		items: 5
-		)
+		
+		if params[:name].present?
+			@pagy, @all_tournaments = pagy_array(Tournament.search_by_name(params[:name]).where(league: false).includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
+				TournamentPresenter.new(tournament: tournament, current_user: current_user)
+			end,
+			items: 5
+			)
+		else
+			@pagy, @all_tournaments = pagy_array(Tournament.where(league: false).includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
+				TournamentPresenter.new(tournament: tournament, current_user: current_user)
+			end,
+			items: 5
+			)
+		end
+
 		city = 'Iasi'
 		api_key = '8391a6cc0b0ad7ddc8ec7fedf25c5a39'
 

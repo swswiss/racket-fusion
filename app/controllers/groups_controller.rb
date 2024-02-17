@@ -16,6 +16,25 @@ class GroupsController < ApplicationController
 				@rounds_with_matches[round] = matches
 			end
 		end
+		pattern = /\A(\d-\d\s){1,2}\d-\d\z/
+  
+		params[:match_scores].each do |_, score|
+			if !!(score =~ pattern) == false
+				debugger
+				respond_to do |format|
+					format.html { redirect_to dashboard_path }
+					format.turbo_stream do
+						render turbo_stream: turbo_stream.prepend('interesant') { 
+							"<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\" style=\"position: fixed; top: 10px; right: 10px; width: 300px; display: inline-block;\">
+							<strong style=\"font-size: 12px;\">Ooops!</strong> <font style=\"font-size: 12px;\">There is an invalid score!</font>
+								<button type=\"button\" class=\"btn-close btn-sm\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
+							</div>".html_safe
+						}
+					end
+				end
+				return nil
+			end
+		end
 
 		params[:match_scores].each do |match_id, score|
 			match = Match.find(match_id)

@@ -1,6 +1,8 @@
 class Tournament < ApplicationRecord
   include ActionView::Helpers::DateHelper
 	include Rails.application.routes.url_helpers
+  include PgSearch::Model
+  pg_search_scope :search_by_name, against: [:name], using: { tsearch: { prefix: true } }
 
   belongs_to :user
   has_many :registrations, dependent: :destroy

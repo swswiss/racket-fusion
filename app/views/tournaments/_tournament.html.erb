@@ -4,7 +4,7 @@
 <% end %>
 <% end %>
 
-<%= link_to tournament_path(tournament_presenter.tournament), class: "btn  btn-sm float-end", remote: true do %>
+<%= link_to tournament_path(tournament_presenter.tournament), class: "btn  btn-sm float-end", data: { turbo_frame: "_top" },remote: true do %>
 	<%= image_tag "menu.png", width: "23" %>
 <%end%>
 <% if current_user.admin? %>

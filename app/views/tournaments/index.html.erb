@@ -2,10 +2,19 @@
 	<div class = "mb-3">
 		<%= link_to "Events", tournaments_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
 	</div>
-
+	<%= form_with(url: tournaments_path, method: :get, data: { turbo_frame: :tournament_results }) do |form| %>
+		<div class="mb-3">
+			<%= form.label :name, class: "form-label" %>
+			<%= form.text_field :name, class: "form-control", oninput: 'this.form.requestSubmit()'%>
+		</div>
+	<% end %>
+	
 	<div id = "tournaments" >
+	<%= turbo_frame_tag :tournament_results do %>
 		<%= render partial: "tournaments/tournament", collection: @all_tournaments, as: :tournament_presenter %>
+		<%end%>
 	</div>
+	
 
 	<div class="d-flex justify-content-center ">
   		<%== pagy_bootstrap_nav(@pagy) %>

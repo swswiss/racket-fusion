@@ -55,7 +55,7 @@
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1" style="padding: 5px;">
-          Beginner <span style="position: absolute; right: 35px;"><%= @players_lvl_beginner.count %></span>
+          Beginner <span class="badge bg-secondary" style="position: absolute; right: 35px; color: white; font-size: 9px;"><%= @players_lvl_beginner.count %></span>
         </button>
       </h2>
       <div id="collapseOne1" class="accordion-collapse collapse " data-bs-parent="#accordionExample1">
@@ -98,7 +98,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2" style="padding: 5px;">
-      Medium <span style="position: absolute; right: 35px;"><%= @players_lvl_medium.count %></span>
+      Medium <span class="badge bg-secondary" style="position: absolute; right: 35px; color: white; font-size: 9px;"><%= @players_lvl_medium.count %></span>
       </button>
     </h2>
     <div id="collapseOne2" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
@@ -145,7 +145,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne3" aria-expanded="true" aria-controls="collapseOne3" style="padding: 5px;">
-       Medium Plus <span style="position: absolute; right: 35px;"><%= @players_lvl_mediumplus.count %></span>
+       Medium Plus <span class="badge bg-secondary" style="position: absolute; right: 35px; color: white; font-size: 9px;"><%= @players_lvl_mediumplus.count %></span>
       </button>
     </h2>
     <div id="collapseOne3" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
@@ -192,7 +192,7 @@
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne4" aria-expanded="true" aria-controls="collapseOne4" style="padding: 5px;">
-       Expert <span style="position: absolute; right: 35px;"><%= @players_lvl_expert.count %></span>
+       Expert <span class="badge bg-secondary" style="position: absolute; right: 35px; color: white; font-size: 9px;"><%= @players_lvl_expert.count %></span>
       </button>
     </h2>
     <div id="collapseOne4" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
@@ -239,7 +239,8 @@
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true" aria-controls="collapseOne5" style="padding: 5px; position: relative;">
-       WaitListed <span style="position: absolute; right: 35px;"><%= @players_lvl_waitlisted.count %></span>
+  
+       WaitListed <span class="badge bg-secondary" style="position: absolute; right: 35px; color: white; font-size: 9px;"><%= @players_lvl_waitlisted.count %></span>
        
       </button>
     </h2>
@@ -258,15 +259,18 @@
             <%= link_to User.find(user_id).username, user_path(user_id), class: 'user-link', data: { turbo_frame: "_top" } %>
             <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
             <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
+            <%= time_ago_in_words(id_reg.created_at)%>
 
           <% else %>
             <%= User.find(user_id).username %>
             <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
             <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
+            <%= time_ago_in_words(id_reg.created_at)%>
           <% end %>
 
         <% else %>
           <%= id_reg.name %>
+          <%= time_ago_in_words(id_reg.created_at)%>
         <% end %>
         </font>
         </label>
