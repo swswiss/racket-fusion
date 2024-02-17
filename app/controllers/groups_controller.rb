@@ -20,7 +20,6 @@ class GroupsController < ApplicationController
   
 		params[:match_scores].each do |_, score|
 			if !!(score =~ pattern) == false
-				debugger
 				respond_to do |format|
 					format.html { redirect_to dashboard_path }
 					format.turbo_stream do
