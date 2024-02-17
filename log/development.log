@@ -1,0 +1,200 @@
+Started GET "/users" for ::1 at 2024-02-18 01:27:24 +0200
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as HTML
+Completed 401 Unauthorized in 6ms (ActiveRecord: 0.0ms | Allocations: 3611)
+
+
+Started POST "/users/sign_in" for ::1 at 2024-02-18 01:27:25 +0200
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"JYG6zpPVj3g3BhrmfRzZ2HVGSffQ1P9Ibcr2P0FO98Ae7yrasKsOtH0Zg23/DsU/dtmYT23haK3gr3RZBV39gA==", "user"=>{"email"=>"silviu@yahoo.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Log in"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."email" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["email", "silviu@yahoo.com"], ["LIMIT", 1]]
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 160ms (ActiveRecord: 12.2ms | Allocations: 41296)
+
+
+Started GET "/dashboard" for ::1 at 2024-02-18 01:27:26 +0200
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTweet Load (3.0ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets" ORDER BY "tweets"."created_at" DESC[0m
+  [1m[36mLike Load (0.7ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."tweet_id" = $1[0m  [["tweet_id", 362]]
+  [1m[36mBookmark Load (0.5ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."tweet_id" = $1[0m  [["tweet_id", 362]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  [1m[36mTournament Load (1.8ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" ORDER BY "tournaments"."created_at" DESC[0m
+  [1m[36mRegistration Load (2.4ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" IN ($1, $2, $3)[0m  [["tournament_id", 137], ["tournament_id", 136], ["tournament_id", 135]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3, $4, $5)[0m  [["id", 28], ["id", 5], ["id", 12], ["id", 25], ["id", 21]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  Rendering layout layouts/application.html.erb
+  Rendering dashboard/index.html.erb within layouts/application
+  Rendered shared/_tweet_form.html.erb (Duration: 1.3ms | Allocations: 884)
+  Rendered collection of tweets/_tweet.html.erb [1 times] (Duration: 201.8ms | Allocations: 415360)
+  Rendered dashboard/index.html.erb within layouts/application (Duration: 204.8ms | Allocations: 417166)
+  Rendered shared/_flashes.html.erb (Duration: 0.5ms | Allocations: 177)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.4ms | Allocations: 342)
+  Rendered shared/_tournament_form.html.erb (Duration: 5.1ms | Allocations: 5349)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 2.1ms | Allocations: 2014)
+  Rendered shared/_create_blog.html.erb (Duration: 18.3ms | Allocations: 11715)
+  Rendered shared/_sidebar.html.erb (Duration: 34.4ms | Allocations: 33543)
+  Rendered layout layouts/application.html.erb (Duration: 251.0ms | Allocations: 467271)
+Completed 200 OK in 315ms (Views: 245.4ms | ActiveRecord: 29.8ms | Allocations: 510831)
+
+
+Started GET "/tournaments" for ::1 at 2024-02-18 01:27:28 +0200
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TournamentsController#index as HTML
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.8ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."league" = $1 ORDER BY "tournaments"."created_at" DESC[0m  [["league", false]]
+  [1m[36mRegistration Load (0.5ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" IN ($1, $2, $3)[0m  [["tournament_id", 137], ["tournament_id", 136], ["tournament_id", 135]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3, $4, $5)[0m  [["id", 28], ["id", 5], ["id", 12], ["id", 25], ["id", 21]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/index.html.erb within layouts/application
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_1"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_2"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_3"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_4"]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_4"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_4"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments"[0m
+  Rendered shared/_update_tournament.html.erb (Duration: 3.7ms | Allocations: 4931)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.0ms | Allocations: 3380)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.0ms | Allocations: 3380)
+  [1m[36mRegistration Load (0.3ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_4"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_4"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments"[0m
+  Rendered shared/_update_tournament.html.erb (Duration: 1.3ms | Allocations: 3396)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.1ms | Allocations: 3381)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.0ms | Allocations: 3381)
+  [1m[36mRegistration Load (0.4ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 135], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 135], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 135], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 135], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 135], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 135], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 135], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 135], ["level_registration", "level_4"]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments"[0m
+  Rendered shared/_update_tournament.html.erb (Duration: 3.3ms | Allocations: 3384)
+  Rendered shared/_update_tournament.html.erb (Duration: 7.2ms | Allocations: 3367)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.6ms | Allocations: 3367)
+  Rendered collection of tournaments/_tournament.html.erb [3 times] (Duration: 206.4ms | Allocations: 423167)
+  Rendered tournaments/index.html.erb within layouts/application (Duration: 220.2ms | Allocations: 444053)
+  Rendered shared/_tweet_form.html.erb (Duration: 8.7ms | Allocations: 5886)
+  Rendered shared/_tournament_form.html.erb (Duration: 1.7ms | Allocations: 3982)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.8ms | Allocations: 2013)
+  Rendered shared/_create_blog.html.erb (Duration: 18.3ms | Allocations: 11310)
+  Rendered shared/_sidebar.html.erb (Duration: 37.0ms | Allocations: 37444)
+  Rendered layout layouts/application.html.erb (Duration: 266.2ms | Allocations: 497726)
+Completed 200 OK in 334ms (Views: 250.2ms | ActiveRecord: 36.8ms | Allocations: 541357)
+
+
+Started GET "/tournaments?utf8=%E2%9C%93&name=s" for ::1 at 2024-02-18 01:27:30 +0200
+Processing by TournamentsController#index as HTML
+  Parameters: {"utf8"=>"✓", "name"=>"s"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (14.3ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" INNER JOIN (SELECT "tournaments"."id" AS pg_search_id, (ts_rank((to_tsvector('simple', coalesce("tournaments"."name"::text, ''))), (to_tsquery('simple', ''' ' || 's' || ' ''' || ':*')), 0)) AS rank FROM "tournaments" WHERE ((to_tsvector('simple', coalesce("tournaments"."name"::text, ''))) @@ (to_tsquery('simple', ''' ' || 's' || ' ''' || ':*')))) AS pg_search_1953e64568644e6670e345 ON "tournaments"."id" = pg_search_1953e64568644e6670e345.pg_search_id WHERE "tournaments"."league" = $1 ORDER BY pg_search_1953e64568644e6670e345.rank DESC, "tournaments"."id" ASC, "tournaments"."created_at" DESC[0m  [["league", false]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1[0m  [["tournament_id", 137]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  Rendering tournaments/index.html.erb
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_1"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_3"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_4"]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_4"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_4"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments"[0m
+  Rendered shared/_update_tournament.html.erb (Duration: 1.2ms | Allocations: 3410)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.0ms | Allocations: 3380)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.0ms | Allocations: 3380)
+  Rendered collection of tournaments/_tournament.html.erb [1 times] (Duration: 14.5ms | Allocations: 23784)
+  Rendered tournaments/index.html.erb (Duration: 15.0ms | Allocations: 25110)
+Completed 200 OK in 34ms (Views: 13.7ms | ActiveRecord: 16.6ms | Allocations: 28990)
+
+
+Started GET "/%3C%=%20asset_path('oops.png')%20%%3E" for ::1 at 2024-02-18 01:33:11 +0200
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/%3C%=%20asset_path('oops.png')%20%%3E"):
+  
+Started GET "/oops.png" for ::1 at 2024-02-18 01:34:19 +0200
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [GET] "/oops.png"):
+  
+Started GET "/oops.png" for ::1 at 2024-02-18 01:37:26 +0200
+  
+ActionController::RoutingError (No route matches [GET] "/oops.png"):
+  
