@@ -24,7 +24,7 @@
 
 			<p><%=  %></p>
 
-			<div class = "d-flex justify-content-between align-items-center action-links">
+			<!--<div class = "d-flex justify-content-between align-items-center action-links">
 				<div> 
 				<span style="font-size: 13px;">Beginner <%= @tournament.registrations.where(level_registration: "level_1", waitlisted: false).count%></span>
 				</div>
@@ -40,7 +40,7 @@
 				<div>
 				<span style="font-size: 13px;">WaitListed <%= @tournament.registrations.where(waitlisted: true).count%></span>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		
 	</div>
@@ -49,6 +49,7 @@
 		
 		<%= form_tag create_groups_tournament_path(@tournament), method: :post, remote: true do %>
 			<%= render partial: 'player_info' %>
+			<br>
 			<%= link_to "Beginner Schedule", beginner_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %><br><br>
 		<%= link_to "Medium Schedule", medium_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %><br><br>
 		<%= link_to "Medium Plus Schedule", medium_plus_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %><br><br>

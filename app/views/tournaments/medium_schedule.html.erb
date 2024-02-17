@@ -31,23 +31,7 @@
 
 			<p><%=  %></p>
 
-			<div class = "d-flex justify-content-between align-items-center action-links">
-				<div> 
-				<span style="font-size: 13px;">Beginner <%= @tournament.registrations.where(level_registration: "level_1", waitlisted: false).count%></span>
-				</div>
-				<div>
-				<span style="font-size: 13px;">Medium <%= @tournament.registrations.where(level_registration: "level_2", waitlisted: false).count%></span>
-				</div>
-				<div>
-				<span style="font-size: 13px;">MediumPlus <%= @tournament.registrations.where(level_registration: "level_3", waitlisted: false).count%></span>
-				</div>
-				<div>
-				<span style="font-size: 13px;">Expert <%= @tournament.registrations.where(level_registration: "level_4", waitlisted: false).count%></span>
-				</div>
-				<div>
-				<span style="font-size: 13px;">WaitListed <%= @tournament.registrations.where(waitlisted: true).count%></span>
-				</div>
-			</div>
+			
 		</div>
 		
 	</div>

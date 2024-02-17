@@ -6,7 +6,7 @@
   <%end%>
 
 <%= turbo_frame_tag "ceva" do %>
-
+  <!--old  template
   <table class="table">
     <tr>
       <% ["Beginner", "Medium", "MediumPlus", "Expert","WaitListed"].each do |category| %>
@@ -49,8 +49,245 @@
   <% end %>
   </tr>
   
-		</table>
+		</table>-->
+    <!--begin new template-->
+    <div class="accordion accordion-sm" id="accordionExample1" style="font-size: 8px;">
+    <div class="accordion-item">
+      <h2 class="accordion-header">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1" style="padding: 5px;">
+          Beginner <span style="position: absolute; right: 35px;"><%= @players_lvl_beginner.count %></span>
+        </button>
+      </h2>
+      <div id="collapseOne1" class="accordion-collapse collapse " data-bs-parent="#accordionExample1">
+        <div class="accordion-body" style="text-align: center;">
+          <% players_variable_name = "@players_lvl_beginner" %>
+          <% eval(players_variable_name).each do |id, user_id| %>
+            <% id_reg = Registration.find(id) %>
+            <label>
+              <% if current_user.admin? %>
+                <%= check_box_tag "selected_players[]", id, false, class: 'tiny-checkbox' %>
+              <% end %>
+              <font size="1px">
+                <% if @tournament.double == false %>
+                  <% if current_user.admin? %>
+                    <%= link_to User.find(user_id).username, user_path(user_id), class: 'user-link', data: { turbo_frame: "_top" } %>
+                    <%= image_tag "#{User.find(user_id).image_profile}.png", size: "99x99", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
+                  <% else %>
+                    <%= User.find(user_id).username %>
+                    <%= image_tag "#{User.find(user_id).image_profile}.png", size: "99x99", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
+                  <% end %>
+                <% else %>
+                  <%= id_reg.name %>
+                <% end %>
+              </font>
+            </label>
+            <% if current_user.admin? %>
+              <%= link_to modify_waitlisted_users_tournament_registration_path(@tournament, id_reg), method: :post, data: { turbo_method: :post }, remote: true, class: "btn btn-sm", style: "font-size: 5px; padding: 1px;" do %>
+                <%= image_tag "upgrade.png", width: 10, height: 10 %>
+              <% end %>
+            <% end %>
+            <br>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+
+  <div class="accordion accordion-sm" id="accordionExample" style="font-size: 5px;">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2" style="padding: 5px;">
+      Medium <span style="position: absolute; right: 35px;"><%= @players_lvl_medium.count %></span>
+      </button>
+    </h2>
+    <div id="collapseOne2" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+      <div class="accordion-body" style="text-align: center;">
+      <% players_variable_name = "@players_lvl_medium" %>
+      <% eval(players_variable_name).each do |id, user_id| %>
+        <% id_reg = Registration.find(id) %>
+        <label>
+        <% if current_user.admin? %>
+          <%= check_box_tag "selected_players[]", id, false, class: 'tiny-checkbox' %>
+        <% end %>
+        <font size="2px">
+        <% if @tournament.double == false %>
+          <% if current_user.admin? %>
+            <%= link_to User.find(user_id).username, user_path(user_id), class: 'user-link', data: { turbo_frame: "_top" } %>
+            <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
+            <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
+          <% else %>
+            <%= User.find(user_id).username %>
+            <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
+            <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
+          <% end %>
+
+        <% else %>
+          <%= id_reg.name %>
+        <% end %>
+        </font>
+        </label>
+        <% if current_user.admin? %>
+          <%= link_to modify_waitlisted_users_tournament_registration_path(@tournament, id_reg), method: :post, data: { turbo_method: :post }, remote: true, class: "btn btn-sm", style: "font-size: 7px;" do %>
+            <%= image_tag "upgrade.png", width: 21, height: 21 %>
+          <% end %>
+        <% end %>
+        <br>
+      
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <br>
+  <div class="accordion accordion-sm" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne3" aria-expanded="true" aria-controls="collapseOne3" style="padding: 5px;">
+       Medium Plus <span style="position: absolute; right: 35px;"><%= @players_lvl_mediumplus.count %></span>
+      </button>
+    </h2>
+    <div id="collapseOne3" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+      <div class="accordion-body" style="text-align: center;">
+      <% players_variable_name = "@players_lvl_mediumplus" %>
+      <% eval(players_variable_name).each do |id, user_id| %>
+        <% id_reg = Registration.find(id) %>
+        <label>
+        <% if current_user.admin? %>
+          <%= check_box_tag "selected_players[]", id, false, class: 'tiny-checkbox' %>
+        <% end %>
+        <font size="2px">
+        <% if @tournament.double == false %>
+          <% if current_user.admin? %>
+            <%= link_to User.find(user_id).username, user_path(user_id), class: 'user-link', data: { turbo_frame: "_top" } %>
+            <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
+            <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
+
+          <% else %>
+            <%= User.find(user_id).username %>
+            <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
+            <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
+          <% end %>
+
+        <% else %>
+          <%= id_reg.name %>
+        <% end %>
+        </font>
+        </label>
+        <% if current_user.admin? %>
+          <%= link_to modify_waitlisted_users_tournament_registration_path(@tournament, id_reg), method: :post, data: { turbo_method: :post }, remote: true, class: "btn btn-sm", style: "font-size: 7px;" do %>
+            <%= image_tag "upgrade.png", width: 21, height: 21 %>
+          <% end %>
+        <% end %>
+        <br>
+      
+      <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+  <br>
+  <div class="accordion accordion-sm" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne4" aria-expanded="true" aria-controls="collapseOne4" style="padding: 5px;">
+       Expert <span style="position: absolute; right: 35px;"><%= @players_lvl_expert.count %></span>
+      </button>
+    </h2>
+    <div id="collapseOne4" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+      <div class="accordion-body" style="text-align: center;">
+      <% players_variable_name = "@players_lvl_expert" %>
+      <% eval(players_variable_name).each do |id, user_id| %>
+        <% id_reg = Registration.find(id) %>
+        <label>
+        <% if current_user.admin? %>
+          <%= check_box_tag "selected_players[]", id, false, class: 'tiny-checkbox' %>
+        <% end %>
+        <font size="2px">
+        <% if @tournament.double == false %>
+          <% if current_user.admin? %>
+            <%= link_to User.find(user_id).username, user_path(user_id), class: 'user-link', data: { turbo_frame: "_top" } %>
+            <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
+            <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
+
+          <% else %>
+            <%= User.find(user_id).username %>
+            <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
+            <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
+          <% end %>
+
+        <% else %>
+          <%= id_reg.name %>
+        <% end %>
+        </font>
+        </label>
+        <% if current_user.admin? %>
+          <%= link_to modify_waitlisted_users_tournament_registration_path(@tournament, id_reg), method: :post, data: { turbo_method: :post }, remote: true, class: "btn btn-sm", style: "font-size: 7px;" do %>
+            <%= image_tag "upgrade.png", width: 21, height: 21 %>
+          <% end %>
+        <% end %>
+        <br>
+      
+      <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+  <br>
+  <div class="accordion accordion-sm" id="accordionExample">
+  <div class="accordion-item">
+    <h2 class="accordion-header">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne5" aria-expanded="true" aria-controls="collapseOne5" style="padding: 5px; position: relative;">
+       WaitListed <span style="position: absolute; right: 35px;"><%= @players_lvl_waitlisted.count %></span>
+       
+      </button>
+    </h2>
+    <div id="collapseOne5" class="accordion-collapse collapse " data-bs-parent="#accordionExample">
+      <div class="accordion-body" style="text-align: center;">
+      <% players_variable_name = "@players_lvl_waitlisted" %>
+      <% eval(players_variable_name).each do |id, user_id| %>
+        <% id_reg = Registration.find(id) %>
+        <label>
+        <% if current_user.admin? %>
+          <%= check_box_tag "selected_players[]", id, false, class: 'tiny-checkbox' %>
+        <% end %>
+        <font size="2px">
+        <% if @tournament.double == false %>
+          <% if current_user.admin? %>
+            <%= link_to User.find(user_id).username, user_path(user_id), class: 'user-link', data: { turbo_frame: "_top" } %>
+            <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
+            <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
+
+          <% else %>
+            <%= User.find(user_id).username %>
+            <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
+            <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
+          <% end %>
+
+        <% else %>
+          <%= id_reg.name %>
+        <% end %>
+        </font>
+        </label>
+        <% if current_user.admin? %>
+          <%= link_to modify_waitlisted_users_tournament_registration_path(@tournament, id_reg), method: :post, data: { turbo_method: :post }, remote: true, class: "btn btn-sm", style: "font-size: 7px;" do %>
+            <%= image_tag "upgrade.png", width: 21, height: 21 %>
+          <% end %>
+        <% end %>
+        <br>
+      
+      <% end %>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!--finish new template-->
 <% end %>
+
+
+
+
 
 <style>
 .user-link {
@@ -67,4 +304,13 @@
   height: 10px;
   margin-right: 5px; /* Adjust spacing as needed */
 }
+.accordion.accordion-sm .accordion-item {
+    border: none;
+  }
+  .accordion.accordion-sm .accordion-header button {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    font-size: 15px;
+  }
 </style>
