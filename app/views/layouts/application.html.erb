@@ -26,25 +26,29 @@
       </div>  
     <% end %>
     <% if user_signed_in? %>
-      <% if controller_name == "usernames" %>
-        <% if params[:action] == "index" %>
-          <div class="container py-2">
+      <% if controller_name == "errors" %>
+        <%= yield %>
+      <%else%>
+        <% if controller_name == "usernames" %>
+          <% if params[:action] == "index" %>
+            <div class="container py-2">
+              <div class= "row">
+                <%= render "shared/sidebar" %>
+                <%= yield %>
+              </div>
+            </div>
+          <% else %>
+            <%= yield %>
+          <%end%>
+        <% else %>
+          <div class="container py-2 px-0">
             <div class= "row">
               <%= render "shared/sidebar" %>
               <%= yield %>
             </div>
           </div>
-        <% else %>
-          <%= yield %>
-        <%end%>
-      <% else %>
-        <div class="container py-2 px-0">
-          <div class= "row">
-            <%= render "shared/sidebar" %>
-            <%= yield %>
-          </div>
-        </div>
-      <% end %>
+        <% end %>
+      <%end%>
       
     <% else %>
       <%= yield %>

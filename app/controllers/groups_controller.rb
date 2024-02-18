@@ -19,7 +19,7 @@ class GroupsController < ApplicationController
 		pattern = /\A(\d-\d\s){1,2}\d-\d\z/
   
 		params[:match_scores].each do |_, score|
-			if !!(score =~ pattern) == false
+			if !!(score =~ pattern) == false && score.present?
 				respond_to do |format|
 					format.html { redirect_to dashboard_path }
 					format.turbo_stream do
