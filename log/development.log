@@ -1528,3 +1528,1154 @@ Processing by ErrorsController#internal_server_error as HTML
 Completed 500 Internal Server Error in 11ms (Views: 8.7ms | ActiveRecord: 0.3ms | Allocations: 19052)
 
 
+Started GET "/" for ::1 at 2024-02-19 14:02:56 +0200
+  [1m[35m (1.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Redirected to http://localhost:3000/dashboard
+Completed 302 Found in 31ms (ActiveRecord: 12.3ms | Allocations: 13301)
+
+
+Started GET "/dashboard" for ::1 at 2024-02-19 14:02:56 +0200
+Processing by DashboardController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTweet Load (1.1ms)[0m  [1m[34mSELECT "tweets".* FROM "tweets" ORDER BY "tweets"."created_at" DESC[0m
+  [1m[36mLike Load (0.8ms)[0m  [1m[34mSELECT "likes".* FROM "likes" WHERE "likes"."tweet_id" = $1[0m  [["tweet_id", 362]]
+  [1m[36mBookmark Load (0.6ms)[0m  [1m[34mSELECT "bookmarks".* FROM "bookmarks" WHERE "bookmarks"."tweet_id" = $1[0m  [["tweet_id", 362]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  [1m[36mTournament Load (0.7ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" ORDER BY "tournaments"."created_at" DESC[0m
+  [1m[36mRegistration Load (0.6ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" IN ($1, $2, $3)[0m  [["tournament_id", 137], ["tournament_id", 136], ["tournament_id", 135]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3, $4, $5)[0m  [["id", 28], ["id", 5], ["id", 12], ["id", 25], ["id", 21]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  Rendering layout layouts/application.html.erb
+  Rendering dashboard/index.html.erb within layouts/application
+  Rendered shared/_tweet_form.html.erb (Duration: 1.7ms | Allocations: 888)
+  Rendered collection of tweets/_tweet.html.erb [1 times] (Duration: 192.4ms | Allocations: 362160)
+  Rendered dashboard/index.html.erb within layouts/application (Duration: 195.3ms | Allocations: 363973)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.3ms | Allocations: 342)
+  Rendered shared/_tournament_form.html.erb (Duration: 20.0ms | Allocations: 23561)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.9ms | Allocations: 2014)
+  Rendered shared/_create_blog.html.erb (Duration: 20.6ms | Allocations: 12064)
+  Rendered shared/_sidebar.html.erb (Duration: 50.3ms | Allocations: 52135)
+  Rendered layout layouts/application.html.erb (Duration: 258.9ms | Allocations: 432404)
+Completed 200 OK in 322ms (Views: 255.0ms | ActiveRecord: 26.1ms | Allocations: 476992)
+
+
+Started GET "/tournaments" for ::1 at 2024-02-19 14:02:57 +0200
+Processing by TournamentsController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."league" = $1 ORDER BY "tournaments"."created_at" DESC[0m  [["league", false]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" IN ($1, $2, $3)[0m  [["tournament_id", 137], ["tournament_id", 136], ["tournament_id", 135]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN ($1, $2, $3, $4, $5)[0m  [["id", 28], ["id", 5], ["id", 12], ["id", 25], ["id", 21]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1[0m  [["id", 5]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/index.html.erb within layouts/application
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_1"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_3"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_4"]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_4"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 137], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 137], ["level_registration", "level_4"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 137], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.3ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments"[0m
+  Rendered shared/_update_tournament.html.erb (Duration: 2.1ms | Allocations: 3917)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.0ms | Allocations: 3380)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.1ms | Allocations: 3380)
+  [1m[36mRegistration Load (0.3ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_4"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."user_id" = $1 AND "registrations"."tournament_id" = $2 LIMIT $3[0m  [["user_id", 5], ["tournament_id", 136], ["LIMIT", 1]]
+  [1m[35mCACHE  (0.0ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_4"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 136], ["user_id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments"[0m
+  Rendered shared/_update_tournament.html.erb (Duration: 1.8ms | Allocations: 3396)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.0ms | Allocations: 3381)
+  Rendered shared/_update_tournament.html.erb (Duration: 1.0ms | Allocations: 3381)
+  [1m[36mRegistration Load (0.5ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 135], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 135], ["level_registration", "level_1"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 135], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 135], ["level_registration", "level_2"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 135], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 135], ["level_registration", "level_3"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."user_id" = $2 ORDER BY "registrations"."id" ASC LIMIT $3[0m  [["tournament_id", 135], ["user_id", 5], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 135], ["level_registration", "level_4"]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments"[0m
+  Rendered shared/_update_tournament.html.erb (Duration: 1.2ms | Allocations: 3384)
+  Rendered shared/_update_tournament.html.erb (Duration: 0.9ms | Allocations: 3367)
+  Rendered shared/_update_tournament.html.erb (Duration: 0.9ms | Allocations: 3367)
+  Rendered collection of tournaments/_tournament.html.erb [3 times] (Duration: 47.2ms | Allocations: 66407)
+  Rendered tournaments/index.html.erb within layouts/application (Duration: 48.4ms | Allocations: 68289)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.3ms | Allocations: 347)
+  Rendered shared/_tournament_form.html.erb (Duration: 1.2ms | Allocations: 3461)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.5ms | Allocations: 1737)
+  Rendered shared/_create_blog.html.erb (Duration: 0.7ms | Allocations: 833)
+  Rendered shared/_sidebar.html.erb (Duration: 8.1ms | Allocations: 18733)
+  Rendered layout layouts/application.html.erb (Duration: 61.1ms | Allocations: 101647)
+Completed 200 OK in 66ms (Views: 56.7ms | ActiveRecord: 6.0ms | Allocations: 105866)
+
+
+Started GET "/tournaments/136" for ::1 at 2024-02-19 14:03:04 +0200
+Processing by TournamentsController#show as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.3ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "registrations"."id", "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2 AND "registrations"."waitlisted" = $3[0m  [["tournament_id", 136], ["level_registration", "level_1"], ["waitlisted", false]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "registrations"."id", "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2 AND "registrations"."waitlisted" = $3[0m  [["tournament_id", 136], ["level_registration", "level_2"], ["waitlisted", false]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "registrations"."id", "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2 AND "registrations"."waitlisted" = $3[0m  [["tournament_id", 136], ["level_registration", "level_3"], ["waitlisted", false]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "registrations"."id", "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2 AND "registrations"."waitlisted" = $3[0m  [["tournament_id", 136], ["level_registration", "level_4"], ["waitlisted", false]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "registrations"."id", "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."waitlisted" = $2[0m  [["tournament_id", 136], ["waitlisted", true]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/show.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2 AND "registrations"."waitlisted" = $3[0m  [["tournament_id", 136], ["level_registration", "level_1"], ["waitlisted", false]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2 AND "registrations"."waitlisted" = $3[0m  [["tournament_id", 136], ["level_registration", "level_2"], ["waitlisted", false]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2 AND "registrations"."waitlisted" = $3[0m  [["tournament_id", 136], ["level_registration", "level_3"], ["waitlisted", false]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2 AND "registrations"."waitlisted" = $3[0m  [["tournament_id", 136], ["level_registration", "level_4"], ["waitlisted", false]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."waitlisted" = $2[0m  [["tournament_id", 136], ["waitlisted", true]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_player_info.html.erb (Duration: 7.0ms | Allocations: 9680)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_player_info_bracket.html.erb (Duration: 1.0ms | Allocations: 921)
+  Rendered shared/_bracket_matches_form.html.erb (Duration: 1.8ms | Allocations: 1477)
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered shared/_create_point.html.erb (Duration: 2.9ms | Allocations: 2950)
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_create_team.html.erb (Duration: 2.3ms | Allocations: 2480)
+  Rendered tournaments/show.html.erb within layouts/application (Duration: 18.3ms | Allocations: 20489)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.4ms | Allocations: 342)
+  Rendered shared/_tournament_form.html.erb (Duration: 1.4ms | Allocations: 3461)
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.1ms | Allocations: 1584)
+  Rendered shared/_create_blog.html.erb (Duration: 0.9ms | Allocations: 813)
+  Rendered shared/_sidebar.html.erb (Duration: 8.9ms | Allocations: 18514)
+  Rendered layout layouts/application.html.erb (Duration: 32.1ms | Allocations: 53575)
+Completed 200 OK in 39ms (Views: 30.7ms | ActiveRecord: 3.1ms | Allocations: 57149)
+
+
+Started POST "/tournaments/136/create_groups" for ::1 at 2024-02-19 14:03:13 +0200
+Processing by TournamentsController#create_groups as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "selected_players"=>["647", "646"], "commit"=>"Generate Groups", "id"=>"136"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Create (1.2ms)[0m  [1m[32mINSERT INTO "groups" ("level", "tournament_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["level", "level_2"], ["tournament_id", 136], ["created_at", "2024-02-19 12:03:13.529882"], ["updated_at", "2024-02-19 12:03:13.529882"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 268], ["LIMIT", 1]]
+  [1m[36mMatch Create (3.2ms)[0m  [1m[32mINSERT INTO "matches" ("level", "first_player", "second_player", "created_at", "updated_at", "group_id", "tournament_id", "kind") VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING "id"[0m  [["level", "level_2"], ["first_player", 647], ["second_player", 646], ["created_at", "2024-02-19 12:03:13.543127"], ["updated_at", "2024-02-19 12:03:13.543127"], ["group_id", 268], ["tournament_id", 136], ["kind", "group"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  Rendering tournaments/create_groups.turbo_stream.erb
+  Rendered tournaments/create_groups.turbo_stream.erb (Duration: 1.2ms | Allocations: 661)
+Completed 200 OK in 29ms (Views: 2.3ms | ActiveRecord: 12.7ms | Allocations: 19010)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:03:15 +0200
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.6ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.2ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 4.2ms | Allocations: 3240)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 11.1ms | Allocations: 13769)
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 6.7ms | Allocations: 3962)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 2.1ms | Allocations: 3193)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 22.4ms | Allocations: 23301)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.3ms | Allocations: 343)
+  Rendered shared/_tournament_form.html.erb (Duration: 1.2ms | Allocations: 3462)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.5ms | Allocations: 1718)
+  Rendered shared/_create_blog.html.erb (Duration: 0.8ms | Allocations: 815)
+  Rendered shared/_sidebar.html.erb (Duration: 10.7ms | Allocations: 18652)
+  Rendered layout layouts/application.html.erb (Duration: 40.7ms | Allocations: 56525)
+Completed 200 OK in 61ms (Views: 38.8ms | ActiveRecord: 8.8ms | Allocations: 70225)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:05:44 +0200
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (1.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.6ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.6ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.8ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.2ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (10.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (3.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 164.3ms | Allocations: 4597)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.6ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 736.5ms | Allocations: 96302)
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 4.6ms | Allocations: 3970)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 7.1ms | Allocations: 3200)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 947.7ms | Allocations: 461640)
+  Rendered shared/_tweet_form.html.erb (Duration: 8.4ms | Allocations: 6045)
+  Rendered shared/_tournament_form.html.erb (Duration: 19.8ms | Allocations: 23500)
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 2.0ms | Allocations: 1982)
+  Rendered shared/_create_blog.html.erb (Duration: 20.7ms | Allocations: 11310)
+  Rendered shared/_sidebar.html.erb (Duration: 57.8ms | Allocations: 57129)
+  Rendered layout layouts/application.html.erb (Duration: 1017.4ms | Allocations: 535050)
+Completed 200 OK in 1121ms (Views: 993.9ms | ActiveRecord: 67.3ms | Allocations: 596269)
+
+
+Started POST "/groups/267/update_scores_group" for ::1 at 2024-02-19 14:06:08 +0200
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"701"=>""}, "match_dates"=>{"701"=>""}, "commit"=>"Submit", "id"=>"267"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 701], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mMatch Update (0.8ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "score" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:06:08.292463"], ["score", ""], ["id", 701]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Update (0.1ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "winner" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:06:08.294778"], ["winner", nil], ["id", 701]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 701], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mCOMMIT[0m
+No template found for GroupsController#update_scores_group, rendering head :no_content
+Completed 204 No Content in 10ms (ActiveRecord: 2.9ms | Allocations: 7809)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:06:09 +0200
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 3.9ms | Allocations: 2775)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 9.3ms | Allocations: 11260)
+  [1m[36mMatch Load (0.5ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 11.0ms | Allocations: 2522)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 10.3ms | Allocations: 2191)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 32.1ms | Allocations: 17330)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.3ms | Allocations: 343)
+  Rendered shared/_tournament_form.html.erb (Duration: 1.3ms | Allocations: 3462)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.5ms | Allocations: 1718)
+  Rendered shared/_create_blog.html.erb (Duration: 0.7ms | Allocations: 815)
+  Rendered shared/_sidebar.html.erb (Duration: 10.7ms | Allocations: 18652)
+  Rendered layout layouts/application.html.erb (Duration: 86.0ms | Allocations: 50571)
+Completed 200 OK in 93ms (Views: 84.1ms | ActiveRecord: 3.8ms | Allocations: 56239)
+
+
+Started POST "/groups/267/update_scores_group" for ::1 at 2024-02-19 14:06:20 +0200
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"701"=>"0-5"}, "match_dates"=>{"701"=>""}, "commit"=>"Submit", "id"=>"267"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+Completed 200 OK in 23ms (Views: 0.1ms | ActiveRecord: 6.1ms | Allocations: 14766)
+
+
+Started POST "/groups/267/update_scores_group" for ::1 at 2024-02-19 14:06:27 +0200
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"701"=>"0-5 4-6"}, "match_dates"=>{"701"=>""}, "commit"=>"Submit", "id"=>"267"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.6ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 701], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.6ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mMatch Update (0.8ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "score" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:06:27.573908"], ["score", "0-5 4-6"], ["id", 701]]
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Update (0.2ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "winner" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:06:27.576219"], ["winner", 646], ["id", 701]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 701], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+No template found for GroupsController#update_scores_group, rendering head :no_content
+Completed 204 No Content in 50ms (ActiveRecord: 15.0ms | Allocations: 83369)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:06:30 +0200
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.2ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 4.8ms | Allocations: 3151)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 12.1ms | Allocations: 13622)
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 4.0ms | Allocations: 3909)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 1.9ms | Allocations: 3176)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 21.2ms | Allocations: 23130)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.8ms | Allocations: 496)
+  Rendered shared/_tournament_form.html.erb (Duration: 1.7ms | Allocations: 3967)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.9ms | Allocations: 1971)
+  Rendered shared/_create_blog.html.erb (Duration: 1.1ms | Allocations: 1002)
+  Rendered shared/_sidebar.html.erb (Duration: 13.5ms | Allocations: 21634)
+  Rendered layout layouts/application.html.erb (Duration: 41.6ms | Allocations: 60090)
+Completed 200 OK in 51ms (Views: 40.4ms | ActiveRecord: 4.1ms | Allocations: 66654)
+
+
+Started POST "/groups/267/update_scores_group" for ::1 at 2024-02-19 14:06:40 +0200
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"701"=>""}, "match_dates"=>{"701"=>""}, "commit"=>"Submit", "id"=>"267"}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.9ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 701], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.5ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.6ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mMatch Update (0.6ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "score" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:06:40.953356"], ["score", ""], ["id", 701]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Update (0.2ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "winner" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:06:40.955328"], ["winner", nil], ["id", 701]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 701], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+No template found for GroupsController#update_scores_group, rendering head :no_content
+Completed 204 No Content in 74ms (ActiveRecord: 29.4ms | Allocations: 44529)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:06:42 +0200
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.4ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.6ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (0.3ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 231.3ms | Allocations: 4590)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.5ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 241.8ms | Allocations: 14941)
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 4.0ms | Allocations: 3960)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 40.6ms | Allocations: 3195)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 485.4ms | Allocations: 405382)
+  Rendered shared/_tweet_form.html.erb (Duration: 8.9ms | Allocations: 6039)
+  Rendered shared/_tournament_form.html.erb (Duration: 21.1ms | Allocations: 23497)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 2.0ms | Allocations: 1979)
+  Rendered shared/_create_blog.html.erb (Duration: 21.1ms | Allocations: 11267)
+  Rendered shared/_sidebar.html.erb (Duration: 59.3ms | Allocations: 57057)
+  Rendered layout layouts/application.html.erb (Duration: 555.5ms | Allocations: 478707)
+Completed 200 OK in 599ms (Views: 541.0ms | ActiveRecord: 26.1ms | Allocations: 551135)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:07:00 +0200
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.3ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.5ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.8ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 316.0ms | Allocations: 29797)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.5ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 324.4ms | Allocations: 40173)
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 4.8ms | Allocations: 3961)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 2.0ms | Allocations: 3195)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 532.3ms | Allocations: 416042)
+  Rendered shared/_tweet_form.html.erb (Duration: 9.1ms | Allocations: 6041)
+  Rendered shared/_tournament_form.html.erb (Duration: 19.1ms | Allocations: 23497)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.9ms | Allocations: 1980)
+  Rendered shared/_create_blog.html.erb (Duration: 20.1ms | Allocations: 11267)
+  Rendered shared/_sidebar.html.erb (Duration: 59.3ms | Allocations: 57080)
+  Rendered layout layouts/application.html.erb (Duration: 603.1ms | Allocations: 489644)
+Completed 200 OK in 650ms (Views: 591.1ms | ActiveRecord: 29.2ms | Allocations: 515320)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:07:32 +0200
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (3.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (2.3ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.5ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 4.7ms | Allocations: 3151)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 10.9ms | Allocations: 13324)
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 4.1ms | Allocations: 3909)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 1.8ms | Allocations: 3176)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 19.9ms | Allocations: 22832)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.7ms | Allocations: 496)
+  Rendered shared/_tournament_form.html.erb (Duration: 5.1ms | Allocations: 3968)
+  [1m[36mUser Load (1.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 2.9ms | Allocations: 1971)
+  Rendered shared/_create_blog.html.erb (Duration: 1.2ms | Allocations: 1002)
+  Rendered shared/_sidebar.html.erb (Duration: 18.1ms | Allocations: 21635)
+  Rendered layout layouts/application.html.erb (Duration: 45.2ms | Allocations: 59793)
+Completed 200 OK in 64ms (Views: 43.6ms | ActiveRecord: 10.7ms | Allocations: 66346)
+
+
+Started POST "/groups/267/update_scores_group" for ::1 at 2024-02-19 14:07:44 +0200
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"701"=>"6-0 6-0"}, "match_dates"=>{"701"=>""}, "commit"=>"Submit", "id"=>"267"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 701], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mMatch Update (0.5ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "score" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:07:44.288903"], ["score", "6-0 6-0"], ["id", 701]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Update (0.4ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "winner" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:07:44.290584"], ["winner", 647], ["id", 701]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 701], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+No template found for GroupsController#update_scores_group, rendering head :no_content
+Completed 204 No Content in 13ms (ActiveRecord: 3.9ms | Allocations: 5788)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:07:46 +0200
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.3ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 4.3ms | Allocations: 3151)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 11.2ms | Allocations: 13606)
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 3.9ms | Allocations: 3909)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 1.9ms | Allocations: 3176)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 22.4ms | Allocations: 23114)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.7ms | Allocations: 496)
+  Rendered shared/_tournament_form.html.erb (Duration: 1.9ms | Allocations: 3967)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.8ms | Allocations: 1971)
+  Rendered shared/_create_blog.html.erb (Duration: 1.1ms | Allocations: 1002)
+  Rendered shared/_sidebar.html.erb (Duration: 13.5ms | Allocations: 21634)
+  Rendered layout layouts/application.html.erb (Duration: 43.1ms | Allocations: 60074)
+Completed 200 OK in 54ms (Views: 45.1ms | ActiveRecord: 3.6ms | Allocations: 66635)
+
+
+Started POST "/groups/267/update_scores_group" for ::1 at 2024-02-19 14:08:04 +0200
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"701"=>"6-0 6-0"}, "match_dates"=>{"701"=>""}, "commit"=>"Submit", "id"=>"267"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 701], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 701], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+No template found for GroupsController#update_scores_group, rendering head :no_content
+Completed 204 No Content in 6ms (ActiveRecord: 1.2ms | Allocations: 3461)
+
+
+Started POST "/groups/268/update_scores_group" for ::1 at 2024-02-19 14:08:06 +0200
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"703"=>"0-6 0-6"}, "match_dates"=>{"703"=>""}, "commit"=>"Submit", "id"=>"268"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 703], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 268], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mMatch Update (0.3ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "score" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:08:06.531475"], ["score", "0-6 0-6"], ["id", 703]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Update (0.2ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "winner" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:08:06.532795"], ["winner", 646], ["id", 703]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 703], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 268], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+No template found for GroupsController#update_scores_group, rendering head :no_content
+Completed 204 No Content in 6ms (ActiveRecord: 2.1ms | Allocations: 4036)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:08:07 +0200
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.3ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 3.6ms | Allocations: 2775)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 9.0ms | Allocations: 11793)
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 3.0ms | Allocations: 2522)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 1.1ms | Allocations: 2191)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 16.6ms | Allocations: 17863)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.4ms | Allocations: 342)
+  Rendered shared/_tournament_form.html.erb (Duration: 1.3ms | Allocations: 3461)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.3ms | Allocations: 1718)
+  Rendered shared/_create_blog.html.erb (Duration: 0.8ms | Allocations: 813)
+  Rendered shared/_sidebar.html.erb (Duration: 9.9ms | Allocations: 18651)
+  Rendered layout layouts/application.html.erb (Duration: 34.4ms | Allocations: 51086)
+Completed 200 OK in 41ms (Views: 32.3ms | ActiveRecord: 3.9ms | Allocations: 56777)
+
+
+Started POST "/groups/95/update_scores_group" for ::1 at 2024-02-19 14:09:15 +0200
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"702"=>"7-6 7-6 "}, "match_dates"=>{"702"=>""}, "rounds_submit"=>"true", "commit"=>"Submit", "id"=>"95"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mRound Load (0.5ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."id" = $1 LIMIT $2[0m  [["id", 95], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."id" = $1 LIMIT $2[0m  [["id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.2ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+Completed 200 OK in 18ms (Views: 0.1ms | ActiveRecord: 1.2ms | Allocations: 3805)
+
+
+Started POST "/groups/95/update_scores_group" for ::1 at 2024-02-19 14:09:21 +0200
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"702"=>"7-6 7-6"}, "match_dates"=>{"702"=>""}, "rounds_submit"=>"true", "commit"=>"Submit", "id"=>"95"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mRound Load (0.2ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."id" = $1 LIMIT $2[0m  [["id", 95], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.2ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."id" = $1 LIMIT $2[0m  [["id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.2ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 702], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 702], ["LIMIT", 1]]
+  [1m[36mCACHE Group Load (0.0ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.4ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mRegistration Load (0.2ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 4.4ms | Allocations: 2389)
+Completed 200 OK in 13ms (Views: 0.1ms | ActiveRecord: 2.4ms | Allocations: 7618)
+
+
+Started POST "/groups/95/update_scores_group" for ::1 at 2024-02-19 14:09:30 +0200
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"702"=>"7-6 6-7"}, "match_dates"=>{"702"=>""}, "rounds_submit"=>"true", "commit"=>"Submit", "id"=>"95"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mRound Load (0.2ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."id" = $1 LIMIT $2[0m  [["id", 95], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.5ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."id" = $1 LIMIT $2[0m  [["id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.3ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 702], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mMatch Update (1.2ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "score" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:09:30.127160"], ["score", "7-6 6-7"], ["id", 702]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Update (0.3ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "winner" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:09:30.132720"], ["winner", 646], ["id", 702]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 702], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 3.0ms | Allocations: 2383)
+Completed 200 OK in 21ms (Views: 0.1ms | ActiveRecord: 5.6ms | Allocations: 8569)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:09:31 +0200
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.2ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 5.1ms | Allocations: 2775)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 11.8ms | Allocations: 11792)
+  [1m[36mMatch Load (0.3ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 3.2ms | Allocations: 2522)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 1.1ms | Allocations: 2191)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 21.4ms | Allocations: 17862)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.4ms | Allocations: 342)
+  Rendered shared/_tournament_form.html.erb (Duration: 1.3ms | Allocations: 3460)
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.4ms | Allocations: 1718)
+  Rendered shared/_create_blog.html.erb (Duration: 0.9ms | Allocations: 813)
+  Rendered shared/_sidebar.html.erb (Duration: 11.4ms | Allocations: 18647)
+  Rendered layout layouts/application.html.erb (Duration: 42.4ms | Allocations: 51080)
+Completed 200 OK in 48ms (Views: 39.8ms | ActiveRecord: 4.1ms | Allocations: 56753)
+
+
+Started POST "/groups/95/update_scores_group" for ::1 at 2024-02-19 14:09:41 +0200
+Processing by GroupsController#update_scores_group as TURBO_STREAM
+  Parameters: {"utf8"=>"✓", "match_scores"=>{"702"=>""}, "match_dates"=>{"702"=>""}, "rounds_submit"=>"true", "commit"=>"Submit", "id"=>"95"}
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."id" = $1 LIMIT $2[0m  [["id", 95], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."id" = $1 LIMIT $2[0m  [["id", 95], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 702], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.4ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mCACHE Tournament Load (0.0ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mMatch Update (0.8ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "score" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:09:41.935782"], ["score", ""], ["id", 702]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mMatch Update (0.4ms)[0m  [1m[33mUPDATE "matches" SET "updated_at" = $1, "winner" = $2 WHERE "matches"."id" = $3[0m  [["updated_at", "2024-02-19 12:09:41.937488"], ["winner", nil], ["id", 702]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."id" = $1 LIMIT $2[0m  [["id", 702], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mGroup Load (0.2ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" = $1 LIMIT $2[0m  [["id", 267], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 1.6ms | Allocations: 981)
+Completed 200 OK in 11ms (Views: 0.1ms | ActiveRecord: 4.3ms | Allocations: 6020)
+
+
+Started GET "/tournaments/136/medium_schedule" for ::1 at 2024-02-19 14:09:43 +0200
+Processing by TournamentsController#medium_schedule as HTML
+  Parameters: {"id"=>"136"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mTournament Load (0.1ms)[0m  [1m[34mSELECT "tournaments".* FROM "tournaments" WHERE "tournaments"."id" = $1 LIMIT $2[0m  [["id", 136], ["LIMIT", 1]]
+  [1m[36mRound Load (0.2ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "matches" WHERE "matches"."round_id" = $1[0m  [["round_id", 95]]
+  [1m[36mCACHE Round Load (0.0ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2 ORDER BY "rounds"."created_at" DESC LIMIT $3[0m  [["tournament_id", 136], ["level", "level_2"], ["LIMIT", 1]]
+  [1m[36mMatch Load (0.2ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 ORDER BY "matches"."id" ASC LIMIT $2[0m  [["round_id", 95], ["LIMIT", 1]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."tournament_id" = $1 AND "groups"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mRound Load (0.1ms)[0m  [1m[34mSELECT "rounds".* FROM "rounds" WHERE "rounds"."tournament_id" = $1 AND "rounds"."level" = $2[0m  [["tournament_id", 136], ["level", "level_2"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  Rendering layout layouts/application.html.erb
+  Rendering tournaments/medium_schedule.html.erb within layouts/application
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "registrations"."user_id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "registrations"."id" FROM "registrations" WHERE "registrations"."tournament_id" = $1 AND "registrations"."level_registration" = $2[0m  [["tournament_id", 136], ["level_registration", "level_2"]]
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "groups"."id" FROM "groups" WHERE "groups"."tournament_id" = $1[0m  [["tournament_id", 136]]
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" IN (SELECT "users"."id" FROM "users" WHERE "users"."id" IN ($1, $2))[0m  [["id", 28], ["id", 5]]
+  [1m[36mGroup Load (0.1ms)[0m  [1m[34mSELECT "groups".* FROM "groups" WHERE "groups"."id" IN ($1, $2)[0m  [["id", 267], ["id", 268]]
+  Rendered shared/_add_match.html.erb (Duration: 2.7ms | Allocations: 2775)
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 267], ["kind", "group"]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mRegistration Load (0.1ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Match Load (0.0ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."group_id" = $1 AND "matches"."kind" = $2[0m  [["group_id", 268], ["kind", "group"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  Rendered tournaments/_groups_partial.html.erb (Duration: 8.5ms | Allocations: 11895)
+  [1m[36mMatch Load (0.1ms)[0m  [1m[34mSELECT "matches".* FROM "matches" WHERE "matches"."round_id" = $1 AND "matches"."kind" = $2 ORDER BY "matches"."created_at" ASC[0m  [["round_id", 95], ["kind", "bracket"]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_brackets_partial.html.erb (Duration: 0.8ms | Allocations: 768)
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 647], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 28], ["LIMIT", 1]]
+  [1m[36mCACHE Registration Load (0.0ms)[0m  [1m[34mSELECT "registrations".* FROM "registrations" WHERE "registrations"."id" = $1 LIMIT $2[0m  [["id", 646], ["LIMIT", 1]]
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 5], ["LIMIT", 1]]
+  Rendered tournaments/_rounds_partial.html.erb (Duration: 1.0ms | Allocations: 2191)
+  Rendered tournaments/medium_schedule.html.erb within layouts/application (Duration: 11.5ms | Allocations: 16211)
+  Rendered shared/_tweet_form.html.erb (Duration: 0.4ms | Allocations: 342)
+  Rendered shared/_tournament_form.html.erb (Duration: 1.2ms | Allocations: 3460)
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  Rendered shared/_prom_form.html.erb (Duration: 1.3ms | Allocations: 1718)
+  Rendered shared/_create_blog.html.erb (Duration: 0.7ms | Allocations: 813)
+  Rendered shared/_sidebar.html.erb (Duration: 9.9ms | Allocations: 18647)
+  Rendered layout layouts/application.html.erb (Duration: 27.3ms | Allocations: 49429)
+Completed 200 OK in 33ms (Views: 25.8ms | ActiveRecord: 3.1ms | Allocations: 54200)
+
+
