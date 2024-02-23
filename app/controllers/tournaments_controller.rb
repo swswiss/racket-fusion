@@ -8,8 +8,8 @@ class TournamentsController < ApplicationController
 
 	def index
 		
-		if params[:name].present?
-			@pagy, @all_tournaments = pagy_array(Tournament.search_by_name(params[:name]).where(league: false).includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
+		if params[:status].present?
+			@pagy, @all_tournaments = pagy_array(Tournament.search_by_status(params[:status]).where(league: false).includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
 				TournamentPresenter.new(tournament: tournament, current_user: current_user)
 			end,
 			items: 5
@@ -113,13 +113,13 @@ class TournamentsController < ApplicationController
 			@players_lvl_medium = @tournament.registrations.where(level_registration: "level_2", waitlisted: false).pluck(:id, :user_id)
 			@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3", waitlisted: false).pluck(:id, :user_id)
 			@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4", waitlisted: false).pluck(:id, :user_id)
-			@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true).pluck(:id, :user_id)
+			@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true).order(created_at: :desc).pluck(:id, :user_id)
 		else
 			@players_lvl_beginner = @tournament.registrations.where(level_registration: "level_1", waitlisted: false).pluck(:id, :user_id)
 			@players_lvl_medium = @tournament.registrations.where(level_registration: "level_2", waitlisted: false).pluck(:id, :user_id)
 			@players_lvl_mediumplus = @tournament.registrations.where(level_registration: "level_3", waitlisted: false).pluck(:id, :user_id)
 			@players_lvl_expert = @tournament.registrations.where(level_registration: "level_4", waitlisted: false).pluck(:id, :user_id)
-			@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true).pluck(:id, :user_id)
+			@players_lvl_waitlisted = @tournament.registrations.where(waitlisted: true).order(created_at: :desc).pluck(:id, :user_id)
 		end
 	end
 

@@ -18,7 +18,11 @@
 <%= turbo_frame_tag "groupsss" do %>
 <center><% @groups_with_matches.each_with_index do |(group, matches), index| %>
     <%= turbo_frame_tag "group_#{group.id}" do %>
+    <% if current_user.admin? %>
         <h7>Group <%= (index + 'A'.ord).chr + " "+ group.id.to_s %></h7>
+        <% else %>
+        <h7>Group <%= (index + 'A'.ord).chr  %></h7>
+        <% end %>
         <% if current_user.admin? %>
             <% if params[:action] != "print_groups_medium" %>
             <%= link_to group_path(group), method: :delete, data: { turbo_method: :delete }, class: "btn btn-sm float-end", style: "font-size: 7px;" do %>
@@ -46,7 +50,9 @@
                 <thead>
                     <tr>
                         <th>nr.</th>
+                        <% if current_user.admin? %>
                         <th>id</th>
+                        <% end %>
                         <th style="min-width: 180px;">Match</th>
                         <th>Score</th>
                         <th>Date</th>
@@ -62,7 +68,9 @@
                 <% matches.each_with_index do |match, match_index| %>
                     <tr id="match_<%= match.id %>">
                         <td><%= match_index + 1 %></td>
+                        <% if current_user.admin? %>
                         <td><%= match.id %></td>
+                        <% end %>
                         <td>
                             <% if @tournament.double == false  %>
                                 <%= "#{Registration.find(match.first_player).user.username} vs #{Registration.find(match.second_player).user.username}" %>
@@ -81,6 +89,7 @@
                             <%= datetime_field_tag "match_dates[#{match.id}]", match.date&.strftime('%Y-%m-%dT%H:%M'), class: "form-control datetime-picker", disabled: false, style: "font-size: 11px;" %>
                         <% else  %>
                             <%= datetime_field_tag "match_dates[#{match.id}]", match.date&.strftime('%Y-%m-%dT%H:%M'), class: "form-control datetime-picker", disabled: true, style: "font-size: 11px;" %>
+
                         <% end %>
               </td>
               <% if params[:action] != "print_groups_medium" %>

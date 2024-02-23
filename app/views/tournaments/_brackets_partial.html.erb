@@ -23,10 +23,10 @@
 					<%if @tournament.double == true%>
 					<li class="team team-top"><%= Registration.find(match.first_player).name %><span class="score"><%= match.score %></span></li>
 					
-						<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"><%= match.date%></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"><%= match&.date&.strftime('%Y-%m-%d %H:%M')%></span></li>
 					<%else%>
 					<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
-						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.date%></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match&.date&.strftime('%Y-%m-%d %H:%M')%></span></li>
 					<%end%>
 						
 					</ul>
@@ -40,10 +40,10 @@
 				<ul class="matchup">
 				<%if @tournament.double == true%>
 				<li class="team team-top"><%= Registration.find(match.first_player).name %><span class="score"><%= match.score %></span></li>
-					<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"><%= match.date%></span></li>
+					<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"><%= match&.date&.strftime('%Y-%m-%d %H:%M')%></span></li>
 				<%else%>
 				<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
-					<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.date%></span></li>
+					<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match&.date&.strftime('%Y-%m-%d %H:%M')%></span></li>
 				<%end%>
 				</ul>
 				<br>
@@ -59,10 +59,10 @@
 					<%if @tournament.double == true%>
 					<li class="team team-top"><%= Registration.find(match.first_player).name %><span class="score"><%= match.score %></span></li>
 
-						<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"><%= match.date%></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"><%= match&.date&.strftime('%Y-%m-%d %H:%M')%></span></li>
 					<%else%>
 					<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
-						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.date%></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match&.date&.strftime('%Y-%m-%d %H:%M')%></span></li>
 					<%end%>
 					</ul>
 				<% end %>
@@ -75,10 +75,10 @@
 					<ul class="matchup">
 					<%if @tournament.double == true%>
 					<li class="team team-top"><%= Registration.find(match.first_player).name %><span class="score"><%= match.score %></span></li>
-						<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"><%=match.date%></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).name %><span class="score"><%=match&.date&.strftime('%Y-%m-%d %H:%M')%></span></li>
 					<%else%>
 					<li class="team team-top"><%= Registration.find(match.first_player).user.username %><span class="score"><%= match.score %></span></li>
-						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match.date%></span></li>
+						<li class="team team-bottom"><%= Registration.find(match.second_player).user.username %><span class="score"><%= match&.date&.strftime('%Y-%m-%d %H:%M')%></span></li>
 					<%end%>
 					</ul>
 				<% end %>

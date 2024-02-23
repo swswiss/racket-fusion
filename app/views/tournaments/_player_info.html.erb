@@ -259,18 +259,18 @@
             <%= link_to User.find(user_id).username, user_path(user_id), class: 'user-link', data: { turbo_frame: "_top" } %>
             <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
             <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
-            <%= time_ago_in_words(id_reg.created_at)%>
+            <%= custom_time_ago_in_words(id_reg.created_at)%>
 
           <% else %>
             <%= User.find(user_id).username %>
             <%= image_tag "#{User.find(user_id).image_profile}.png", size: "17x17", class: "rounded-circle mr-2" if User.find(user_id).image_profile.present? %>
             <%= image_tag "no_user.png", size: "17x17", class: "rounded-circle mr-2" if !User.find(user_id).image_profile.present? %>
-            <%= time_ago_in_words(id_reg.created_at)%>
+            <%= custom_time_ago_in_words(id_reg.created_at)%>
           <% end %>
 
         <% else %>
           <%= id_reg.name %>
-          <%= time_ago_in_words(id_reg.created_at)%>
+          <%= custom_time_ago_in_words(id_reg.created_at)%>
         <% end %>
         </font>
         </label>
