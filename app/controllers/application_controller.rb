@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_blocked
     if current_user.status == 0 || current_user.status == nil 
-      flash[:alert] = "You don't have permission to perform this action."
+      flash[:alert] = "You have been blocked. Please contact Constantin Munteanu."
       redirect_to root_path
     end
   end

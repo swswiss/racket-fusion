@@ -1,0 +1,26 @@
+
+
+
+<div class="col-7">
+<h3>Edit Tweet</h3>
+
+<%= form_with(model: @tweet, local: true) do |form| %>
+  <div class="field">
+
+    <%= form.text_area :body, placeholder: "Body", class: "form-control  w-100 mb-4",style: "font-size: small;" %>
+
+  </div>
+
+  <!-- Add fields for other attributes if needed -->
+
+  
+  <div class="d-flex justify-content-end">
+	  <%= form.submit "Update Post", class: "btn btn-lg btn-twitter rounded-pill",style: "font-size: small;" %>
+	</div>
+<% end %>
+
+</div>
+<div class="col">
+
+</div>
+

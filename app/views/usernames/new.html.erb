@@ -1,4 +1,5 @@
-<div class = 'container py-5', style= "max-width: 540px">
+<div class = 'container py-5', style= "max-width: 550px">
+
   <h2>Update yout profile</h2>
 
   <%= form_with model: current_user, local: true, url: username_path(current_user) do |f| %>
@@ -163,7 +164,7 @@
 	</div>
 
 		
-		<%= f.submit "Set Username", class: "btn btn-primary btn-twitter rounded-pill" %>
+		<%= f.submit "Set Username", class: "btn btn-twitter rounded-pill" %>
   <% end %>
   
 </div>

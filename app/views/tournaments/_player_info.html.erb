@@ -50,8 +50,12 @@
   </tr>
   
 		</table>-->
+    <% free_spots_1 = @tournament.max_lvl1 - @players_lvl_beginner.count%>
+    <% free_spots_2 = @tournament.max_lvl2 - @players_lvl_medium.count%>
+    <% free_spots_3 = @tournament.max_lvl3 - @players_lvl_mediumplus.count%>
+    <% free_spots_4 = @tournament.max_lvl4 - @players_lvl_expert.count%>
     <!--begin new template-->
-    <div class="accordion accordion-sm" id="accordionExample1" style="font-size: 8px;">
+    <div class="accordion accordion-sm" id="accordionExample1" style="font-size: 13px;">
     <div class="accordion-item">
       <h2 class="accordion-header">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne1" style="padding: 5px;">
@@ -88,13 +92,19 @@
             <% end %>
             <br>
           <% end %>
+          <% if free_spots_1 > 0%>
+              <%free_spots_1.times do |i|%>
+                <%= image_tag "check.png", size: "17x17" %>
+                <font color="green">Available position </font> <br>
+              <%end%>
+          <%end%>
         </div>
       </div>
     </div>
   </div>
   <br>
 
-  <div class="accordion accordion-sm" id="accordionExample" style="font-size: 5px;">
+  <div class="accordion accordion-sm" id="accordionExample" style="font-size: 13px;">
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne2" aria-expanded="true" aria-controls="collapseOne2" style="padding: 5px;">
@@ -135,13 +145,19 @@
         <br>
       
       <% end %>
+      <% if free_spots_2 > 0%>
+              <%free_spots_2.times do |i|%>
+                <%= image_tag "check.png", size: "17x17" %>
+                <font color="green">Available position </font> <br>
+              <%end%>
+          <%end%>
       </div>
     </div>
   </div>
 </div>
 
   <br>
-  <div class="accordion accordion-sm" id="accordionExample">
+  <div class="accordion accordion-sm" id="accordionExample" style="font-size: 13px;">
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne3" aria-expanded="true" aria-controls="collapseOne3" style="padding: 5px;">
@@ -183,12 +199,18 @@
         <br>
       
       <% end %>
+      <% if free_spots_3 > 0%>
+              <%free_spots_3.times do |i|%>
+                <%= image_tag "check.png", size: "17x17" %>
+                <font color="green">Available position </font> <br>
+              <%end%>
+          <%end%>
       </div>
     </div>
   </div>
   </div>
   <br>
-  <div class="accordion accordion-sm" id="accordionExample">
+  <div class="accordion accordion-sm" id="accordionExample" style="font-size: 13px;">
   <div class="accordion-item">
     <h2 class="accordion-header">
       <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne4" aria-expanded="true" aria-controls="collapseOne4" style="padding: 5px;">
@@ -230,6 +252,12 @@
         <br>
       
       <% end %>
+      <% if free_spots_4 > 0%>
+              <%free_spots_4.times do |i|%>
+                <%= image_tag "check.png", size: "17x17" %>
+                <font color="green">Available position </font><br>
+              <%end%>
+          <%end%>
       </div>
     </div>
   </div>

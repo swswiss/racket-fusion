@@ -10,8 +10,11 @@
 				<span class="text-muted">
 					@<%= tweet_presenter.username %> <%= tweet_presenter.created_at %></span>
 					<% if current_user.admin? %>
-						<%= link_to tweet_path(tweet_presenter.tweet), method: :delete, data: { turbo_method: :delete }, class: "btn btn-outline-danger btn-sm float-end", style: "font-size: 7px;" do %>
+						<%= link_to tweet_path(tweet_presenter.tweet), method: :delete, data: { turbo_method: :delete }, class: "btn btn-outline-danger btn-sm float-end", style: "font-size: 7px; margin-left:3px;" do %>
 							X
+						<% end %>
+						<%= link_to edit_tweet_path(tweet_presenter.tweet), class: "btn btn-outline-success btn-sm float-end", style: "font-size: 7px;", data: { turbo_frame: "_top" } do %>
+							Edit
 						<% end %>
 					<% end %>
 			</p>
@@ -50,10 +53,17 @@
 
 
 			</div>
+			<div class="edit-tweet-form d-none">
+        <%= form_with(model: tweet_presenter.tweet, local: true, url: tweet_path(tweet_presenter.tweet), method: :patch) do |f| %>
+          <!-- Form fields for editing -->
+        <% end %>
+      </div>
 		</div>
 		
 	</div>
+	
 <%end%>
+
 
 <style>
 .tweet .flex-grow-1 {
