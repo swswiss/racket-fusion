@@ -49,12 +49,21 @@
 		
 		<%= form_tag create_groups_tournament_path(@tournament), method: :post, remote: true do %>
 			<%= render partial: 'player_info' %>
-			<br>
-			<%= link_to "Beginner Schedule", beginner_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %><br><br>
-		<%= link_to "Medium Schedule", medium_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %><br><br>
-		<%= link_to "Medium Plus Schedule", medium_plus_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %><br><br>
-		<%= link_to "Expert Schedule", expert_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
-		<br><br>
+			<br> 
+			<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="btn-group d-flex" role="group" aria-label="Tournament Schedules">
+        <%= link_to "Beginner Schedule", beginner_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+        <%= link_to "Medium Schedule", medium_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+        <%= link_to "Medium Plus Schedule", medium_plus_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+        <%= link_to "Expert Schedule", expert_schedule_tournament_path(@tournament), class: "btn btn-lg tiny-button", style: "background-color: #53B092;" %>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+
 			<% if current_user.admin? %>
 				
 				<center>Dashboard Admin</center>
