@@ -22,7 +22,7 @@ gem 'turbo-rails', '~> 0.9.1'
 gem 'stimulus-rails'
 gem 'pagy'
 gem 'httparty'
-
+gem 'faker'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby

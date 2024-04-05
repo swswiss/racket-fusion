@@ -159,7 +159,7 @@
 				</center>
 		<%end%>
         <br>
-<center>
+<!--<center>
 <table class="tennis-table">
         <tr>
             <th colspan="2">Court 1</th>
@@ -179,15 +179,15 @@
         <td colspan="2"> Player 1 vs Player 2</td>
         </tr>
     </table>
-    </center>
+    </center> 
     <%= form_tag(update_scores_group_group_path(Group.first), method: "post", id: "dynamic-form") do %>
         <div id="select-inputs" class="mb-3">
-    <!-- Initial select input with options -->
+
     <%= select_tag "options", options_for_select([["Option 1", 1], ["Option 2", 2], ["Option 3", 3]]), class: "form-select mb-1", id: "options-select" %>
   </div>
   <button type="button" id="add-input" class="btn btn-primary me-2">Add Select</button>
   <button type="button" id="hide-inputs" class="btn btn-secondary">Hide All</button>
-  <%= submit_tag "Submit", class: "btn btn-success" %>
+  <%= submit_tag "Submit", class: "btn btn-success" %> -->
       <% end %>
 
 

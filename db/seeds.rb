@@ -1,13 +1,46 @@
-User.destroy_all
-User.create( email: "silviu69@yahoo.com", username: "silviu saizesi0", display_name: "Silviu saizesi0", image_profile: "astronaut", admin: nil, points: 0, rank: nil, phone: "24243353434", level: "Expert", date_of_birth: nil, password: "federer", password_confirmation: "federer", status: 0)
-User.create( email: "novak1@yahoo.com", username: "novak", display_name: "novak", image_profile: "gamer", admin: nil, points: 20, rank: nil, phone: "2343242333", level: "Medium", date_of_birth: nil, password: "federer", password_confirmation: "federer", status: 0)
-User.create( email: "silviu3@yahoo.com", username: "cludiud humureanu", display_name: "Cludiud humureanu", image_profile: nil, admin: nil, points: 40, rank: nil, phone: "324535654234", level: "Medium", password: "federer", password_confirmation: "federer", status: 0)
-User.create( email: "nadal@yahoo.com", username: "nadal", display_name: "Nadal", image_profile: "astronaut", admin: nil, points: 40, rank: nil, phone: "3444444444", level: "Medium", date_of_birth: nil, password: "federer", password_confirmation: "federer", status: 0)
-User.create( email: "constantin@yahoo.com", username: "costica", display_name: "costicel", image_profile: "man", admin: nil, points: 28, rank: nil, phone: "324535654234", level: "Medium", date_of_birth: nil, password: "federer", password_confirmation: "federer", status: 0)
-User.create( email: "silviu4@yahoo.com", username: "roger federer", display_name: "Roger federer", image_profile: "astronaut", admin: nil, points: 0, rank: nil, phone: "324535654234", level: "Medium", date_of_birth: nil, password: "federer", password_confirmation: "federer", status: 0)
-User.create( email: "roger_novak@yahoo.com", username: "dscsdc", display_name: "Dscsdc", image_profile: nil, admin: nil, points: 0, rank: nil, phone: "324535654234", level: "Medium", date_of_birth: nil, password: "federer", password_confirmation: "federer", status: 0)
-User.create( email: "bianca@yahoo.com", username: "bianca", display_name: "Viorel", image_profile: "man", admin: nil, points: 0, rank: nil, phone: "324535654234", level: "Medium", date_of_birth: nil, password: "federer", password_confirmation: "federer", status: 0)
-User.create( email: "laura@yahoo.com", username: "Laura", display_name: "alex1", image_profile: "man", admin: nil, points: 20, rank: nil, phone: "3243254325", level: "Medium", date_of_birth: nil, password: "federer", password_confirmation: "federer", status: 0)
+require 'faker'
 
+# Define arrays to store generated usernames and emails
+usernames = []
+emails = []
 
-User.create( email: "silviu@yahoo.com", username: "Silviu", display_name: "Silviuss", image_profile: "tennis1", admin: true, points: 84, rank: nil, phone: "324535651110", level: "Medium", date_of_birth: "1993-10-20 00:00:00.000000000 +0000", password: "federer", password_confirmation: "federer", status: 1)
+# Generate unique usernames with first name and last name and corresponding unique emails
+while usernames.length < 100 do
+  first_name = Faker::Name.first_name.downcase
+  last_name = Faker::Name.last_name.downcase
+  username = "#{first_name} #{last_name}"
+  email = "#{first_name}#{last_name}@example.com"
+  
+  # Check if username and email are unique
+  unless usernames.include?(username) || emails.include?(email)
+    usernames << username
+    emails << email
+  end
+end
+
+# Loop through each username and create a user
+usernames.each_with_index do |username, index|
+  email = emails[index]
+  display_name = username
+  image_profile = "man"
+  points = 20
+  phone = "3243254325"
+  level = "Medium"
+  password = "federer"
+  
+  User.create(
+    email: email,
+    username: username,
+    display_name: display_name,
+    image_profile: image_profile,
+    admin: nil,
+    points: points,
+    rank: nil,
+    phone: phone,
+    level: level,
+    date_of_birth: nil,
+    password: password,
+    password_confirmation: password,
+    status: 0
+  )
+end
