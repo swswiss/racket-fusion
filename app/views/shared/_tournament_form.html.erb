@@ -4,16 +4,16 @@
 	<%= f.text_area :description, placeholder: "Description for Tournament", class: "form-control  w-100 mb-4",style: "font-size: small:" %>
 
 	<%= f.label :number_of_players_beginner, class: "form-label" %>
-	<%= f.select :max_lvl1, (0..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: small;" } %>
+	<%= f.select :max_lvl1, (0..30).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: small;" } %>
 
 	<%= f.label :number_of_players_medium, class: "form-label" %>
-	<%= f.select :max_lvl2, (0..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: small;" } %>
+	<%= f.select :max_lvl2, (0..30).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: small;" } %>
 
 	<%= f.label :number_of_players_medium_plus, class: "form-label" %>
-	<%= f.select :max_lvl3, (0..10).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: small;" } %>
+	<%= f.select :max_lvl3, (0..30).to_a, {}, { class: "form-control  w-100 mb-4", style: "font-size: small;" } %>
 
 	<%= f.label :number_of_players_expert, class: "form-label" %>
-	<%= f.select :max_lvl4, (0..10).to_a, {}, { class: "form-control w-100 mb-4", style: "font-size: small;" } %>
+	<%= f.select :max_lvl4, (0..30).to_a, {}, { class: "form-control w-100 mb-4", style: "font-size: small;" } %>
 
 	<%= f.label :start_sign_ups, class: "form-label" %>
   <%= f.datetime_local_field :start_datetime, class: "form-control datetime-picker", style: "font-size: small;" %>
