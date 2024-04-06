@@ -5,7 +5,6 @@ class GroupsController < ApplicationController
 
 
 	def update_scores_group
-		debugger
 		if params[:rounds_submit] != nil
 			tournament_id = Round.find(params[:id]).tournament.id
 			level_round = Round.find(params[:id]).level

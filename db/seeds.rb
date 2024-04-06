@@ -1,6 +1,6 @@
 require 'faker'
 
-# Define arrays to store generated usernames and emails
+# User.destroy_all
 usernames = []
 emails = []
 

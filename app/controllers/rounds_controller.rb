@@ -5,12 +5,12 @@ class RoundsController < ApplicationController
 
 	def print_rounds_medium
 		round = Round.find(params[:id])
-		tournament = round.tournament
-		@rounds_medium = tournament.rounds.where(level: "level_2")
+		@tournament = round.tournament
+		@rounds_medium = @tournament.rounds.where(level: "level_2")
 
-        @last_match = tournament.rounds.where(level: "level_2").order(created_at: :desc).first&.matches&.size
-		if @last_match == 1 && tournament.rounds.where(level: "level_2").order(created_at: :desc).first.matches.first&.winner != nil
-		    @winner = Registration.find(tournament.rounds.where(level: "level_2").order(created_at: :desc).first.matches.first&.winner).user.username
+        @last_match = @tournament.rounds.where(level: "level_2").order(created_at: :desc).first&.matches&.size
+		if @last_match == 1 && @tournament.rounds.where(level: "level_2").order(created_at: :desc).first.matches.first&.winner != nil
+		    @winner = Registration.find(@tournament.rounds.where(level: "level_2").order(created_at: :desc).first.matches.first&.winner).user.username
 		end
 
 		@rounds_with_matches = {}

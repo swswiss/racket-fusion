@@ -91,7 +91,27 @@
 	</div>
 	</section>
 	<% end %>
+
+	<!--New yable generation -->
+ <% if params[:action] == "print_rounds_medium"%>
+ <div class="rotate-table">
+ <table>
+    <tr>
+        <% @rounds_with_matches.each_with_index do |(round, matches), round_index| %>
+            <% matches.each do |match| %>
+                <td><%= Registration.find(match.first_player).user.username %><%= match.score %></td>
+                <td>Row 1, Col 2</td>
+                <td><%= Registration.find(match.second_player).user.username %><%= match&.date&.strftime('%Y-%m-%d %H:%M')%></td>
+            <% end %>
+        <% end %>
+    </tr>
+</table>
+</div>
+
+
+<%end%>
 	<style>
+
 .tournament-table {
 	border-collapse: collapse;
 	width: 60%;

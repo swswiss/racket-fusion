@@ -14,7 +14,7 @@ class UsernamesController < ApplicationController
 	def destroy
 		@user = User.find(params[:id])
 		regs = @user.registrations.pluck(:id)
-		debugger
+
 		matches = Match.where(first_player: regs)
 		matches.delete_all if matches.present?
 		matches = Match.where(second_player: regs)
