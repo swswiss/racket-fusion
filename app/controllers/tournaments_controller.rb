@@ -8,8 +8,8 @@ class TournamentsController < ApplicationController
 
 	def index
 		
-		if params[:status].present?
-			@pagy, @all_tournaments = pagy_array(Tournament.search_by_status(params[:status]).where(league: false).includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
+		if params[:name].present?
+			@pagy, @all_tournaments = pagy_array(Tournament.search_by_name(params[:name]).where(league: false).includes(:registrated_users, :user).order(created_at: :desc).map do |tournament| 
 				TournamentPresenter.new(tournament: tournament, current_user: current_user)
 			end,
 			items: 5

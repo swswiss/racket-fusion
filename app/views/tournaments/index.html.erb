@@ -4,11 +4,15 @@
 	</div>
 	<%= form_with(url: tournaments_path, method: :get, data: { turbo_frame: :tournament_results }) do |form| %>
 		<div class="mb-3">
-			<%= form.label :search_by_status, class: "form-label" %>
-			<%= form.text_field :status, class: "form-control", oninput: 'this.form.requestSubmit()'%>
+			<%= form.label :search_by_name, class: "form-label" %>
+			<%= form.text_field :name, class: "form-control", oninput: 'this.form.requestSubmit()'%>
 		</div>
 	<% end %>
-	
+	<%if @all_tournaments.count == 0%>
+		<div class="d-flex justify-content-center ">
+		There are no tournaments created yet.
+  		</div>
+	<%else%>
 	<div id = "tournaments" >
 	<%= turbo_frame_tag :tournament_results do %>
 		<%= render partial: "tournaments/tournament", collection: @all_tournaments, as: :tournament_presenter %>
@@ -19,6 +23,7 @@
 	<div class="d-flex justify-content-center ">
   		<%== pagy_bootstrap_nav(@pagy) %>
 		</div>
+		<%end%>
 
 </div>
 <div class="col">
