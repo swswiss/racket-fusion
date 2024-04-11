@@ -1,12 +1,12 @@
 databases:
-  - name: vasluileague
-    databaseName: vasluileague
+  - name: racketfusion
+    databaseName: racketfusion
     user: ioanalauramunteanu
     plan: free
 
 services:
   - type: web
-    name: vasluileague
+    name: racketfusion
     runtime: ruby
     plan: free
     buildCommand: "./bin/render-build.sh"
@@ -15,7 +15,7 @@ services:
     envVars:
       - key: DATABASE_URL
         fromDatabase:
-          name: vasluileague
+          name: racketfusion
           property: connectionString
       - key: RAILS_MASTER_KEY
         sync: false
