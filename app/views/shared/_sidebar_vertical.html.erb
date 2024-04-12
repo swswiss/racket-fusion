@@ -1,0 +1,264 @@
+<aside class="col side-navbar">
+  <div class="d-flex align-items-center fs-5 px-3 mb-0">
+    <%= image_tag "burger-king.png", width: "53" %><span> </span>
+  </div>
+
+  <% navbar_links = [
+  { path: dashboard_path, image: "home.png", text: "Home" },
+	#{ path: dashboard_path, image: "online-video.png", text: "Guide" },
+	#{ path: blogs_path, image: "newspaper.png", text: "Blog" },
+	{ path: user_path(current_user.id), image: "user.png", text: "Profile" },
+  { path: new_username_path, image: "profile_settings.png", text: "Settings" },
+	#{ path: invitations_path, image: "pair.png", text: "Invite" },
+	{ path: duel_statistics_path, image: "stats.png", text: "Stats" },
+	#{ path: statistics_path, image: "stats.png", text: "Stats" },
+  { path: expert_users_path, image: "rank.png", text: "Rankings", dropdown: [
+    { path: beginner_users_path, text: "Beginner" },
+    { path: medium_users_path, text: "Medium" },
+    { path: medium_plus_users_path, text: "Medium Plus" },
+		{ path: expert_users_path, text: "Expert" },
+  ] },
+	#{ path: leagues_path, image: "leagues.png", text: "Leagues" },
+  { path: tournaments_path, image: "tennis-c.png", text: "Events" }
+] %>
+
+<% navbar_links.each do |link| %>
+  <% if link[:dropdown] %>
+    <div class="dropdown">
+      <%= link_to link[:path], class: "d-flex align-items-center fs-5 mb-3 dropdown-toggle", 'data-bs-toggle' => 'dropdown', role: 'button', 'aria-haspopup' => 'true', 'aria-expanded' => 'false' do %>
+        <div class="px-4 py-2 rounded-pill">
+          <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+            <%= image_tag link[:image], width: "27" %>
+          </span>
+          <%= link[:text] %>
+        </div>
+      <% end %>
+      <ul class="dropdown-menu">
+        <% link[:dropdown].each do |sublink| %>
+          <li><%= link_to sublink[:path], class: 'dropdown-item' do %><%= sublink[:text] %><% end %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% else %>
+		<% if link[:text] == "Guide" %>
+			<%= link_to link[:path], class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#guide" } do %>
+				<div class="px-4 py-2 rounded-pill  d-sm-flex">
+					<span class="me-4 position-relative " style="bottom: 3px;">
+						<%= image_tag link[:image], width: "27" %>
+					</span>
+					<%= link[:text] %>
+				</div>
+			<%end%>
+  	
+		<%else%>
+			<%= link_to link[:path], class: "d-flex align-items-center fs-5 mb-3" do %>
+				<div class="px-4 py-2 rounded-pill  d-sm-flex">
+					<span class="me-4 position-relative " style="bottom: 3px;">
+						<%= image_tag link[:image], width: "27" %>
+					</span>
+					<%= link[:text] %>
+				</div>
+			<% end %>
+		<%end%>
+  <% end %>
+<% end %>
+
+
+  <% if current_user.admin? %>
+    <center>
+      <div class="px-4 py-0 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          --------<%= image_tag "manager.png", width: "45" %>--------
+        </span>
+      </div>
+    </center>
+
+    <%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#creat_tour" } do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag "tournament.png", width: "27" %>
+        </span>
+        Creat Event
+      </div>
+    <% end %>
+
+		<%= link_to usernames_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag "group.png", width: "27" %>
+        </span>
+        All Players
+      </div>
+    <% end %>
+
+		<%= link_to blogs_path, class: "d-flex align-items-center fs-5 mb-3" do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag "newspaper.png", width: "27" %>
+        </span>
+        Blogs
+      </div>
+    <% end %>
+
+		<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#creat_prom" } do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag "medal.png", width: "27" %>
+        </span>
+        Promotions
+      </div>
+    <% end %>
+
+		<%= link_to dashboard_path, class: "d-flex align-items-center fs-5 mb-3", data: { bs_toggle: "modal", bs_target: "#create_blog" } do %>
+      <div class="px-4 py-2 rounded-pill">
+        <span class="me-4 position-relative d-none d-sm-inline" style="bottom: 3px;">
+          <%= image_tag "blog.png", width: "27" %>
+        </span>
+        Create Blog
+      </div>
+    <% end %>
+  <% end %>
+
+  <div class="d-flex align-items-center fs-4 px-4 mb-3">
+    <%= button_tag "Post", class: "btn btn-sm btn-twitter w-100 rounded-pill", data: { "bs-toggle": "modal", "bs-target": "#exampleModal" } %>
+  </div>
+
+  <div class="d-flex align-items-center fs-6 px-4">
+    <%= link_to "Log Out", destroy_user_session_path, class: 'twitter-link' %>
+  </div>
+</aside>
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<%= render "shared/tweet_form" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="creat_tour" tabindex="-1" aria-labelledby="creat_tour" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<%= render "shared/tournament_form" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="creat_prom" tabindex="-1" aria-labelledby="creat_prom" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<%= render "shared/prom_form" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="create_blog" tabindex="-1" aria-labelledby="create_blog" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+				<%= render "shared/create_blog" %>
+      </div>
+      
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="guide" tabindex="-1" aria-labelledby="guide" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 90vw; max-height: 90vh;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close mx-0" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+			<div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="false">
+			<div class="carousel-inner">
+				<div class="carousel-item active">
+				
+
+				<div class="card border-0" style="width: 78rem;">
+					<img src="<%= asset_path('guide1.png') %>" class="d-block w-75 mx-auto" alt="...">
+					<div class="card-body">
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+				</div>
+
+				</div>
+				<div class="carousel-item">
+				<div class="card border-0" style="width: 78rem;">
+					<img src="<%= asset_path('guide2.png') %>" class="d-block w-75 mx-auto" alt="...">
+					<div class="card-body">
+						<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+				</div>
+				</div>
+				<div class="carousel-item">
+				<div class="card border-0" style="width: 78rem;">
+					<img src="<%= asset_path('guide3.png') %>" class="d-block w-75 mx-auto" alt="...">
+					<div class="card-body">
+						<p class="card-text">Some quick examquick examquick examquick examquick examquick examquick examquick examquick example text to build on the card title and make up the bulk of the card's content.</p>
+					</div>
+				</div>
+				</div>
+			</div>
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<style>
+.side-navbar {
+  display: flex; /* Use flexbox layout */
+  flex-direction: row; /* Horizontal layout */
+}
+
+/* Optional: If you want to adjust the spacing between sidebar items */
+.side-navbar .sidebar-item {
+  margin-right: 10px; /* Adjust as needed */
+}
+.carousel-caption {
+    color: black;
+  }
+  .carousel-control-prev-icon,
+  .carousel-control-next-icon {
+    background-color: black;
+  }
+
+  .carousel-control-prev,
+  .carousel-control-next {
+    filter: invert(1); /* Invert the color for white icons on black background */
+  }
+</style>
