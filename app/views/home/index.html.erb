@@ -118,19 +118,30 @@
 <div class="container text-center">
   <div class="row">
     <div class="col">
-    <img src="<%= asset_path('decathlon.png') %>"  style="width: 320px; height: 130px;" alt="...">
+    <!--<img src="<%= asset_path('decathlon.png') %>"  style="width: 320px; height: 130px;" alt="...">-->
+    <div id="playerCountContainer", style="font-size: 43px;">
+  <span id="playerCount", style="font-size: 43px;">0</span> Players
+</div>
     </div>
     <div class="col">
+    <!--
     <h4>Dacă ați fost mulțumiți, nu uitați să apăsați butonul Like și să le împărtășiți prietenilor.</h4>
     <img src="<%= asset_path('facebook.png') %>"  style="width: 29px; height: 29px;" alt="...">
     <img src="<%= asset_path('instagram.png') %>"  style="width: 29px; height: 29px;" alt="...">
     <img src="<%= asset_path('linkedin.png') %>"  style="width: 29px; height: 29px;" alt="...">
-    <img src="<%= asset_path('whatsapp.png') %>"  style="width: 29px; height: 29px;" alt="...">
+    <img src="<%= asset_path('whatsapp.png') %>"  style="width: 29px; height: 29px;" alt="..."> -->
+    <div id="eventCountContainer", style="font-size: 43px;">
+  <span id="eventCount", style="font-size: 43px;">0</span> Tournaments
+</div>
     </div>
     <div class="col">
+    <div id="matchCountContainer", style="font-size: 39px;">
+  <span id="matchCount", style="font-size: 43px;">0</span> Matches
+</div>
+    <!--
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v12.0" nonce="YOUR_NONCE_VALUE"></script>
-<div class="fb-page" data-href="https://www.facebook.com/racketfusion" data-tabs="timeline" data-width="340" data-height="130" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>
+<div class="fb-page" data-href="https://www.facebook.com/racketfusion" data-tabs="timeline" data-width="340" data-height="130" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"></div>-->
 
     </div>
   </div>
@@ -187,10 +198,71 @@
   ©2023 Toate drepturile rezervate.
 </footer>
 
+<script>
+  // Get the span element for the player count
+  var playerCountElement = document.getElementById("playerCount");
+  var eventCountElement = document.getElementById("eventCount");
+  var matchCountElement = document.getElementById("matchCount");
+  
+  // Get the actual count from Ruby (assuming it's stored in a variable)
+  var actualCount = <%= User.all.count %>;
+  var actualCount1 = <%= Tournament.all.count %>;
+  var actualCount2 = <%= Match.all.count %>;
+  
+  // Set the starting count to 0
+  var count = 0;
+  var count1 = 0;
+  var count2 = 0;
 
+  var interval = setInterval(function() {
+    
+    playerCountElement.textContent = count; 
+
+    if (count >= actualCount) {
+       
+      clearInterval(interval);
+    }
+  else
+    count++;
+  }, 50);
+  var interval1 = setInterval(function() {
+    
+    eventCountElement.textContent = count1; 
+
+    if (count1 >= actualCount1) {
+      clearInterval(interval1);
+    }
+  else
+    count1++;
+  }, 50);
+  var interval2 = setInterval(function() {
+    
+    matchCountElement.textContent = count2;
+
+    if (count2 >= actualCount2) {
+      clearInterval(interval2);
+    }
+  else
+    count2++;
+  }, 50);
+</script>
+
+<style>
 
 
   <style>
+  @keyframes countAnimation {
+    from {
+      opacity: 0; /* Start with opacity 0 */
+    }
+    to {
+      opacity: 1; /* End with opacity 1 */
+    }
+  }
+
+  #playerCount {
+    animation: countAnimation 1s; /* Use countAnimation with 1 second duration */
+  }
   .custom-bg-color {
   background-color: #1a1a1a;
 }
