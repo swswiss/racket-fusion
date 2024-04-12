@@ -1,7 +1,11 @@
+<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 <div class="col-7">
 	<div class = "mb-3">
+	<%end%>
 		<%= link_to "Events", tournaments_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
+		<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 	</div>
+	<%end%>
 	<%= form_with(url: tournaments_path, method: :get, data: { turbo_frame: :tournament_results }) do |form| %>
 		<div class="mb-3">
 			<%= form.label :search_by_name, class: "form-label" %>
@@ -24,11 +28,12 @@
   		<%== pagy_bootstrap_nav(@pagy) %>
 		</div>
 		<%end%>
-
+		<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 </div>
 <div class="col">
 
 </div>
+<%end%>
 <style>
 .page-item a.page-link {
     color: #28a745;
