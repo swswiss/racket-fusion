@@ -1,4 +1,6 @@
+<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 <div class="col-7 mt-3">
+<%end%>
 <%= form_with(url: expert_users_path, method: :get, data: { turbo_frame: :user_results }) do |form| %>
     <div class="mb-3">
       <%= form.label :search_players, class: "form-label" %>
@@ -30,11 +32,12 @@
   		<%== pagy_bootstrap_nav(@pagy) %>
 		</div>
 
-
+		<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 </div>
 <div class="col">
 	
 </div>
+<%end%>
 
 <style>
 .page-item a.page-link {

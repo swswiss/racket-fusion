@@ -1,5 +1,6 @@
-
+<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 <div class="col-7" style="overflow-x: auto;">
+<%end%>
 	<%= turbo_frame_tag dom_id(@tournament) do %>
 		<div class="some_container_id"></div>
 	<%end%>
@@ -49,11 +50,12 @@
 			</center>
 		<%end%>
 	
-	
+    <% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 </div>
 <div class="col">
 
 </div>
+<%end%>
 
 
 <style>

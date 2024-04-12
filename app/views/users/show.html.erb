@@ -1,4 +1,6 @@
+<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 <div class="col-7 mt-3">
+<%end%>
 
 <div class="flex-shrink-0">
             <%= image_tag "no_user.png", size: "99x99", class: "rounded-circle mr-2" if !@user.image_profile.present? %>
@@ -43,11 +45,12 @@
               <h7><%= @user.calculate_age %></h7>
             
             <br>
-
+            
 </div>
-
+<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 </div>
 <div class="col">
-	ss
+
 </div>
+<%end%>
 

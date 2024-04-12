@@ -1,4 +1,6 @@
+<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 <div class="col-7">
+<%end%>
 	<%= turbo_frame_tag dom_id(@tournament) do %>
 		<div class="some_container_id"></div>
 	<%end%>
@@ -132,11 +134,12 @@
 		<% end %>
 		<% end %>
 		<% end %>
-
+		<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 </div>
 <div class="col">
 
 </div>
+<%end%>
 
 
 <div class="modal fade" id="creat_bracket" tabindex="-1" aria-labelledby="creat_bracket" aria-hidden="true">
