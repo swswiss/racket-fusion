@@ -1,4 +1,6 @@
+<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 <div class="col-7">
+<%end%>
 	<div class = "mb-3">
 		<%= link_to "Home", dashboard_path, class: "fs-4 text-decoration-none text-black fw-semibold" %>
 	</div>
@@ -10,13 +12,14 @@
 	<div id = "tweets" >
 		<%= render partial: "tweets/tweet", collection: @tweets, as: :tweet_presenter %>
 	</div>
-	
+	<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>	
 </div>
 <div class="col">
 <div class="content">
 
 </div>
 </div>
+<%end%>
 
 <style>
 .col {
