@@ -1,4 +1,6 @@
+<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 <div class="col-7", style="margin-top: 30px;">
+<%end%>
   <%= form_tag headtohead_statistics_path, method: :get do %>
     <div class="mb-2">
       <%= label_tag :user_id, 'Select User to see Duels:', class: 'form-label' %>
@@ -71,11 +73,12 @@
   		<%== pagy_bootstrap_nav(@pagy) %>
 		</div>
 
-
+		<% unless request.user_agent =~ /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i %>
 </div>
 <div class="col">
 
 </div>
+<%end%>
 
 
 
