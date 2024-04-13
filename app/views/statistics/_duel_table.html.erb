@@ -10,9 +10,10 @@
 		  <th>W/L</th>
         </tr>
       </thead>
-      <% if @duels.present? %>
+
+      <% if ((@duels || []) + (@all_teammates || [])).present? %>
         <tbody>
-          <% @duels&.each do |match| %>
+          <% (@duels+@all_teammates).each do |match| %>
 			<%if match.score.present?%>
 				<% wl = ((Registration.find(match.winner).user.id == current_user.id  )) ? true : false   %>
 			<%end%>
@@ -23,6 +24,7 @@
               <td><%= Registration.find(match.first_player).user.username %></td>
               <td><%= Registration.find(match.second_player).user.username %></td>
 			  <% else %>
+        
 			  <td><%= Registration.find(match.first_player).name %></td>
               <td><%= Registration.find(match.second_player).name %></td>
 			  <% end %>

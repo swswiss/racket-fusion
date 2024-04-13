@@ -29,7 +29,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @matches_for_current_user.each do |match| %>
+				<% (@matches_for_current_user + @all_teammates).each do |match| %>
 					<%if match.score.present?%>
 						<% wl = ((Registration.find(match.winner).user.id == current_user.id  )) ? true : false   %>
 					<%end%>
