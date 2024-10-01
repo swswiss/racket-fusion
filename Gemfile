@@ -66,5 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "ransack", "~> 4.1"
 gem 'pg_search'
 gem 'wicked_pdf'
-gem 'axlsx'
+gem 'axlsx', git: 'https://github.com/swswiss/axlsx.git', branch: 'master'
+
 gem 'wkhtmltopdf-binary'
+gem 'mimemagic', '~> 0.3.10'
