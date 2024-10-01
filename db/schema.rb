@@ -69,16 +69,6 @@ ActiveRecord::Schema.define(version: 2024_02_08_141911) do
     t.index ["user_id"], name: "index_bookmarks_on_user_id"
   end
 
-  create_table "books", force: :cascade do |t|
-    t.string "name"
-    t.float "price"
-    t.string "author"
-    t.string "category"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "buy_link"
-  end
-
   create_table "groups", force: :cascade do |t|
     t.string "level"
     t.integer "tournament_id"
@@ -92,6 +82,7 @@ ActiveRecord::Schema.define(version: 2024_02_08_141911) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["tweet_id"], name: "index_likes_on_tweet_id"
+    t.index ["user_id", "tweet_id"], name: "index_likes_on_user_id_and_tweet_id", unique: true
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
@@ -176,7 +167,7 @@ ActiveRecord::Schema.define(version: 2024_02_08_141911) do
     t.string "display_name"
     t.string "image_profile"
     t.boolean "admin"
-    t.integer "points"
+    t.integer "points", default: 0
     t.integer "rank"
     t.string "phone"
     t.string "level"

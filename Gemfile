@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-ruby '3.0.0'
+ruby '3.3.0'
 gem 'rails', '~> 6.0'
 gem 'trix'
 # Use postgresql as the database for Active Record
